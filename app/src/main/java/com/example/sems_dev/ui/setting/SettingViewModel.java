@@ -1,16 +1,16 @@
-package com.example.sems_dev.ui.home;
+package com.example.sems_dev.ui.setting;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class SettingViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public SettingViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is home fragment");
+        mText.setValue("This is Setting fragment");
     }
 
     public LiveData<String> getText() {

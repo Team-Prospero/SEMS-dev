@@ -1,4 +1,4 @@
-package com.example.sems_dev.ui.slideshow;
+package com.example.sems_dev.ui.get_value;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sems_dev.R;
 
-public class SlideshowFragment extends Fragment {
+public class GetValueFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private GetValueViewModel getValueViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        getValueViewModel =
+                new ViewModelProvider(this).get(GetValueViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_get_val, container, false);
         final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        getValueViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
