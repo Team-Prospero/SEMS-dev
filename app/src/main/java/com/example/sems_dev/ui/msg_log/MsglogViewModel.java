@@ -1,16 +1,14 @@
-package com.example.sems_dev.ui.get_value;
+package com.example.sems_dev.ui.msg_log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-public class GetValueViewModel extends ViewModel {
-
+public class MsglogViewModel {
     private MutableLiveData<String> mText;
 
-    public GetValueViewModel() {
+    public MsglogViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("값 조회 프래그먼트");
+        mText.setValue("메시지 기록 프래그먼트");
     }
 
     public LiveData<String> getText() {
