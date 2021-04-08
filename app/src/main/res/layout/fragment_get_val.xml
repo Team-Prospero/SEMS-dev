@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
@@ -57,51 +57,56 @@ tools:context=".ui.get_value.GetValueFragment">
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
+            <ToggleButton
                 android:id="@+id/equipment1"
                 android:layout_width="0dip"
-                android:layout_height="104dp"
-                android:layout_margin="5dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:backgroundTint="#B3E5FC"
+                android:layout_margin="5dp"
                 android:gravity="center"
-                android:hint="장비1"
+                android:textOn="버튼 1"
+                android:textOff="버튼 1"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
-            <Button
+                android:textSize="20sp"
+                android:background="@drawable/button"/>
+
+            <ToggleButton
                 android:id="@+id/equipment2"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="장비2"
+                android:textOn="버튼 2"
+                android:textOff="버튼 2"
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:backgroundTint="#B3E5FC"/>
-            <Button
+                android:background="@drawable/button"/>
+            <ToggleButton
                 android:id="@+id/equipment3"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="장비3"
+                android:textOn="버튼 3"
+                android:textOff="버튼 3"
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:backgroundTint="#B3E5FC"/>
-            <Button
+                android:background="@drawable/button"
+                />
+            <ToggleButton
                 android:id="@+id/equipment4"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:hint="장비4"
+                android:textOn="버튼 4"
+                android:textOff="버튼 4"
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:backgroundTint="#B3E5FC"/>
-
+                android:background="@drawable/button"/>
         </TableRow>
         <TableRow
             android:id="@+id/dataTable"
@@ -421,4 +426,4 @@ tools:context=".ui.get_value.GetValueFragment">
     </TableLayout>
 </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
