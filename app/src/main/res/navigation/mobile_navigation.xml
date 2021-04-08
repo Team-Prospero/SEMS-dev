@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_setting">
+    app:startDestination="@+id/nav_get_val">
+
+    <fragment
+        android:id="@+id/nav_get_val"
+        android:name="com.example.sems_dev.ui.get_value.GetValueFragment"
+        android:label="@string/menu_get_val"
+        tools:layout="@layout/fragment_get_val" />
 
     <fragment
         android:id="@+id/nav_setting"
@@ -16,12 +22,6 @@
         android:name="com.example.sems_dev.ui.info.InfoFragment"
         android:label="@string/menu_info"
         tools:layout="@layout/fragment_info" />
-
-    <fragment
-        android:id="@+id/nav_get_val"
-        android:name="com.example.sems_dev.ui.get_value.GetValueFragment"
-        android:label="@string/menu_get_val"
-        tools:layout="@layout/fragment_get_val" />
 
     <fragment
         android:id="@+id/nav_msg_log"
