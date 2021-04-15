@@ -62,22 +62,6 @@ public class SettingNumberActivity extends AppCompatActivity {
             fis = openFileInput("number.txt");
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fis));
             data = bufferedReader.readLine();
-            while (data != null) {
-                if (i == 0) bike = data;
-                else if (i == 1) book = data;
-                else if (i == 2) laptop = data;
-                else if (i == 3) car = data;
-                else if (i == 4) phone = data;
-                else if (i == 5) tablet = data;
-                i++;
-                if(i>3){
-                    nameList[0] = bike;
-                    nameList[1] = book;
-                    nameList[2] = laptop;
-                    nameList[3] = car;
-                    nameList[4] = phone;
-                    nameList[5] = tablet;
-                }
                 data = bufferedReader.readLine();
             }
         } catch (FileNotFoundException e) {
