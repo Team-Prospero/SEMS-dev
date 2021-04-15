@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.emergency_expList;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 
 public class EmergencyCallActivity extends AppCompatActivity {
     private ExpandableListView listView;
+    private int last_expanded = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,33 +29,47 @@ public class EmergencyCallActivity extends AppCompatActivity {
         ArrayList<GroupList> DataList = new ArrayList<GroupList>();
         listView = findViewById(R.id.emergency_expList);
         GroupList temp = new GroupList("1번 농장");
-        temp.child.add("1-1 비상연락처");
-        temp.child.add("1-2 비상연락처");
-        temp.child.add("1-3 비상연락처");
-        temp.child.add("1-4 비상연락처");
-        temp.child.add("1-5 비상연락처");
+        temp.child.add("1번째 비상연락처");
+        temp.child.add("2번째 비상연락처");
+        temp.child.add("3번째 비상연락처");
+        temp.child.add("4번째 비상연락처");
+        temp.child.add("5번째 비상연락처");
         DataList.add(temp);
         temp = new GroupList("2번 농장");
-        temp.child.add("2-1 비상연락처");
-        temp.child.add("2-2 비상연락처");
-        temp.child.add("2-3 비상연락처");
-        temp.child.add("2-4 비상연락처");
-        temp.child.add("2-5 비상연락처");
+        temp.child.add("1번째 비상연락처");
+        temp.child.add("2번째 비상연락처");
+        temp.child.add("3번째 비상연락처");
+        temp.child.add("4번째 비상연락처");
+        temp.child.add("5번째 비상연락처");
         DataList.add(temp);
         temp = new GroupList("3번 농장");
-        temp.child.add("3-1 비상연락처");
-        temp.child.add("3-2 비상연락처");
-        temp.child.add("3-3 비상연락처");
-        temp.child.add("3-4 비상연락처");
-        temp.child.add("3-5 비상연락처");
+        temp.child.add("1번째 비상연락처");
+        temp.child.add("2번째 비상연락처");
+        temp.child.add("3번째 비상연락처");
+        temp.child.add("4번째 비상연락처");
+        temp.child.add("5번째 비상연락처");
         DataList.add(temp);
         temp = new GroupList("4번 농장");
-        temp.child.add("4-1 비상연락처");
-        temp.child.add("4-2 비상연락처");
-        temp.child.add("4-3 비상연락처");
-        temp.child.add("4-4 비상연락처");
-        temp.child.add("4-5 비상연락처");
+        temp.child.add("1번째 비상연락처");
+        temp.child.add("2번째 비상연락처");
+        temp.child.add("3번째 비상연락처");
+        temp.child.add("4번째 비상연락처");
+        temp.child.add("5번째 비상연락처");
         DataList.add(temp);
+
+        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                Boolean isExpanded = (!listView.isGroupExpanded(groupPosition)); //선택한 그룹 포지션의 펼침/닫힘 상태체크
+                listView.collapseGroup(last_expanded); //이전에 열려있던 그룹 닫기
+                if(isExpanded){
+                    listView.expandGroup(groupPosition); // 현재 선택한 그룹이 있으면 펼쳐줌
+                }
+                last_expanded=groupPosition; // 현재 선택한 그룹을 last_expanded 로 설정
+                return true;
+            }
+        });
+
 
         ExpandAdapter adapter = new ExpandAdapter(getApplicationContext(), R.layout.explist_row, R.layout.explist_childrow, DataList);
         listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.

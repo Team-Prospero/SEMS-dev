@@ -7,12 +7,18 @@
         android:id="@+id/childName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dip"
-        android:paddingLeft="40dip"
+        android:textSize="20sp"
+        android:paddingLeft="10dip"
         />
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:text="010-1234-5678"
+        android:layout_height="wrap_content"/>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:text="재설정"
-        android:id="@+id/pnumber_setting"/>
+        android:id="@+id/phonenumber_edit"/>
 </LinearLayout>

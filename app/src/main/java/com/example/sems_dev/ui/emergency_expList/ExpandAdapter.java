@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,10 +17,13 @@ import com.example.sems_dev.R;
 
 public class ExpandAdapter extends BaseExpandableListAdapter {
     private Context context;
+    private Button phonenumber_edit_button;
+    private PhoneNumberEditDialog phoneNumberEditDialog;
     private int groupLayout = 0;
     private int chlidLayout = 0;
     private ArrayList<GroupList> DataList;
     private LayoutInflater myinf = null;
+    private ExpandableListView lv;
 
     public ExpandAdapter(Context context, int groupLay, int chlidLay, ArrayList<GroupList> DataList) {
         this.DataList = DataList;
@@ -47,6 +52,13 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         }
         TextView childName = (TextView) convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
+
+/*        phonenumber_edit_button.setOnClickListener(new View.OnClickListener() { // 재설정 버튼 클릭리스너
+            @Override
+            public void onClick(View v) {
+                phoneNumberEditDialog.show(phoneNumberEditDialog.getParentFragmentManager(), "비상전화 재설정");
+            }
+        });*/
         return convertView;
     }
 
