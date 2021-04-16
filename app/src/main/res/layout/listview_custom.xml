@@ -7,25 +7,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-<!--        <CheckBox
-            android:visibility="gone"/>
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>-->
+
         <TextView
+            android:id="@+id/tvListViewName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"/>
         <TextView
+            android:id="@+id/tvListViewNumber"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"/>
-        <Switch
+<!--        <Switch
+            android:id="@+id/swListViewOnOff"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:showText="true"
             android:textOn="On"
             android:textOff="Off"/>
-
+-->
     </LinearLayout>
 </LinearLayout>
