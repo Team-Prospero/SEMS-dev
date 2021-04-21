@@ -8,17 +8,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:textColor="@android:color/black"
         android:paddingLeft="10dip"
         />
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
+        android:id="@+id/pnumber"
         android:textSize="20sp"
-        android:text="010-1234-5678"
+        android:focusable="false"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:hint="여기에 전화번호 입력"
         android:layout_height="wrap_content"/>
-    <Button
+    <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:text="재설정"
+        android:textOn="변경사항 저장"
+        android:textOff="전화번호 수정"
         android:id="@+id/phonenumber_edit"/>
 </LinearLayout>

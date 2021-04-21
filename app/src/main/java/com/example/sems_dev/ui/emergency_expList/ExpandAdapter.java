@@ -1,15 +1,16 @@
 package com.example.sems_dev.ui.emergency_expList;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -17,8 +18,6 @@ import com.example.sems_dev.R;
 
 public class ExpandAdapter extends BaseExpandableListAdapter {
     private Context context;
-    private Button phonenumber_edit_button;
-    private PhoneNumberEditDialog phoneNumberEditDialog;
     private int groupLayout = 0;
     private int chlidLayout = 0;
     private ArrayList<GroupList> DataList;
@@ -47,18 +46,27 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        if (convertView == null) {
-            convertView = myinf.inflate(this.chlidLayout, parent, false);
-        }
-        TextView childName = (TextView) convertView.findViewById(R.id.childName);
+        ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
+        EditText pNumber = convertView.findViewById(R.id.pnumber);
+        TextView childName = convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
-
-/*        phonenumber_edit_button.setOnClickListener(new View.OnClickListener() { // 재설정 버튼 클릭리스너
+        pNumberEdit_OnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                phoneNumberEditDialog.show(phoneNumberEditDialog.getParentFragmentManager(), "비상전화 재설정");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
+                    pNumber.setFocusable(true);
+                    pNumber.setCursorVisible(true);
+                    pNumber.setClickable(true);
+                } else {
+                    Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                    pNumber.setText("수정된 텍스트");
+                    pNumber.setFocusable(false);
+                    pNumber.setCursorVisible(false);
+                    pNumber.setClickable(false);
+                }
             }
-        });*/
+        });
         return convertView;
     }
 
