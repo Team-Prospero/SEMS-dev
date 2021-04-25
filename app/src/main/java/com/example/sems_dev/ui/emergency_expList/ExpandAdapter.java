@@ -16,6 +16,8 @@ import java.util.ArrayList;
 
 import com.example.sems_dev.R;
 
+import static android.text.InputType.TYPE_NULL;
+
 public class ExpandAdapter extends BaseExpandableListAdapter {
     private Context context;
     private int groupLayout = 0;
@@ -46,6 +48,11 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
+        if(convertView==null){
+            LayoutInflater infalInflater = (LayoutInflater) this.context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = infalInflater.inflate(R.layout.explist_childrow, null);
+        }
         ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
         EditText pNumber = convertView.findViewById(R.id.pnumber);
         TextView childName = convertView.findViewById(R.id.childName);
@@ -55,15 +62,11 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
-                    pNumber.setFocusable(true);
-                    pNumber.setCursorVisible(true);
-                    pNumber.setClickable(true);
+                    pNumber.setEnabled(true);
+
                 } else {
                     Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    pNumber.setText("수정된 텍스트");
-                    pNumber.setFocusable(false);
-                    pNumber.setCursorVisible(false);
-                    pNumber.setClickable(false);
+                    pNumber.setEnabled(false);
                 }
             }
         });
