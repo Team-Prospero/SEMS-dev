@@ -36,13 +36,16 @@ public class SettingNumberActivity extends AppCompatActivity {
     private String numberList[] = new String[100];
 
     private int count = 1;
-
+    String Name = new String();
+    String Number = new String();
     private LinearLayout dialogView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_number);
+
+
 
         addNum = (Button) findViewById(R.id.addNum);
         deleteNum = (Button) findViewById(R.id.deleteNum);
@@ -81,8 +84,7 @@ public class SettingNumberActivity extends AppCompatActivity {
                 builder.setPositiveButton("추가", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String Name = new String();
-                        String Number = new String();
+
 
                         if (etName.length() == 0) {
                             Name = Integer.toString(count) + "번";

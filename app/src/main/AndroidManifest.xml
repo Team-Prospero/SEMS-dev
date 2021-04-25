@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.setting.SettingNumberActivity"></activity>
+        <activity android:name=".ui.setting.SettingNumberActivity" />
+        <activity android:name=".ui.emergency_expList.EmergencyCallActivity"/>
     </application>
 
 </manifest>

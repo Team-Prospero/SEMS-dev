@@ -27,17 +27,14 @@ public class SettingFragment extends Fragment {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0: //기계 설정 시 비밀번호
-                        Toast.makeText(view.getContext(),parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                        break;
+                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                     case 1: //SEMS 경보기 켜기/끄기
-                        Toast.makeText(view.getContext(),parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                        break;
+                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                     case 2: //경보기 전화번호 설정
                         Intent intent = new Intent(getActivity(), SettingNumberActivity.class); // SettingNumberActivity로 이동
                         startActivity(intent);
-                        break;
                 }
             }
         });

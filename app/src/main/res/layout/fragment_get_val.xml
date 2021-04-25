@@ -11,7 +11,8 @@ tools:context=".ui.get_value.GetValueFragment">
     android:id="@+id/Sams_data_table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright">
+    android:background="@android:color/holo_blue_bright"
+    >
 
     <TableLayout
         android:layout_marginTop="10dp"
@@ -26,18 +27,19 @@ tools:context=".ui.get_value.GetValueFragment">
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-
-            <TextView
+            <Spinner
                 android:id="@+id/farmName"
-                android:layout_width="0dip"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:hint="농장 이름"
                 android:layout_margin="2dp"
                 android:gravity="center"
+                android:textAlignment="center"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:background="#FFF59D"/>`
+                android:background="#FFF59D" />
+
             <TextView
                 android:id="@+id/currentVal"
                 android:layout_width="0dip"
@@ -57,372 +59,57 @@ tools:context=".ui.get_value.GetValueFragment">
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ToggleButton
+            <Button
                 android:id="@+id/equipment1"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:textOn="버튼 1"
-                android:textOff="버튼 1"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:background="@drawable/button"/>
-
-            <ToggleButton
+                android:textSize="14dp"
+                android:text="1번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
                 android:id="@+id/equipment2"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textOn="버튼 2"
-                android:textOff="버튼 2"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:background="@drawable/button"/>
-            <ToggleButton
+                android:textSize="14dp"
+                android:text="2번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
                 android:id="@+id/equipment3"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textOn="버튼 3"
-                android:textOff="버튼 3"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:background="@drawable/button"
-                />
-            <ToggleButton
+                android:textSize="14dp"
+                android:text="3번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
                 android:id="@+id/equipment4"
                 android:layout_width="0dip"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:textOn="버튼 4"
-                android:textOff="버튼 4"
-                android:layout_margin="5dp"
+                android:layout_margin="2dp"
                 android:gravity="center"
-                android:textSize="20sp"
                 android:textColor="@color/black"
-                android:background="@drawable/button"/>
+                android:textSize="14dp"
+                android:text="4번 장비"
+                android:backgroundTint="#B3E5FC"/>
         </TableRow>
-        <TableRow
-            android:id="@+id/dataTable"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/round_corrner_border">
+            android:layout_height="match_parent">
+        </androidx.viewpager.widget.ViewPager>
 
-            <TableLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TableRow
-                    android:id="@+id/sensor1_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor1_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="1구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor1_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor1_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor1_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor3_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor3_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="3구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor3_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor3_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor3_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor5_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor5_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="5구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor5_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor5_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor5_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor7_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor7_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="7구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor7_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor7_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor7_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TableRow
-                    android:id="@+id/sensor2_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor2_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="2구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor2_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor2_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor2_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor4_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor4_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="4구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor4_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor4_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor4_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor6_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor6_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="6구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor6_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor6_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor6_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor8_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor8_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="8구역" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor8_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/sensor8_Value"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="--/--" />
-
-                    <TextView
-                        android:id="@+id/sensor8_Type"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="Type" />
-
-                </TableRow>
-            </TableLayout>
-        </TableRow>
     </TableLayout>
 </LinearLayout>
 
