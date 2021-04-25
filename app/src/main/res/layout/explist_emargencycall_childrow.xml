@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <TextView
+        android:id="@+id/childName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:paddingLeft="10dip"
+        />
+    <EditText
+        android:layout_width="wrap_content"
+        android:id="@+id/pnumber"
+        android:textSize="20sp"
+        android:enabled="false"
+        android:inputType="phone"
+        android:hint="여기에 전화번호 입력"
+        android:layout_height="wrap_content"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textOn="변경사항 저장"
+        android:textOff="전화번호 수정"
+        android:id="@+id/phonenumber_edit"/>
+</LinearLayout>

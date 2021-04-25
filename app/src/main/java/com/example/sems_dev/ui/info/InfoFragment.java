@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sems_dev.R;
 import com.example.sems_dev.ui.emergency_expList.EmergencyCallActivity;
+import com.example.sems_dev.ui.periodic_message.PeriodicMessageActivity;
 
 public class InfoFragment extends Fragment {
     static final String[] INFO_LIST = {"비상연락처 조회", "정규 문자 시간 조회", "센서 경고범위 조회","센서종류 조회","센서 사용유무조회","음수량 경고범위 조회"};
@@ -31,10 +32,11 @@ public class InfoFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        Intent intent = new Intent(getActivity(), EmergencyCallActivity.class);
-                        startActivity(intent);
+                        Intent intentEmergencyCall = new Intent(getActivity(), EmergencyCallActivity.class);
+                        startActivity(intentEmergencyCall);
                     case 1:
-                        Toast.makeText(view.getContext(),parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        Intent intentPeriodicMessage = new Intent(getActivity(), PeriodicMessageActivity.class);
+                        startActivity(intentPeriodicMessage);
                     case 2:
                         Toast.makeText(view.getContext(),parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
                     case 3:

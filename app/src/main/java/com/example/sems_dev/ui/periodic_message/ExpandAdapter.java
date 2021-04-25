@@ -1,4 +1,5 @@
-package com.example.sems_dev.ui.emergency_expList;
+package com.example.sems_dev.ui.periodic_message;
+
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             convertView = myinf.inflate(this.groupLayout, parent, false);
         }
         TextView groupName = (TextView) convertView.findViewById(R.id.groupName);
+        // TODO 2021-04-25 | NullPointerException occur
         groupName.setText(DataList.get(groupPosition).groupName);
         return convertView;
     }
@@ -49,22 +51,22 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.explist_emargencycall_childrow, null);
+            convertView = infalInflater.inflate(R.layout.explist_periodicmessage_childrow, null);
         }
-        ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
-        EditText pNumber = convertView.findViewById(R.id.pnumber);
+        ToggleButton msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
+        EditText msgtime = convertView.findViewById(R.id.pnumber);
         TextView childName = convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
-        pNumberEdit_OnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        msgtime_edit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
-                    pNumber.setEnabled(true);
+                    msgtime.setEnabled(true);
 
                 } else {
                     Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    pNumber.setEnabled(false);
+                    msgtime.setEnabled(false);
                 }
             }
         });
