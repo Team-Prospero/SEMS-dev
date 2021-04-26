@@ -14,7 +14,7 @@ import com.example.sems_dev.R;
 import java.util.ArrayList;
 
 public class EmergencyCallActivity extends AppCompatActivity {
-    Context context;
+    public static Context context;
     private ExpandableListView listView;
     private int last_expanded = -1;
     private ToggleButton phoneNumber_edit_button;

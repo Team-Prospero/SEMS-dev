@@ -6,8 +6,10 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,16 +20,12 @@ public class PeriodicMessageActivity extends AppCompatActivity {
     Context context;
     private ExpandableListView listView;
     private int last_expanded = -1;
-    private ToggleButton msgtime_edit;
-    private EditText msgtime;
     private Object GroupList;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_periodic_message);
-        msgtime_edit = findViewById(R.id.msgtime_edit);
-        msgtime= findViewById(R.id.msgtime);
         Display newDisplay = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         newDisplay.getSize(size);
@@ -36,20 +34,20 @@ public class PeriodicMessageActivity extends AppCompatActivity {
         ArrayList<GroupList> DataList = new ArrayList<GroupList>();
         listView = findViewById(R.id.periodic_msg_expList);
         GroupList temp = new GroupList("농장 1");
-        temp.child.add("발송시간 1");
-        temp.child.add("발송시간 2");
+        temp.child.add("시간 1");
+        temp.child.add("시간 2");
         DataList.add(temp);
         temp = new GroupList("농장 2");
-        temp.child.add("발송시간 1");
-        temp.child.add("발송시간 2");
+        temp.child.add("시간 1");
+        temp.child.add("시간 2");
         DataList.add(temp);
         temp = new GroupList("농장 3");
-        temp.child.add("발송시간 1");
-        temp.child.add("발송시간 2");
+        temp.child.add("시간 1");
+        temp.child.add("시간 2");
         DataList.add(temp);
         temp = new GroupList("농장 4");
-        temp.child.add("발송시간 1");
-        temp.child.add("발송시간 2");
+        temp.child.add("시간 1");
+        temp.child.add("시간 2");
         DataList.add(temp);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너

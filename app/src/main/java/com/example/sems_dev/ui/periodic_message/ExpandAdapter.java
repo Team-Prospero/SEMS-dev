@@ -1,17 +1,24 @@
 package com.example.sems_dev.ui.periodic_message;
 
 
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.util.ArrayList;
 
@@ -24,6 +31,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     private ArrayList<GroupList> DataList;
     private LayoutInflater myinf = null;
     private ExpandableListView lv;
+    private PeriodicMessageActivity periodicMessageActivity;
 
     public ExpandAdapter(Context context, int groupLay, int chlidLay, ArrayList<GroupList> DataList) {
         this.DataList = DataList;
@@ -35,39 +43,32 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         if (convertView == null) {
             convertView = myinf.inflate(this.groupLayout, parent, false);
         }
-        TextView groupName = (TextView) convertView.findViewById(R.id.groupName);
-        // TODO 2021-04-25 | NullPointerException occur
+        TextView groupName = (TextView) convertView.findViewById(R.id.periodic_exp_groupName);
+        // TODO 2021-04-25 | NullPointerException occur -> solved
         groupName.setText(DataList.get(groupPosition).groupName);
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_periodicmessage_childrow, null);
         }
-        ToggleButton msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
-        EditText msgtime = convertView.findViewById(R.id.pnumber);
-        TextView childName = convertView.findViewById(R.id.childName);
-        childName.setText(DataList.get(groupPosition).child.get(childPosition));
-        msgtime_edit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
-                    msgtime.setEnabled(true);
+        Button msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
 
-                } else {
-                    Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    msgtime.setEnabled(false);
-                }
+        TextView childName = convertView.findViewById(R.id.periodic_exp_childName);
+        childName.setText(DataList.get(groupPosition).child.get(childPosition));
+        msgtime_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment timepicker = new TimepickerDialogFragment();
+                //TODO IllegalStateException | not associated with a fragment manager
+                timepicker.show(timepicker.getParentFragmentManager(), "time picker");
             }
         });
         return convertView;
@@ -75,50 +76,41 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean hasStableIds() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         return DataList.get(groupPosition).child.get(childPosition);
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        // TODO Auto-generated method stub
         return childPosition;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        // TODO Auto-generated method stub
         return DataList.get(groupPosition).child.size();
     }
 
     @Override
     public GroupList getGroup(int groupPosition) {
-        // TODO Auto-generated method stub
         return DataList.get(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        // TODO Auto-generated method stub
         return DataList.size();
     }
 
     @Override
     public long getGroupId(int groupPosition) {
-        // TODO Auto-generated method stub
         return groupPosition;
     }
-
 }
