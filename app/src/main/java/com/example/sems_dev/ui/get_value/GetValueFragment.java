@@ -33,7 +33,7 @@ public class GetValueFragment extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_get_val, container, false);
-        pager = (ViewPager) v.findViewById(R.id.pager);
+        pager = (ViewPager) v.findViewById(R.id.pager1);
 
 
         equipment[0] = (Button) v.findViewById(R.id.equipment1);
