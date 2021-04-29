@@ -2,6 +2,7 @@ package com.example.sems_dev.ui.get_value;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.example.sems_dev.R;
 import java.util.ArrayList;
 
 public class GetValueFragment extends Fragment{
+    private static final String TAG = "GetValueFragment";
     public Button[] equipment = new Button[4];
     ViewPager pager;
     private Spinner spinner;
@@ -61,9 +63,9 @@ public class GetValueFragment extends Fragment{
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
 
-        }
+        });
 
-        );
+        pager.setOnPageChangeListener(onPageChangeListener); //디프리케이트됨
 
         //뷰페이저
         View.OnClickListener movePageListener = new View.OnClickListener()
@@ -80,11 +82,41 @@ public class GetValueFragment extends Fragment{
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
             equipment[i].setOnClickListener(movePageListener);
             equipment[i].setTag(i);
-
-
         }
 
         return v;
+    }
+
+    //onPageChangeListener
+    private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            //Button 색상 변경
+            setButtonColor(position);
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
+    //setButtonColor
+    private void setButtonColor(int position){
+        for(Button btn : equipment){
+            if(Integer.parseInt(btn.getTag().toString()) != position){
+                btn.setBackgroundColor(Color.parseColor("#B3E5FC"));
+                btn.setSelected(false);
+            } else {
+                btn.setBackgroundColor(Color.parseColor("#fccaca"));
+                btn.setSelected(true);
+            }
+        }
     }
     private class pagerAdapter extends FragmentStatePagerAdapter
     {
@@ -95,23 +127,9 @@ public class GetValueFragment extends Fragment{
 
         @Override
         public Fragment getItem(int position) {
-            switch(position)
-            {
-                case 0:
-                    equipment[position].setSelected(true);
-                    return new CustomAdapter();
-                case 1:
-                    equipment[position].setSelected(true);
-                    return new CustomAdapter();
-                case 2:
-                    equipment[position].setSelected(true);
-                    return new CustomAdapter();
-                case 3:
-                    equipment[position].setSelected(true);
-                    return new CustomAdapter();
-                default:
-                  return null;
-            }
+            equipment[position].setSelected(true);
+            equipment[position].setBackgroundColor(Color.parseColor("#B3E5FC"));
+            return new CustomAdapter("sFile"+position);
         }
 
         @Override
