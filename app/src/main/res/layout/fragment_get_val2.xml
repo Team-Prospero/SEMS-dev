@@ -47,7 +47,6 @@
                     android:gravity="center"
                     android:hint="1구역"
                      />
-
             </TableRow>
 
             <TableRow
