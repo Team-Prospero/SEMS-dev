@@ -22,6 +22,8 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     private int chlidLayout = 0;
     private ArrayList<GroupList> DataList;
     private LayoutInflater myinf = null;
+    private EditText pNumber;
+    private ToggleButton pNumberEdit_OnOff;
     private ExpandableListView lv;
 
     public ExpandAdapter(Context context, int groupLay, int chlidLay, ArrayList<GroupList> DataList) {
@@ -51,8 +53,8 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_emargencycall_childrow, null);
         }
-        ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
-        EditText pNumber = convertView.findViewById(R.id.pnumber);
+        pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
+        pNumber = convertView.findViewById(R.id.pnumber);
         TextView childName = convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
         pNumberEdit_OnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

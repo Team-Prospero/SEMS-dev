@@ -8,7 +8,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-    android:id="@+id/emergency_expList">
-
-</ExpandableListView>
+    android:id="@+id/emergency_expList"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

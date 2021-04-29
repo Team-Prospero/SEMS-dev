@@ -11,25 +11,33 @@
         android:textColor="@android:color/black"
         android:paddingLeft="10dip"
         />
-<!--    <EditText
+    <EditText
         android:layout_width="wrap_content"
         android:id="@+id/msgtime"
         android:textSize="20sp"
         android:enabled="false"
         android:inputType="time"
-        android:hint="여기에 시간이 표시됨"
-        android:layout_height="wrap_content"/>-->
-    <TextView
+        android:hint="24시간 단위 입력"
+        android:layout_height="wrap_content"/>
+<!--    <TextView
         android:layout_width="wrap_content"
         android:id="@+id/msgtime"
         android:textSize="20sp"
         android:inputType="time"
         android:hint="여기에 시간이 표시됨"
-        android:layout_height="wrap_content"/>
-    <Button
+        android:layout_height="wrap_content"/>-->
+<!--    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="시간 변경"
+        android:id="@+id/msgtime_edit"/>-->
+
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textOn="저장하기"
+        android:textOff="수정하기"
         android:id="@+id/msgtime_edit"/>
 </LinearLayout>

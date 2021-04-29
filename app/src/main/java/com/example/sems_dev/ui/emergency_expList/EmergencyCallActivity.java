@@ -17,15 +17,11 @@ public class EmergencyCallActivity extends AppCompatActivity {
     public static Context context;
     private ExpandableListView listView;
     private int last_expanded = -1;
-    private ToggleButton phoneNumber_edit_button;
-    private EditText phoneNumber_editText;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_call);
-        phoneNumber_edit_button = findViewById(R.id.phonenumber_edit);
-        phoneNumber_editText = findViewById(R.id.pnumber);
         Display newDisplay = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         newDisplay.getSize(size);
@@ -33,34 +29,34 @@ public class EmergencyCallActivity extends AppCompatActivity {
 
         ArrayList<GroupList> DataList = new ArrayList<GroupList>();
         listView = findViewById(R.id.emergency_expList);
-        GroupList temp = new GroupList("농장 1");
-        temp.child.add("비상연락처 1");
-        temp.child.add("비상연락처 2");
-        temp.child.add("비상연락처 3");
-        temp.child.add("비상연락처 4");
-        temp.child.add("비상연락처 5");
-        DataList.add(temp);
-        temp = new GroupList("농장 2");
-        temp.child.add("비상연락처 1");
-        temp.child.add("비상연락처 2");
-        temp.child.add("비상연락처 3");
-        temp.child.add("비상연락처 4");
-        temp.child.add("비상연락처 5");
-        DataList.add(temp);
-        temp = new GroupList("농장 3");
-        temp.child.add("비상연락처 1");
-        temp.child.add("비상연락처 2");
-        temp.child.add("비상연락처 3");
-        temp.child.add("비상연락처 4");
-        temp.child.add("비상연락처 5");
-        DataList.add(temp);
-        temp = new GroupList("농장 4");
-        temp.child.add("비상연락처 1");
-        temp.child.add("비상연락처 2");
-        temp.child.add("비상연락처 3");
-        temp.child.add("비상연락처 4");
-        temp.child.add("비상연락처 5");
-        DataList.add(temp);
+        GroupList EmargencyExpList = new GroupList("농장 1");
+        EmargencyExpList.child.add("비상연락처 1");
+        EmargencyExpList.child.add("비상연락처 2");
+        EmargencyExpList.child.add("비상연락처 3");
+        EmargencyExpList.child.add("비상연락처 4");
+        EmargencyExpList.child.add("비상연락처 5");
+        DataList.add(EmargencyExpList);
+        EmargencyExpList = new GroupList("농장 2");
+        EmargencyExpList.child.add("비상연락처 1");
+        EmargencyExpList.child.add("비상연락처 2");
+        EmargencyExpList.child.add("비상연락처 3");
+        EmargencyExpList.child.add("비상연락처 4");
+        EmargencyExpList.child.add("비상연락처 5");
+        DataList.add(EmargencyExpList);
+        EmargencyExpList = new GroupList("농장 3");
+        EmargencyExpList.child.add("비상연락처 1");
+        EmargencyExpList.child.add("비상연락처 2");
+        EmargencyExpList.child.add("비상연락처 3");
+        EmargencyExpList.child.add("비상연락처 4");
+        EmargencyExpList.child.add("비상연락처 5");
+        DataList.add(EmargencyExpList);
+        EmargencyExpList = new GroupList("농장 4");
+        EmargencyExpList.child.add("비상연락처 1");
+        EmargencyExpList.child.add("비상연락처 2");
+        EmargencyExpList.child.add("비상연락처 3");
+        EmargencyExpList.child.add("비상연락처 4");
+        EmargencyExpList.child.add("비상연락처 5");
+        DataList.add(EmargencyExpList);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
             @Override

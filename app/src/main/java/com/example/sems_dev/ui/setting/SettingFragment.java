@@ -30,11 +30,14 @@ public class SettingFragment extends Fragment {
                 switch (position) {
                     case 0: //기계 설정 시 비밀번호
                         Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
                     case 1: //SEMS 경보기 켜기/끄기
                         Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        break;
                     case 2: //경보기 전화번호 설정
                         Intent intent = new Intent(getActivity(), SettingNumberActivity.class); // SettingNumberActivity로 이동
                         startActivity(intent);
+                        break;
                 }
             }
         });

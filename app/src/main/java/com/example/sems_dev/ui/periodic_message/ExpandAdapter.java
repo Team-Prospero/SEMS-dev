@@ -59,18 +59,34 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_periodicmessage_childrow, null);
         }
-        Button msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
-
+        ToggleButton msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
+//        Button msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
+        EditText msgtime = convertView.findViewById(R.id.msgtime);
         TextView childName = convertView.findViewById(R.id.periodic_exp_childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
-        msgtime_edit.setOnClickListener(new View.OnClickListener() {
+
+        msgtime_edit.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() { // EditText OnOff로 구현한 코드 (구현완료)
             @Override
-            public void onClick(View v) {
-                DialogFragment timepicker = new TimepickerDialogFragment();
-                //TODO IllegalStateException | not associated with a fragment manager
-                timepicker.show(timepicker.getParentFragmentManager(), "time picker");
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    msgtime.setEnabled(true);
+                    Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    msgtime.setEnabled(false);
+                    Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
+/*        msgtime_edit.setOnClickListener(new View.OnClickListener() { // timepicker 다이얼로그 띄우는 거로 구현한 코드 (구현중)
+            @Override
+            public void onClick(View v) {
+*//*                DialogFragment timepicker = new TimepickerDialogFragment();
+                //TODO IllegalStateException | not associated with a fragment manager
+                timepicker.show(timepicker.getParentFragmentManager(), "time picker");*//*
+
+            }
+        });*/
         return convertView;
     }
 

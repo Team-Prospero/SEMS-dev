@@ -33,22 +33,22 @@ public class PeriodicMessageActivity extends AppCompatActivity {
 
         ArrayList<GroupList> DataList = new ArrayList<GroupList>();
         listView = findViewById(R.id.periodic_msg_expList);
-        GroupList temp = new GroupList("농장 1");
-        temp.child.add("시간 1");
-        temp.child.add("시간 2");
-        DataList.add(temp);
-        temp = new GroupList("농장 2");
-        temp.child.add("시간 1");
-        temp.child.add("시간 2");
-        DataList.add(temp);
-        temp = new GroupList("농장 3");
-        temp.child.add("시간 1");
-        temp.child.add("시간 2");
-        DataList.add(temp);
-        temp = new GroupList("농장 4");
-        temp.child.add("시간 1");
-        temp.child.add("시간 2");
-        DataList.add(temp);
+        GroupList PeriodicMessageExpList = new GroupList("농장 1");
+        PeriodicMessageExpList.child.add("시간 1");
+        PeriodicMessageExpList.child.add("시간 2");
+        DataList.add(PeriodicMessageExpList);
+        PeriodicMessageExpList = new GroupList("농장 2");
+        PeriodicMessageExpList.child.add("시간 1");
+        PeriodicMessageExpList.child.add("시간 2");
+        DataList.add(PeriodicMessageExpList);
+        PeriodicMessageExpList = new GroupList("농장 3");
+        PeriodicMessageExpList.child.add("시간 1");
+        PeriodicMessageExpList.child.add("시간 2");
+        DataList.add(PeriodicMessageExpList);
+        PeriodicMessageExpList = new GroupList("농장 4");
+        PeriodicMessageExpList.child.add("시간 1");
+        PeriodicMessageExpList.child.add("시간 2");
+        DataList.add(PeriodicMessageExpList);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
             @Override
