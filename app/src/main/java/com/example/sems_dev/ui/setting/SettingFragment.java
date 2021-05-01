@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -15,32 +17,55 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sems_dev.R;
 
-public class SettingFragment extends Fragment {
-    static final String[] SETTING_LIST = {"기계 설정 시 비밀번호", "SEMS 경보기 켜기/끄기", "경보기 전화번호 설정"};
+import java.util.ArrayList;
 
+public class SettingFragment extends Fragment implements SettingNumberDialogFragment.MyDialogListener {
+
+    ArrayList<SettingNumberClass> settingNumber;
+    ListView listView;
+    private static SettingNumberAdapter settingNumberAdapter;
+
+    private Button addNum, delNum;
+    private int count = 0;
+
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, null);
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, SETTING_LIST);
-        ListView listview = view.findViewById(R.id.setting_listview);
-        listview.setAdapter(adapter);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        settingNumber = new ArrayList<>();
+
+        settingNumber.add(new SettingNumberClass("홍길동","010-1234-5678"));
+
+        listView = (ListView)view.findViewById(R.id.numberList);
+        settingNumberAdapter = new SettingNumberAdapter(getContext(),settingNumber);
+        listView.setAdapter(settingNumberAdapter);
+
+        addNum = view.findViewById(R.id.addNum);
+        delNum = view.findViewById(R.id.delNum);
+
+        addNum.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position) {
-                    case 0: //기계 설정 시 비밀번호
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1: //SEMS 경보기 켜기/끄기
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2: //경보기 전화번호 설정
-                        Intent intent = new Intent(getActivity(), SettingNumberActivity.class); // SettingNumberActivity로 이동
-                        startActivity(intent);
-                        break;
-                }
+            public void onClick(View v) {
+                SettingNumberDialogFragment settingNumberDialogFragment = new SettingNumberDialogFragment(count);
+                settingNumberDialogFragment.show(getFragmentManager(), "추가");
+
             }
         });
+
         return view;
+    }
+
+    @Override
+    public void myCallback(String name, String number) {
+        settingNumber.add(new SettingNumberClass(name,number));
+    }
+
+    public void loadData(){
+
+    }
+    public void saveData(){
+
     }
 }
