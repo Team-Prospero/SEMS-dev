@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
@@ -23,18 +24,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.sems_dev.R;
 
-import java.util.ArrayList;
-
 public class GetValueFragment extends Fragment{
     private static final String TAG = "GetValueFragment";
     public Button[] equipment = new Button[4];
     ViewPager pager;
     private Spinner spinner;
+    LinearLayout Sams_data_table;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_get_val, container, false);
         pager = (ViewPager) v.findViewById(R.id.pager1);
-
+        Sams_data_table = (LinearLayout)v.findViewById(R.id.Sams_data_table);
 
         equipment[0] = (Button) v.findViewById(R.id.equipment1);
         equipment[1] = (Button) v.findViewById(R.id.equipment2);
@@ -55,8 +55,20 @@ public class GetValueFragment extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (spinner.getSelectedItemPosition() == 0) {
-                } else {
-                    Toast.makeText(getContext(), "Selected Country: " + country[position], Toast.LENGTH_SHORT).show();
+                    //기본색 맞춰놓기
+                    Sams_data_table.setBackgroundColor(Color.parseColor("#ff00ddff"));
+                } else if (spinner.getSelectedItemPosition() == 1){
+                    Sams_data_table.setBackgroundColor(Color.parseColor("#7cfc00"));
+                  //  Toast.makeText(getContext(), "Selected Country: " + country[position], Toast.LENGTH_SHORT).show();
+                }
+                else if (spinner.getSelectedItemPosition() == 2){
+                    Sams_data_table.setBackgroundColor(Color.parseColor("#7FFFD4"));
+                }
+                else if (spinner.getSelectedItemPosition() == 3){
+                    Sams_data_table.setBackgroundColor(Color.parseColor("#B0C4DE"));
+                }
+                else if (spinner.getSelectedItemPosition() == 4){
+                    Sams_data_table.setBackgroundColor(Color.parseColor("#8A2BE2"));
                 }
             }
             @Override
@@ -146,10 +158,4 @@ public class GetValueFragment extends Fragment{
     }
 
 }
-
-
-
-
-
-
 
