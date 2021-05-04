@@ -31,15 +31,20 @@ public class GetValueFragment extends Fragment{
     ViewPager pager;
     private Spinner spinner;
     LinearLayout Sams_data_table;
+    private View v ;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_get_val, container, false);
+        if(v != null){
+            return v;
+        }
+
+        v = inflater.inflate(R.layout.fragment_get_val, container, false);
         pager = (ViewPager) v.findViewById(R.id.pager1);
         Sams_data_table = (LinearLayout)v.findViewById(R.id.Sams_data_table);
-        equipment[0] = (Button) v.findViewById(R.id.equipment1);
-        equipment[1] = (Button) v.findViewById(R.id.equipment2);
-        equipment[2] = (Button) v.findViewById(R.id.equipment3);
-        equipment[3] = (Button) v.findViewById(R.id.equipment4);
+        equipment[0] = v.findViewById(R.id.equipment1);
+        equipment[1] = v.findViewById(R.id.equipment2);
+        equipment[2] = v.findViewById(R.id.equipment3);
+        equipment[3] = v.findViewById(R.id.equipment4);
         pager.setAdapter(new pagerAdapter(getFragmentManager()));
         pager.setCurrentItem(0);
         spinner = (Spinner)v.findViewById(R.id.farmName);
@@ -155,6 +160,5 @@ public class GetValueFragment extends Fragment{
             equipment[i].setBackgroundColor(Color.parseColor("#B3E5FC"));
         }
     }
-
 }
 
