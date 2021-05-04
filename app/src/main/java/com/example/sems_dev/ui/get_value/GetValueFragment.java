@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TableLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,7 +36,6 @@ public class GetValueFragment extends Fragment{
         View v = inflater.inflate(R.layout.fragment_get_val, container, false);
         pager = (ViewPager) v.findViewById(R.id.pager1);
         Sams_data_table = (LinearLayout)v.findViewById(R.id.Sams_data_table);
-
         equipment[0] = (Button) v.findViewById(R.id.equipment1);
         equipment[1] = (Button) v.findViewById(R.id.equipment2);
         equipment[2] = (Button) v.findViewById(R.id.equipment3);
@@ -55,7 +55,6 @@ public class GetValueFragment extends Fragment{
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (spinner.getSelectedItemPosition() == 0) {
-                    //기본색 맞춰놓기
                     Sams_data_table.setBackgroundColor(Color.parseColor("#ff00ddff"));
                 } else if (spinner.getSelectedItemPosition() == 1){
                     Sams_data_table.setBackgroundColor(Color.parseColor("#7cfc00"));
