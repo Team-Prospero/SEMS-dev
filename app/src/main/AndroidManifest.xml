@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.emergency_expList.EmergencyCallActivity"/>
+        <activity android:name=".ui.emergency_call.EmergencyCallActivity"/>
         <activity android:name=".ui.periodic_message.PeriodicMessageActivity"/>
     </application>
 

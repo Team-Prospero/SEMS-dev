@@ -1,9 +1,13 @@
-package com.example.sems_dev.ui.emergency_expList;
+package com.example.sems_dev.ui.emergency_call;
 
 import android.content.Context;
+import android.support.v4.app.INotificationSideChannel;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -16,14 +20,14 @@ import java.util.ArrayList;
 
 import com.example.sems_dev.R;
 
+import static android.text.InputType.TYPE_NULL;
+
 public class ExpandAdapter extends BaseExpandableListAdapter {
     private Context context;
     private int groupLayout = 0;
     private int chlidLayout = 0;
     private ArrayList<GroupList> DataList;
     private LayoutInflater myinf = null;
-    private EditText pNumber;
-    private ToggleButton pNumberEdit_OnOff;
     private ExpandableListView lv;
 
     public ExpandAdapter(Context context, int groupLay, int chlidLay, ArrayList<GroupList> DataList) {
@@ -33,6 +37,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         this.context = context;
         this.myinf = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
+
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
@@ -48,25 +53,91 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        if (convertView == null) {
+        if(convertView==null){
             LayoutInflater infalInflater = (LayoutInflater) this.context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_emargencycall_childrow, null);
         }
-        pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
-        pNumber = convertView.findViewById(R.id.pnumber);
+        ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit);
+        EditText pNum1 = convertView.findViewById(R.id.pNum1);
+        EditText pNum2 = convertView.findViewById(R.id.pNum2);
+        EditText pNum3 = convertView.findViewById(R.id.pNum3);
         TextView childName = convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
         pNumberEdit_OnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if (isChecked) {
                     Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
-                    pNumber.setEnabled(true);
+                    InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    pNum1.setEnabled(true);
+                    pNum2.setEnabled(true);
+                    pNum3.setEnabled(true);
+                    pNum1.requestFocus();
+                    imm.showSoftInput(pNum1, 0);
+                    pNum1.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            if(s.length()==3){
+                                pNum2.requestFocus();
+                            }
+                        }
+                    });
+
+                    pNum2.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            if(s.length()==4){
+                                pNum3.requestFocus();
+                            }
+                        }
+                    });
+
+                    pNum3.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+                            if(s.length()==4&&imm.isAcceptingText()){
+                                imm.hideSoftInputFromWindow(pNum3.getWindowToken(),0);
+                            }
+                        }
+                    });
 
                 } else {
                     Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    pNumber.setEnabled(false);
+                    pNum1.setEnabled(false);
+                    pNum2.setEnabled(false);
+                    pNum3.setEnabled(false);
                 }
             }
         });
