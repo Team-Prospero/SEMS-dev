@@ -23,7 +23,10 @@ import android.widget.ToggleButton;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.example.sems_dev.R;
 
@@ -60,33 +63,41 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_periodicmessage_childrow, null);
         }
+
         Button msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
         TextView msgtime = convertView.findViewById(R.id.msgtime);
+        TimePicker timePicker = convertView.findViewById(R.id.timepicker);
         TextView childName = convertView.findViewById(R.id.periodic_exp_childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
+        AlertDialog.Builder timePickerDialog = new AlertDialog.Builder(context);
 
         msgtime_edit.setOnClickListener(new View.OnClickListener() { // timepicker 다이얼로그 띄우는 거로 구현한 코드 (구현중)
+            View picker = myinf.inflate(R.layout.dialog_timepicker, null);
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder timePickerDialog = new AlertDialog.Builder(context);
-                timePickerDialog.setMessage("시간 설정");
+
+                timePickerDialog.setTitle("시간 설정");
 
                 timePickerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        msgtime.setText("다이얼로그 확인버튼 누름");
+                        msgtime.setText(timePicker.getHour()+" : "+timePicker.getMinute());
+                        Toast.makeText(context, "설정되었습니다", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                 });
 
                 timePickerDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        msgtime.setText("다이얼로그 취소버튼 누름");
+                        Toast.makeText(context, "취소하였습니다", Toast.LENGTH_SHORT).show();
+                        dialog.cancel();
                     }
                 });
 
-                AlertDialog alertDialog = timePickerDialog.create();
-                alertDialog.show();
+                timePickerDialog.setView(picker);
+                timePickerDialog.show();
+
             }
         });
         return convertView;
@@ -131,4 +142,5 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
+
 }
