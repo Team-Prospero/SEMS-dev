@@ -4,20 +4,23 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <TextView
-        android:id="@+id/periodic_exp_childName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/periodic_exp_childName"
         android:textSize="20sp"
+        android:layout_marginLeft="10dp"
         android:textColor="@android:color/black"
-        android:paddingLeft="10dip"
         />
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/msgtime"
         android:textSize="20sp"
-        android:inputType="time"
-        android:hint="여기에 시간이 표시됨"
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/black"
+        android:background="@drawable/border"
+        android:padding="5dp"
+        android:layout_marginLeft="20dp"
+        android:hint="시간 나오는 곳" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

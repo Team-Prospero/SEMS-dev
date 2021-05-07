@@ -66,13 +66,14 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
         Button msgtime_edit = convertView.findViewById(R.id.msgtime_edit);
         TextView msgtime = convertView.findViewById(R.id.msgtime);
-        TimePicker timePicker = convertView.findViewById(R.id.timepicker);
+
         TextView childName = convertView.findViewById(R.id.periodic_exp_childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
         AlertDialog.Builder timePickerDialog = new AlertDialog.Builder(context);
 
         msgtime_edit.setOnClickListener(new View.OnClickListener() { // timepicker 다이얼로그 띄우는 거로 구현한 코드 (구현중)
             View picker = myinf.inflate(R.layout.dialog_timepicker, null);
+            TimePicker timePicker = picker.findViewById(R.id.timepicker);
             @Override
             public void onClick(View v) {
 
@@ -95,6 +96,9 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     }
                 });
 
+                if(picker.getParent()!=null){
+                    ((ViewGroup) picker.getParent()).removeView(picker);
+                }
                 timePickerDialog.setView(picker);
                 timePickerDialog.show();
 
