@@ -74,15 +74,38 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         msgtime_edit.setOnClickListener(new View.OnClickListener() { // 수정하기 버튼을 눌렀을 때 시간설정 다이얼로그 띄움
             View picker = myinf.inflate(R.layout.dialog_timepicker, null); // picker 뷰에 timepicker 띄움
             TimePicker timePicker = picker.findViewById(R.id.timepicker); // picker 뷰에서 timepicker 가져옴
+            String hour = "";
+            String minute = "";
+
+            private void setTimePicker(TimePicker timePicker) {// timepicker 24시간 뷰로 설정하는 메소드
+                timePicker.setIs24HourView(true);
+            }
+
+            private String getAmPm(int hr) {
+                if (hr >= 12)
+                    return "오전";
+                else
+                    return "오후";
+            }
+
+            private String setMinute(int min) {
+                if (min >= 10)
+                    return Integer.toString(min);
+                else
+                    return ("0" + Integer.toString(min));
+            }
+
             @Override
             public void onClick(View v) { // 버튼 누를 시 다이얼로그 빌더로 다이얼로그 생성
 
                 timePickerDialog.setTitle("시간 설정");
-
+                setTimePicker(timePicker);
                 timePickerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() { // 설정하기 버튼 눌렸을 때 실행
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        msgtime.setText(timePicker.getHour()+" : "+timePicker.getMinute());
+                        int hour = timePicker.getHour();
+                        int minute = timePicker.getMinute();
+                        msgtime.setText(getAmPm(hour) + timePicker.getHour() + " : " + setMinute(minute));
                         Toast.makeText(context, "설정되었습니다", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
@@ -96,7 +119,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     }
                 });
 
-                if(picker.getParent()!=null){ // 부모 뷰에 하위 뷰인 picker 가 여러번 띄워지는 것을 방지하는 코드
+                if (picker.getParent() != null) { // 부모 뷰에 하위 뷰인 picker 가 여러번 띄워지는 것을 방지하는 코드
                     ((ViewGroup) picker.getParent()).removeView(picker);
                 }
                 timePickerDialog.setView(picker);

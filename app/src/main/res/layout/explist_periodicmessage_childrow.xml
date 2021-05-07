@@ -8,6 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/periodic_exp_childName"
         android:textSize="20sp"
+        android:layout_weight="1"
         android:layout_marginLeft="10dp"
         android:textColor="@android:color/black"
         />
@@ -19,6 +20,7 @@
         android:textColor="@color/black"
         android:background="@drawable/border"
         android:padding="5dp"
+        android:layout_weight="4"
         android:layout_marginLeft="20dp"
         android:hint="시간 나오는 곳" />
     <Button
@@ -26,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:text="시간 변경"
+        android:layout_weight="1"
         android:id="@+id/msgtime_edit"/>
 
 </LinearLayout>
