@@ -48,7 +48,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) { // 리스트 상위항목(농장1, 농장2... 설정)
         if (convertView == null) {
             convertView = myinf.inflate(this.groupLayout, parent, false);
         }
@@ -58,7 +58,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+    public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) { // 리스트 하위항목 (구역별 설정/조회)
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.explist_periodicmessage_childrow, null);
@@ -71,15 +71,15 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
         AlertDialog.Builder timePickerDialog = new AlertDialog.Builder(context);
 
-        msgtime_edit.setOnClickListener(new View.OnClickListener() { // timepicker 다이얼로그 띄우는 거로 구현한 코드 (구현중)
-            View picker = myinf.inflate(R.layout.dialog_timepicker, null);
-            TimePicker timePicker = picker.findViewById(R.id.timepicker);
+        msgtime_edit.setOnClickListener(new View.OnClickListener() { // 수정하기 버튼을 눌렀을 때 시간설정 다이얼로그 띄움
+            View picker = myinf.inflate(R.layout.dialog_timepicker, null); // picker 뷰에 timepicker 띄움
+            TimePicker timePicker = picker.findViewById(R.id.timepicker); // picker 뷰에서 timepicker 가져옴
             @Override
-            public void onClick(View v) {
+            public void onClick(View v) { // 버튼 누를 시 다이얼로그 빌더로 다이얼로그 생성
 
                 timePickerDialog.setTitle("시간 설정");
 
-                timePickerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                timePickerDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() { // 설정하기 버튼 눌렸을 때 실행
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         msgtime.setText(timePicker.getHour()+" : "+timePicker.getMinute());
@@ -88,7 +88,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     }
                 });
 
-                timePickerDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                timePickerDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() { // 취소하기 버튼 눌렸을 때 실행
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Toast.makeText(context, "취소하였습니다", Toast.LENGTH_SHORT).show();
@@ -96,7 +96,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     }
                 });
 
-                if(picker.getParent()!=null){
+                if(picker.getParent()!=null){ // 부모 뷰에 하위 뷰인 picker 가 여러번 띄워지는 것을 방지하는 코드
                     ((ViewGroup) picker.getParent()).removeView(picker);
                 }
                 timePickerDialog.setView(picker);
