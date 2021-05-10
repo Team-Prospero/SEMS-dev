@@ -17,7 +17,6 @@ import com.example.sems_dev.R;
 public class CustomAdapter extends Fragment {
     private EditText[] Editsensor_Name = new EditText[8];
     private String fileName = "";
-    SharedPreferences sp;
     String text[] = new String[8];
     //default
     public CustomAdapter()
