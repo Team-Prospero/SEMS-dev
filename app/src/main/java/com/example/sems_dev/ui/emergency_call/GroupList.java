@@ -1,4 +1,4 @@
-package com.example.sems_dev.ui.emergency_expList;
+package com.example.sems_dev.ui.emergency_call;
 
 import java.util.ArrayList;
 

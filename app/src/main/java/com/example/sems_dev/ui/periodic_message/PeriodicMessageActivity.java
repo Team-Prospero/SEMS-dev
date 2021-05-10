@@ -31,7 +31,7 @@ public class PeriodicMessageActivity extends AppCompatActivity {
         newDisplay.getSize(size);
         int width = size.x;
 
-        ArrayList<GroupList> DataList = new ArrayList<GroupList>();
+        ArrayList<GroupList> DataList = new ArrayList<GroupList>(); // 펼쳐지는 리스트 추가
         listView = findViewById(R.id.periodic_msg_expList);
         GroupList PeriodicMessageExpList = new GroupList("농장 1");
         PeriodicMessageExpList.child.add("시간 1");
@@ -65,10 +65,10 @@ public class PeriodicMessageActivity extends AppCompatActivity {
 
 
 
-        ExpandAdapter adapter = new ExpandAdapter(getApplicationContext(), R.layout.explist_periodicmessage_row, R.layout.explist_periodicmessage_childrow, DataList);
+        ExpandAdapter adapter = new ExpandAdapter(this, R.layout.explist_periodicmessage_row, R.layout.explist_periodicmessage_childrow, DataList); // 어댑터 객체생성
         Drawable icon = getDrawable(R.drawable.arrow_down_black_24);
         listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
-        listView.setGroupIndicator(icon);
+        listView.setGroupIndicator(icon); // 화살표 아이콘 설정
         listView.setAdapter(adapter);
     }
 }

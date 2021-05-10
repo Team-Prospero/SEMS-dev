@@ -7,23 +7,54 @@
         android:id="@+id/childName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textColor="@android:color/black"
-        android:paddingLeft="10dip"
         />
     <EditText
-        android:layout_width="wrap_content"
-        android:id="@+id/pnumber"
-        android:textSize="20sp"
+        android:id="@+id/pNum1"
+        android:layout_width="0dp"
         android:enabled="false"
-        android:inputType="phone"
-        android:hint="여기에 전화번호 입력"
-        android:layout_height="wrap_content"/>
-    <ToggleButton
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:layout_weight="4"/>
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:textOn="변경사항 저장"
-        android:textOff="전화번호 수정"
+        android:textColor="@color/black"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:layout_weight="1"
+        android:text="-"/>
+    <EditText
+        android:id="@+id/pNum2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:enabled="false"
+        android:layout_weight="4"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_weight="1"
+        android:text="-"/>
+    <EditText
+        android:id="@+id/pNum3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:inputType="number"
+        android:enabled="false"
+        android:layout_weight="4"/>
+    <ToggleButton
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:textOn="저장"
+        android:textOff="수정"
         android:id="@+id/phonenumber_edit"/>
 </LinearLayout>

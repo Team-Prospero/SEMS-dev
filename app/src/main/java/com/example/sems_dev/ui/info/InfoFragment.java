@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.sems_dev.R;
-import com.example.sems_dev.ui.emergency_expList.EmergencyCallActivity;
+import com.example.sems_dev.ui.emergency_call.EmergencyCallActivity;
 import com.example.sems_dev.ui.periodic_message.PeriodicMessageActivity;
 
 public class InfoFragment extends Fragment {
