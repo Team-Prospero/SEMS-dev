@@ -78,14 +78,14 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             String minute = "";
 
             private void setTimePicker(TimePicker timePicker) {// timepicker 24시간 뷰로 설정하는 메소드
-                timePicker.setIs24HourView(true);
+                timePicker.setIs24HourView(false);
             }
 
             private String getAmPm(int hr) {
-                if (hr >= 12)
-                    return "오전";
+                if (hr <= 12)
+                    return "오전 ";
                 else
-                    return "오후";
+                    return "오후 ";
             }
 
             private String setMinute(int min) {
@@ -105,7 +105,12 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                     public void onClick(DialogInterface dialog, int which) {
                         int hour = timePicker.getHour();
                         int minute = timePicker.getMinute();
-                        msgtime.setText(getAmPm(hour) + timePicker.getHour() + " : " + setMinute(minute));
+                        if(getAmPm(hour).equals("오후 ")){
+                            msgtime.setText(getAmPm(hour) + (timePicker.getHour()-12) + " : " + setMinute(minute));
+
+                        }else {
+                            msgtime.setText(getAmPm(hour) + timePicker.getHour() + " : " + setMinute(minute));
+                        }
                         Toast.makeText(context, "설정되었습니다", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
