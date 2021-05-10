@@ -17,7 +17,6 @@ import com.example.sems_dev.R;
 public class CustomAdapter extends Fragment {
     private EditText[] Editsensor_Name = new EditText[8];
     private String fileName = "";
-    SharedPreferences sp;
     String text[] = new String[8];
     //default
     public CustomAdapter()
@@ -53,8 +52,7 @@ public class CustomAdapter extends Fragment {
         for(int i = 0; i < Editsensor_Name.length; i++) {
             //getSharedPreferences Edittext저장
             SharedPreferences sf = this.getActivity().getSharedPreferences(fileName,0);
-            String data = sf.getString(String.valueOf(i),"");
-            Editsensor_Name[i].setText(data);
+            Editsensor_Name[i].setText(sf.getString(String.valueOf(i),""));
 
         }
         return layout;
@@ -65,6 +63,7 @@ public class CustomAdapter extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        Log.e("onDestroy", "onDestroy");
         for(int i = 0; i < Editsensor_Name.length; i++) {
             // Activity가 종료되기 전에 저장한다.
             //SharedPreferences를 sFile이름, 기본모드로 설정
