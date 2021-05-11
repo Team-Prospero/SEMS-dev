@@ -37,6 +37,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:maxLength="5"
+            android:nextFocusDown="@id/etNum1"
             android:layout_weight="7"/>
         <TextView
             android:layout_width="wrap_content"
@@ -49,6 +51,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/etNum2"
+            android:maxLength="3"
             android:layout_weight="3"/>
         <TextView
             android:layout_width="wrap_content"
@@ -61,6 +66,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            android:nextFocusDown="@id/etNum3"
+            android:maxLength="4"
             android:layout_weight="5"/>
         <TextView
             android:layout_width="wrap_content"
@@ -73,6 +81,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            android:maxLength="4"
             android:layout_weight="5"/>
 
     </LinearLayout>

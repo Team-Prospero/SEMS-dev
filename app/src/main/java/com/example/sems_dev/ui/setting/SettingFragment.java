@@ -1,5 +1,6 @@
 package com.example.sems_dev.ui.setting;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -19,7 +20,7 @@ import com.example.sems_dev.R;
 
 import java.util.ArrayList;
 
-public class SettingFragment extends Fragment implements SettingNumberDialogFragment.MyDialogListener {
+public class SettingFragment extends Fragment{
 
     ArrayList<SettingNumberClass> settingNumber;
     ListView listView;
@@ -28,15 +29,12 @@ public class SettingFragment extends Fragment implements SettingNumberDialogFrag
     private Button addNum, delNum;
     private int count = 0;
 
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, null);
 
         settingNumber = new ArrayList<>();
-
-        settingNumber.add(new SettingNumberClass("홍길동","010-1234-5678"));
 
         listView = (ListView)view.findViewById(R.id.numberList);
         settingNumberAdapter = new SettingNumberAdapter(getContext(),settingNumber);
@@ -49,17 +47,12 @@ public class SettingFragment extends Fragment implements SettingNumberDialogFrag
             @Override
             public void onClick(View v) {
                 SettingNumberDialogFragment settingNumberDialogFragment = new SettingNumberDialogFragment(count);
+                settingNumberDialogFragment.setDismissListener(new MyDismissListener());
                 settingNumberDialogFragment.show(getFragmentManager(), "추가");
 
             }
         });
-
         return view;
-    }
-
-    @Override
-    public void myCallback(String name, String number) {
-        settingNumber.add(new SettingNumberClass(name,number));
     }
 
     public void loadData(){
@@ -67,5 +60,13 @@ public class SettingFragment extends Fragment implements SettingNumberDialogFrag
     }
     public void saveData(){
 
+    }
+    public class MyDismissListener extends DismissListener{
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+            String name = getValueForStr("name");
+            String number = getValueForStr("number");
+                settingNumber.add(new SettingNumberClass(name,number));
+        }
     }
 }
