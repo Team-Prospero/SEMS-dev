@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
@@ -33,9 +32,7 @@ public class SettingNumberDialogFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         EditText etName = (EditText) getDialog().findViewById(R.id.etName);
-                        EditText etNum1 = (EditText) getDialog().findViewById(R.id.etNum1);
-                        EditText etNum2 = (EditText) getDialog().findViewById(R.id.etNum2);
-                        EditText etNum3 = (EditText) getDialog().findViewById(R.id.etNum3);
+                        EditText etNumber = (EditText) getDialog().findViewById(R.id.etNum);
 
                         String name = new String();
                         String number = new String();
@@ -43,19 +40,15 @@ public class SettingNumberDialogFragment extends DialogFragment {
                         if (etName.length() == 0) {
                             name = Integer.toString(count) + "번";
                         }
-                        if (etNum1.length() == 0 || etNum2.length() == 0 || etNum3.length() == 0) {
+                        if (etNumber.length() == 0 ) {
                             Toast.makeText(getActivity(), "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                             etName.setText("");
-                            etNum1.setText("");
-                            etNum2.setText("");
-                            etNum3.setText("");
+                            etNumber.setText("");
                         } else {
                             name = etName.getText().toString();
-                            number = etNum1.getText().toString() + '-' + etNum2.getText().toString() + '-' + etNum3.getText().toString();
+                            number = etNumber.getText().toString();
                             etName.setText("");
-                            etNum1.setText("");
-                            etNum2.setText("");
-                            etNum3.setText("");
+                            etNumber.setText("");
                             if (dismissListener != null) {
                                 dismissListener.setValue("name", name);
                                 dismissListener.setValue("number", number);
