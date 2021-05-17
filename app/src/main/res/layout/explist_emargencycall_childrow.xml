@@ -11,6 +11,14 @@
         android:textColor="@android:color/black"
         />
     <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pNumber"
+        android:inputType="number"
+        android:hint="여기 전화번호가 들어갑니다."
+        android:layout_weight="5"/>
+<!--
+    <EditText
         android:id="@+id/pNum1"
         android:layout_width="0dp"
         android:enabled="false"
@@ -49,7 +57,7 @@
         android:gravity="center_horizontal"
         android:inputType="number"
         android:enabled="false"
-        android:layout_weight="4"/>
+        android:layout_weight="4"/>-->
     <ToggleButton
         android:layout_width="40dp"
         android:layout_height="wrap_content"

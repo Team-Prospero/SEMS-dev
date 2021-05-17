@@ -59,9 +59,10 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.explist_emargencycall_childrow, null);
         }
         ToggleButton pNumberEdit_OnOff = convertView.findViewById(R.id.phonenumber_edit); // 수정 On/Off 토글버튼
-        EditText pNum1 = convertView.findViewById(R.id.pNum1); // 첫 숫자 3자리
+        EditText pNumber = convertView.findViewById(R.id.pNumber);
+        /*EditText pNum1 = convertView.findViewById(R.id.pNum1); // 첫 숫자 3자리
         EditText pNum2 = convertView.findViewById(R.id.pNum2); // 두번째 숫자 4자리
-        EditText pNum3 = convertView.findViewById(R.id.pNum3); // 세번째 숫자 4자리
+        EditText pNum3 = convertView.findViewById(R.id.pNum3); // 세번째 숫자 4자리*/
         TextView childName = convertView.findViewById(R.id.childName);
         childName.setText(DataList.get(groupPosition).child.get(childPosition));
         pNumberEdit_OnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -71,6 +72,33 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                 if (isChecked) { // 토글버튼 On 시 수행
                     Toast.makeText(context, "수정하고 버튼을 한번더 눌러 수정을 완료하세요", Toast.LENGTH_SHORT).show();
                     InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    pNumber.setEnabled(true);
+                    pNumber.setText("");
+                    pNumber.requestFocus();
+                    imm.showSoftInput(pNumber, 0);
+                    pNumber.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            if(s.length()==3||s.length()==8){
+                                pNumber.setText(s.toString().concat("-"));
+                                pNumber.setSelection(pNumber.getText().length());
+                            }
+                            if(s.length()==13){
+                                imm.hideSoftInputFromWindow(pNumber.getWindowToken(),0);
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable s) {
+
+                        }
+                    });
+                    /*InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                     pNum1.setEnabled(true);
                     pNum2.setEnabled(true);
                     pNum3.setEnabled(true);
@@ -131,13 +159,14 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
                                 imm.hideSoftInputFromWindow(pNum3.getWindowToken(),0); // 마지막 자리이므로 소프트키보드 닫음
                             }
                         }
-                    });
+                    });*/
 
                 } else { // 토글버튼 Off 일 경우
                     Toast.makeText(context, "수정이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                    pNum1.setEnabled(false);
+                    pNumber.setEnabled(false);
+                    /*pNum1.setEnabled(false);
                     pNum2.setEnabled(false);
-                    pNum3.setEnabled(false);
+                    pNum3.setEnabled(false);*/
                 }
             }
         });
