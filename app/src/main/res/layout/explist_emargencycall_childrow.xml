@@ -16,6 +16,7 @@
         android:id="@+id/pNumber"
         android:inputType="number"
         android:hint="여기 전화번호가 들어갑니다."
+        android:enabled="false"
         android:layout_weight="5"/>
 <!--
     <EditText
