@@ -6,11 +6,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.ExpandableListView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.sems_dev.R;
@@ -20,13 +16,11 @@ public class EmergencyCallActivity extends AppCompatActivity {
     Context context;
     private ExpandableListView listView;
     private int last_expanded = -1;
-    private ToggleButton phoneNumber_edit_button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_call);
-        phoneNumber_edit_button = findViewById(R.id.phonenumber_edit);
         Display newDisplay = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         newDisplay.getSize(size);

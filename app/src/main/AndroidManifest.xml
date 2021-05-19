@@ -11,7 +11,7 @@
         android:theme="@style/Theme.SEMS_dev">
         <activity
             android:name=".MainActivity"
-            android:label="SEMS_debug"
+            android:label="SEMS_dev"
             android:theme="@style/Theme.SEMS_dev.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +19,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.emergency_call.EmergencyCallActivity"/>
         <activity android:name=".ui.periodic_message.PeriodicMessageActivity"/>
+        <activity android:name=".ui.sensor_kind.SensorKindActivity"/>
+        <activity android:name=".ui.sensor_on_off.SensorOnOffActivity"/>
+        <activity android:name=".ui.sensor_warning.SensorWarningActivity"/>
+        <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity"/>
+
     </application>
 
 </manifest>
