@@ -19,7 +19,7 @@
                 android:layout_margin="1dp"
                 android:background="#7deb34"
                 android:padding="1dp"
-                android:text="농장 1"
+                android:text="장비번호"
                 android:textAlignment="center"
                 android:textColor="@color/black" />
 

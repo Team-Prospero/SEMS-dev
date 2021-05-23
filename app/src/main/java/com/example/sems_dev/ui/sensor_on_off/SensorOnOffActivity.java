@@ -56,7 +56,7 @@ public class SensorOnOffActivity extends AppCompatActivity {
         });
 
 
-        ExpandAdapter adapter = new ExpandAdapter(getApplicationContext(), R.layout.explist_sensor_onoff_row, R.layout.explist_sensor_onoff_childrow, DataList);
+        ExpandAdapter adapter = new ExpandAdapter(this, R.layout.explist_sensor_onoff_row, R.layout.explist_sensor_onoff_childrow, DataList);
         Drawable icon = getDrawable(R.drawable.arrow_down_black_24);
         listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
         listView.setGroupIndicator(icon);
