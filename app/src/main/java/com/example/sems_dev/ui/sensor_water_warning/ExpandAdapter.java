@@ -63,9 +63,9 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
             View dialog = myinf.inflate(R.layout.dialog_warning_value_manage, null);
 
-            Spinner equipNumber = dialog.findViewById(R.id.kind_equip_number);
+            Spinner equipNumber = dialog.findViewById(R.id.warn_val_equip_number);
             String[] equipItem = {"1번 장비", "2번 장비", "3번 장비", "4번 장비"};
-            Spinner sensorNumber = dialog.findViewById(R.id.kind_sensor_number);
+            Spinner sensorNumber = dialog.findViewById(R.id.warn_val_sensor_number);
             String[] sensorItem = {"1구역", "2구역", "3구역", "4구역", "5구역", "6구역", "7구역", "8구역"};
             EditText sensorHigh = dialog.findViewById(R.id.sensor_high);
             EditText sensorLow = dialog.findViewById(R.id.sensor_low);
