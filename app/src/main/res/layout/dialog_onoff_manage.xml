@@ -20,7 +20,7 @@
             android:text="장비 번호"/>
 
         <Spinner
-            android:id="@+id/kind_equip_number"
+            android:id="@+id/on_off_equip_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
@@ -39,7 +39,7 @@
             android:textAlignment="center"
             android:text="센서 번호"/>
         <Spinner
-            android:id="@+id/kind_sensor_number"
+            android:id="@+id/on_off_sensor_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>
@@ -56,9 +56,9 @@
             android:layout_weight="1"
             android:textColor="@color/black"
             android:textAlignment="center"
-            android:text="센서 종류"/>
+            android:text="센서 사용여부"/>
         <Spinner
-            android:id="@+id/sensor_kind"
+            android:id="@+id/sensor_on_off"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"/>

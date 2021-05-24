@@ -33,7 +33,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             convertView = myinf.inflate(this.groupLayout, parent, false);
         }
-        TextView groupName = (TextView) convertView.findViewById(R.id.groupName);
+        TextView groupName = (TextView) convertView.findViewById(R.id.warning_groupName);
         groupName.setText(DataList.get(groupPosition).groupName);
         return convertView;
     }
