@@ -119,6 +119,7 @@ public class ExpandAdapter extends BaseExpandableListAdapter {
 
             @Override
             public void onClick(View v) {
+                setAdapter();
                 onOffDialog.setTitle("센서 사용유무 변경");
                 onOffDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
