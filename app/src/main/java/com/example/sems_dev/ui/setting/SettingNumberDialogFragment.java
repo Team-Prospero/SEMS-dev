@@ -1,4 +1,4 @@
-package com.example.sems_dev.ui.setting;
+   package com.example.sems_dev.ui.setting;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -40,7 +40,7 @@ public class SettingNumberDialogFragment extends DialogFragment {
                         if (etName.length() == 0) {
                             name = Integer.toString(count) + "번";
                         }
-                        if (etNumber.length() == 0 ) {
+                        if (etNumber.length() <= 11 ) {
                             Toast.makeText(getActivity(), "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                             etName.setText("");
                             etNumber.setText("");
