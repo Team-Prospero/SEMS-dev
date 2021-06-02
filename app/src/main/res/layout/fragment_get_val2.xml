@@ -14,387 +14,542 @@
         android:id="@+id/ValView">
 
 
-    <TableRow
-        android:id="@+id/dataTable"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@drawable/round_corrner_border">
-
-        <TableLayout
-            android:layout_width="0dip"
+        <TableRow
+            android:id="@+id/dataTable"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@drawable/round_corrner_border">
 
-            <TableRow
-                android:id="@+id/sensor1_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <TableLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
 
-                <TextView
-                    android:id="@+id/sensor1_Name"
-                    android:layout_width="0dip"
+                <TableRow
+                    android:id="@+id/sensor1_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor1_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="1구역" />
+
+                    <EditText
+                        android:id="@+id/Editsensor1_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="1구역"
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor1_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/sensor1_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
+
+
+                    <TextView
+                        android:id="@+id/sensor1_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
+
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor1_Label_Table1"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature1"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="28" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor3_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor3_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="3구역" />
+                    <EditText
+                        android:id="@+id/Editsensor3_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="3구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor3_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:text="1구역" />
+                    >
 
-                <EditText
-                    android:id="@+id/Editsensor1_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="1구역"
-                     />
-            </TableRow>
+                    <TextView
+                        android:id="@+id/sensor3_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--"  />
 
-            <TableRow
-                android:id="@+id/sensor1_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
+                    <TextView
+                        android:id="@+id/sensor3_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
 
-                <TextView
-                    android:id="@+id/sensor1_Value"
-                    android:layout_width="0dip"
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor3_Label_Table3"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
+                    android:background="@drawable/border_bottom">
 
-                <TextView
-                    android:id="@+id/sensor1_Type"
-                    android:layout_width="0dip"
+                    <TextView
+                        android:id="@+id/Temperature3"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="29" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor5_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor5_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="5구역" />
+                    <EditText
+                        android:id="@+id/Editsensor5_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="5구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor5_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:id="@+id/sensor5_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
+
+                    <TextView
+                        android:id="@+id/sensor5_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor5_Label_Table5"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature5"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="28" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor7_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor7_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="7구역" />
+                    <EditText
+                        android:id="@+id/Editsensor7_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="7구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor7_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:text="Type" />
+                    >
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/sensor7_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
 
-            <TableRow
-                android:id="@+id/sensor3_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/sensor7_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
 
-                <TextView
-                    android:id="@+id/sensor3_Name"
-                    android:layout_width="0dip"
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor7_Label_Table7"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature7"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="27" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TableRow
+                    android:id="@+id/sensor2_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor2_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="2구역" />
+                    <EditText
+                        android:id="@+id/Editsensor2_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="2구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor2_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:text="3구역" />
-                <EditText
-                    android:id="@+id/Editsensor3_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="3구역"
-                     />
+                    >
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/sensor2_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
 
-            <TableRow
-                android:id="@+id/sensor3_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
+                    <TextView
+                        android:id="@+id/sensor2_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
 
-                <TextView
-                    android:id="@+id/sensor3_Value"
-                    android:layout_width="0dip"
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor2_Label_Table2"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
+                    android:background="@drawable/border_bottom">
 
-                <TextView
-                    android:id="@+id/sensor3_Type"
-                    android:layout_width="0dip"
+                    <TextView
+                        android:id="@+id/Temperature2"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="29" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor4_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor4_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="4구역" />
+                    <EditText
+                        android:id="@+id/Editsensor4_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="4구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor4_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    >
+
+                    <TextView
+                        android:id="@+id/sensor4_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
+
+                    <TextView
+                        android:id="@+id/sensor4_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor4_Label_Table4"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature4"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="30" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor6_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor6_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="6구역" />
+                    <EditText
+                        android:id="@+id/Editsensor6_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="6구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor6_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:text="Type" />
+                    >
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/sensor6_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
 
-            <TableRow
-                android:id="@+id/sensor5_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/sensor6_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
 
-                <TextView
-                    android:id="@+id/sensor5_Name"
-                    android:layout_width="0dip"
+
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor6_Label_Table6"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature6"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="29" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor8_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor8_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="8구역" />
+                    <EditText
+                        android:id="@+id/Editsensor8_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="8구역"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor8_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
                     android:layout_weight="1"
-                    android:text="5구역" />
-                <EditText
-                    android:id="@+id/Editsensor5_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="5구역"
-                     />
+                    >
 
-            </TableRow>
+                    <TextView
+                        android:id="@+id/sensor8_Value"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="--/--" />
 
-            <TableRow
-                android:id="@+id/sensor5_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
+                    <TextView
+                        android:id="@+id/sensor8_Type"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="Type" />
 
-                <TextView
-                    android:id="@+id/sensor5_Value"
-                    android:layout_width="0dip"
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor8_Label_Table8"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
+                    android:background="@drawable/border_bottom">
 
-                <TextView
-                    android:id="@+id/sensor5_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
+                    <TextView
+                        android:id="@+id/Temperature8"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="NULL" />
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="온도" />
+                </TableRow>
+            </TableLayout>
 
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor7_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/sensor7_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="7구역" />
-                <EditText
-                    android:id="@+id/Editsensor7_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="7구역"
-                     />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor7_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
-
-                <TextView
-                    android:id="@+id/sensor7_Value"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
-
-                <TextView
-                    android:id="@+id/sensor7_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
-
-            </TableRow>
-        </TableLayout>
-
-        <TableLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-
-            <TableRow
-                android:id="@+id/sensor2_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/sensor2_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="2구역" />
-                <EditText
-                    android:id="@+id/Editsensor2_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="2구역"
-                     />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor2_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
-
-                <TextView
-                    android:id="@+id/sensor2_Value"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
-
-                <TextView
-                    android:id="@+id/sensor2_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor4_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/sensor4_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="4구역" />
-                <EditText
-                    android:id="@+id/Editsensor4_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="4구역"
-                     />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor4_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
-
-                <TextView
-                    android:id="@+id/sensor4_Value"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
-
-                <TextView
-                    android:id="@+id/sensor4_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor6_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/sensor6_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="6구역" />
-                <EditText
-                    android:id="@+id/Editsensor6_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="6구역"
-                     />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor6_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
-
-                <TextView
-                    android:id="@+id/sensor6_Value"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
-
-                <TextView
-                    android:id="@+id/sensor6_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
-
-
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor8_Label_Table"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/sensor8_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="8구역" />
-                <EditText
-                    android:id="@+id/Editsensor8_Name"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:hint="8구역"
-                     />
-
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/sensor8_Data_Table"
-                android:layout_width="match_parent"
-                android:layout_height="0dip"
-                android:layout_weight="1"
-                android:background="@drawable/border_bottom">
-
-                <TextView
-                    android:id="@+id/sensor8_Value"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="--/--" />
-
-                <TextView
-                    android:id="@+id/sensor8_Type"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Type" />
-
-            </TableRow>
-        </TableLayout>
-
-    </TableRow>
+        </TableRow>
     </TableLayout>
 </FrameLayout>
