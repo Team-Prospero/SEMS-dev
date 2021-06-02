@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sems_dev">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SEMS_dev">
+        <activity
+            android:name=".MainActivity"
+            android:label="SEMS_dev"
+            android:theme="@style/Theme.SEMS_dev.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.emergency_call.EmergencyCallActivity"/>
+        <activity android:name=".ui.periodic_message.PeriodicMessageActivity"/>
+        <activity android:name=".ui.sensor_kind.SensorKindActivity"/>
+        <activity android:name=".ui.sensor_on_off.SensorOnOffActivity"/>
+        <activity android:name=".ui.sensor_warning.SensorWarningActivity"/>
+        <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity"/>
+
+    </application>
+
+</manifest>

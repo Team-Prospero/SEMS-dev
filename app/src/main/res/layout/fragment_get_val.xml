@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".ui.get_value.GetValueFragment">
+
+<LinearLayout
+
+    android:id="@+id/Sams_data_table"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright"
+    >
+
+    <TableLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginBottom="10dip">
+
+        <TableRow
+            android:id="@+id/lable_Header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Spinner
+                android:id="@+id/farmName"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:hint="농장 이름"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="#FFF59D" />
+
+    <Button
+        android:id="@+id/currentVal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:backgroundTint="#E1BEE7"
+        android:gravity="center"
+        android:hint="현재 값 조회"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+        </TableRow>
+    <TableLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginBottom="10dip">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="최근 조회 시간"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:background="#B2EBF2"
+        android:id="@+id/LastViewTime"
+        >
+    </TextView>
+    </TableLayout>
+        <TableRow
+            android:id="@+id/equipment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/equipment1"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:text="1번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
+                android:id="@+id/equipment2"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:text="2번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
+                android:id="@+id/equipment3"
+                android:layout_width="0dip"
+                android:layout_marginLeft="2dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:text="3번 장비"
+                android:backgroundTint="#B3E5FC"/>
+            <Button
+                android:id="@+id/equipment4"
+                android:layout_width="0dip"
+                android:layout_marginLeft="2dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_margin="2dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="14dp"
+                android:text="4번 장비"
+                android:backgroundTint="#B3E5FC"/>
+        </TableRow>
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </androidx.viewpager.widget.ViewPager>
+
+    </TableLayout>
+</LinearLayout>
+
+</LinearLayout>
