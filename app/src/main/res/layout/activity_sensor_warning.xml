@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<ExpandableListView
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-    android:id="@+id/emergency_expList"/>
+    <ExpandableListView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:id="@+id/sensor_warning_expList"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

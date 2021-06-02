@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -18,6 +17,10 @@ import androidx.fragment.app.Fragment;
 import com.example.sems_dev.R;
 import com.example.sems_dev.ui.emergency_call.EmergencyCallActivity;
 import com.example.sems_dev.ui.periodic_message.PeriodicMessageActivity;
+import com.example.sems_dev.ui.sensor_kind.SensorKindActivity;
+import com.example.sems_dev.ui.sensor_on_off.SensorOnOffActivity;
+import com.example.sems_dev.ui.sensor_warning.SensorWarningActivity;
+import com.example.sems_dev.ui.sensor_water_warning.SensorWaterWarningActivity;
 
 public class InfoFragment extends Fragment {
     static final String[] INFO_LIST = {"비상연락처 조회", "정규 문자 시간 조회", "센서 경고범위 조회", "센서종류 조회", "센서 사용유무조회", "음수량 경고범위 조회"};
@@ -41,16 +44,20 @@ public class InfoFragment extends Fragment {
                         startActivity(intentPeriodicMessage);
                         break;
                     case 2:
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        Intent intentSensorWarningActivity = new Intent(getActivity(), SensorWarningActivity.class);
+                        startActivity(intentSensorWarningActivity);
                         break;
                     case 3:
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        Intent intentSensorKindActivity = new Intent(getActivity(), SensorKindActivity.class);
+                        startActivity(intentSensorKindActivity);
                         break;
                     case 4:
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        Intent intentSensorOnOffActivity = new Intent(getActivity(), SensorOnOffActivity.class);
+                        startActivity(intentSensorOnOffActivity);
                         break;
                     case 5:
-                        Toast.makeText(view.getContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+                        Intent intentSensorWaterWarningActivity = new Intent(getActivity(), SensorWaterWarningActivity.class);
+                        startActivity(intentSensorWaterWarningActivity);
                         break;
                 }
             }
