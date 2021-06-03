@@ -1,74 +1,60 @@
 package com.example.sems_dev.ui.periodic_message;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Display;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ExpandableListView;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.sems_dev.R;
+
 import java.util.ArrayList;
 
 public class PeriodicMessageActivity extends AppCompatActivity {
-    Context context;
-    private ExpandableListView listView;
-    private int last_expanded = -1;
-    private Object GroupList;
+    RecyclerView mRecyclerView = null;
+    RecyclerImageTextAdapter mAdapter = null;
+
+    ArrayList<RecyclerItem> mList = new ArrayList<RecyclerItem>();
+    String msgbody = "TIME1:21,42\nTIME2:-";
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
+    ArrayList<String> msgTime = extractMessageTime(msgbody);
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_periodic_message);
-        Display newDisplay = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        newDisplay.getSize(size);
-        int width = size.x;
 
-        ArrayList<GroupList> DataList = new ArrayList<GroupList>(); // 펼쳐지는 리스트 추가
-        listView = findViewById(R.id.periodic_msg_expList);
-        GroupList PeriodicMessageExpList = new GroupList("농장 1");
-        PeriodicMessageExpList.child.add("시간 1");
-        PeriodicMessageExpList.child.add("시간 2");
-        DataList.add(PeriodicMessageExpList);
-        PeriodicMessageExpList = new GroupList("농장 2");
-        PeriodicMessageExpList.child.add("시간 1");
-        PeriodicMessageExpList.child.add("시간 2");
-        DataList.add(PeriodicMessageExpList);
-        PeriodicMessageExpList = new GroupList("농장 3");
-        PeriodicMessageExpList.child.add("시간 1");
-        PeriodicMessageExpList.child.add("시간 2");
-        DataList.add(PeriodicMessageExpList);
-        PeriodicMessageExpList = new GroupList("농장 4");
-        PeriodicMessageExpList.child.add("시간 1");
-        PeriodicMessageExpList.child.add("시간 2");
-        DataList.add(PeriodicMessageExpList);
+        sharedPref = this.getSharedPreferences("periodic_message", 0);
+        editor = sharedPref.edit();
+        /// 코드 계속 ...
+        mRecyclerView = findViewById(R.id.recycler2);
 
-        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                boolean isExpanded = (!listView.isGroupExpanded(groupPosition)); //선택한 그룹 포지션의 펼침/닫힘 상태체크
-                listView.collapseGroup(last_expanded); //이전에 열려있던 그룹 닫기
-                if(isExpanded){
-                    listView.expandGroup(groupPosition); // 현재 선택한 그룹이 있으면 펼쳐줌
-                }
-                last_expanded=groupPosition; // 현재 선택한 그룹을 last_expanded 로 설정
-                return true;
-            }
-        });
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        mAdapter = new RecyclerImageTextAdapter(mList);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        /// ... 코드 계속.
+        // 아이템 추가.
+        RecyclerItem item = new RecyclerItem();
+        addItem(item.getFarmNumber(), item.getMsgTime_1(), item.getMsgTime_2());
+        mAdapter.notifyDataSetChanged();
+    }
 
+    public void addItem(String fNum, String msgtime_1, String msgtime_2) {// 리사이클러뷰에 아이템을 추가하는 메소드
+        RecyclerItem item = new RecyclerItem();
+        item.setFarmNumber("test");
+        item.setMsgTime_1(sharedPref.getString("pd_msg_1", "-").replace(","," : "));
+        item.setMsgTime_2(sharedPref.getString("pd_msg_2", "-").replace(","," : "));
+        mList.add(item);
+    }
 
-
-        ExpandAdapter adapter = new ExpandAdapter(this, R.layout.explist_periodicmessage_row, R.layout.explist_periodicmessage_childrow, DataList); // 어댑터 객체생성
-        Drawable icon = getDrawable(R.drawable.arrow_down_black_24);
-        listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
-        listView.setGroupIndicator(icon); // 화살표 아이콘 설정
-        listView.setAdapter(adapter);
+    public ArrayList<String> extractMessageTime(String msgBody) { // 메시지 내용에서 전화번호만 추출하는 메소드
+        ArrayList<String> processed = new ArrayList<>();
+        for (String s : msgBody.split("\n")) {
+            processed.add(s.substring(6, s.length()).replace(",",""));
+        }
+        return processed;
     }
 }

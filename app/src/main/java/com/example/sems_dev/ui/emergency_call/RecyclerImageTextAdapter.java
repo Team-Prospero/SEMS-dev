@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,16 +25,6 @@ import java.util.ArrayList;
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
 
-    public interface OnItemClickListener {
-        void onItemClick(View view, int pos);
-    }
-
-    private OnItemClickListener mListener = null;
-
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.mListener = listener;
-    }
-
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -47,7 +36,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.recycler_item, parent, false);
+        View view = inflater.inflate(R.layout.recycler_item_emergency_call, parent, false);
         RecyclerImageTextAdapter.ViewHolder vh = new RecyclerImageTextAdapter.ViewHolder(view);
 
         return vh;
@@ -77,7 +66,6 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
         TextView pNum_1, pNum_2, pNum_3, pNum_4, pNum_5;
-        private String fNum, pNum_1_txt, pNum_2_txt, pNum_3_txt, pNum_4_txt, pNum_5_txt;
         Button phonenumber_edit;
         SharedPreferences sp;
         SharedPreferences.Editor editor;
@@ -110,9 +98,33 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         public void onClick(DialogInterface dialog, int which) {
                             phoneNumber = emCall_edit.getText().toString();
                             Log.d("[phone]",phoneNumber);
-                            saveResult = phoneNumber.substring(0,3)+"-"+phoneNumber.substring(4,8)+"-"+phoneNumber.substring(7,phoneNumber.length());
+                            saveResult = phoneNumber;
                             editor.putString(pos, saveResult);
                             editor.commit();
+                            String temp;
+                            switch (pos){
+                                case "em_call_1":
+                                    temp = sp.getString(pos, "-");
+                                    pNum_1.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    break;
+                                case "em_call_2":
+                                    temp = sp.getString(pos, "-");
+                                    pNum_2.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    break;
+                                case "em_call_3":
+                                    temp = sp.getString(pos, "-");
+                                    pNum_3.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    break;
+                                case "em_call_4":
+                                    temp = sp.getString(pos, "-");
+                                    pNum_4.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    break;
+                                case "em_call_5":
+                                    temp = sp.getString(pos, "-");
+                                    pNum_5.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    break;
+                            }
+                            emCall_edit.setText("");
                             Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
@@ -121,6 +133,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(itemView.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
+                            emCall_edit.setText("");
                             dialog.cancel();
                         }
                     });
@@ -139,6 +152,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     emCall_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                             switch (position){
                                 case 0:
                                     pos="em_call_1";
@@ -163,18 +177,6 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
                         }
                     });
-                }
-            });
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int pos = getAdapterPosition();
-                    if (pos != RecyclerView.NO_POSITION) {
-                        if (mListener != null) {
-                            mListener.onItemClick(v, pos);
-                        }
-                    }
                 }
             });
         }

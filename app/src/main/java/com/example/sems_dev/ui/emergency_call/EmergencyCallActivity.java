@@ -1,22 +1,15 @@
 package com.example.sems_dev.ui.emergency_call;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sems_dev.ui.emergency_call.RecyclerItem;
 import com.example.sems_dev.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class EmergencyCallActivity extends AppCompatActivity {
     RecyclerView mRecyclerView = null;
@@ -52,12 +45,23 @@ public class EmergencyCallActivity extends AppCompatActivity {
 
     public void addItem(String fNum, String pNum1, String pNum2, String pNum3, String pNum4, String pNum5) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        item.setFarmNumber("농장번호");
-        item.setpNum_1(sharedPref.getString("em_call_1", "-"));
-        item.setpNum_2(sharedPref.getString("em_call_2", "-"));
-        item.setpNum_3(sharedPref.getString("em_call_3", "-"));
-        item.setpNum_4(sharedPref.getString("em_call_4", "-"));
-        item.setpNum_5(sharedPref.getString("em_call_5", "-"));
+        item.setFarmNumber("test 농장");
+
+        String temp = sharedPref.getString("em_call_1", "-");
+        item.setpNum_1(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+
+        temp = sharedPref.getString("em_call_2", "-");
+        item.setpNum_2(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+
+        temp = sharedPref.getString("em_call_3", "-");
+        item.setpNum_3(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+
+        temp = sharedPref.getString("em_call_4", "-");
+        item.setpNum_4(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+
+        temp = sharedPref.getString("em_call_5", "-");
+        item.setpNum_5(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+
         mList.add(item);
     }
 
