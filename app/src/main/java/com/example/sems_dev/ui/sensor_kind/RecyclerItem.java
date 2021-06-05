@@ -1,78 +1,39 @@
 package com.example.sems_dev.ui.sensor_kind;
 
+import java.util.ArrayList;
+
 public class RecyclerItem {
-    private String areaNumber;
-    private String sKind_1, sKind_2, sKind_3, sKind_4, sKind_5, sKind_6, sKind_7, sKind_8;
+    ArrayList<String> equip1_kind, equip2_kind, equip3_kind, equip4_kind;
 
-    public String getAreaNumber() {
-        return areaNumber;
+    public ArrayList<String> getEquip1_kind() {
+        return equip1_kind;
     }
 
-    public void setAreaNumber(String areaNumber) {
-        this.areaNumber = areaNumber;
+    public void setEquip1_kind(ArrayList<String> equip1_kind) {
+        this.equip1_kind = equip1_kind;
     }
 
-    public String getsKind_1() {
-        return sKind_1;
+    public ArrayList<String> getEquip2_kind() {
+        return equip2_kind;
     }
 
-    public void setsKind_1(String sKind_1) {
-        this.sKind_1 = sKind_1;
+    public void setEquip2_kind(ArrayList<String> equip2_kind) {
+        this.equip2_kind = equip2_kind;
     }
 
-    public String getsKind_2() {
-        return sKind_2;
+    public ArrayList<String> getEquip3_kind() {
+        return equip3_kind;
     }
 
-    public void setsKind_2(String sKind_2) {
-        this.sKind_2 = sKind_2;
+    public void setEquip3_kind(ArrayList<String> equip3_kind) {
+        this.equip3_kind = equip3_kind;
     }
 
-    public String getsKind_3() {
-        return sKind_3;
+    public ArrayList<String> getEquip4_kind() {
+        return equip4_kind;
     }
 
-    public void setsKind_3(String sKind_3) {
-        this.sKind_3 = sKind_3;
-    }
-
-    public String getsKind_4() {
-        return sKind_4;
-    }
-
-    public void setsKind_4(String sKind_4) {
-        this.sKind_4 = sKind_4;
-    }
-
-    public String getsKind_5() {
-        return sKind_5;
-    }
-
-    public void setsKind_5(String sKind_5) {
-        this.sKind_5 = sKind_5;
-    }
-
-    public String getsKind_6() {
-        return sKind_6;
-    }
-
-    public void setsKind_6(String sKind_6) {
-        this.sKind_6 = sKind_6;
-    }
-
-    public String getsKind_7() {
-        return sKind_7;
-    }
-
-    public void setsKind_7(String sKind_7) {
-        this.sKind_7 = sKind_7;
-    }
-
-    public String getsKind_8() {
-        return sKind_8;
-    }
-
-    public void setsKind_8(String sKind_8) {
-        this.sKind_8 = sKind_8;
+    public void setEquip4_kind(ArrayList<String> equip4_kind) {
+        this.equip4_kind = equip4_kind;
     }
 }

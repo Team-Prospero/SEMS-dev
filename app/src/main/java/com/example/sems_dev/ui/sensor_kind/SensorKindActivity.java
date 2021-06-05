@@ -21,7 +21,7 @@ public class SensorKindActivity extends AppCompatActivity {
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-    ArrayList<String> sKind = extractPhoneNumber(msgbody);
+    ArrayList<String> sKind = extractSensorKind(msgbody);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,7 @@ public class SensorKindActivity extends AppCompatActivity {
         for (int i = 0; i < sKind.size(); i++) {
             editor.putString("sKind_" + Integer.toString(i), sKind.get(i));
         }
-        editor.commit();
+        editor.apply();
         /// 코드 계속 ...
         mRecyclerView = findViewById(R.id.recycler3);
 
@@ -44,18 +44,27 @@ public class SensorKindActivity extends AppCompatActivity {
         /// ... 코드 계속.
         // 아이템 추가.
         RecyclerItem item = new RecyclerItem();
-        addItem(item.getAreaNumber(), item.getsKind_1(), item.getsKind_2(), item.getsKind_3(), item.getsKind_4(),
-                item.getsKind_5(), item.getsKind_6(), item.getsKind_7(), item.getsKind_8());
+
+
         mAdapter.notifyDataSetChanged();
     }
 
-    public void addItem(String aNum, String sKind1, String sKind2, String sKind3, String sKind4,
-                        String sKind5, String sKind6, String sKind7, String sKind8) {// 리사이클러뷰에 아이템을 추가하는 메소드
+    public void addItem(ArrayList<String> equip1_kind, ArrayList<String> equip2_kind, ArrayList<String> equip3_kind, ArrayList<String> equip4_kind) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
+        switch (msgbody.substring(0,2)){
+            case "S1":
+
+            case "S2":
+
+            case "S3":
+
+            case "S4":
+
+        }
         mList.add(item);
     }
 
-    public ArrayList<String> extractPhoneNumber(String msgBody) { // 메시지 내용에서 센서종류만 추출하는 메소드
+    public ArrayList<String> extractSensorKind(String msgBody) { // 메시지 내용에서 센서종류만 추출하는 메소드
         ArrayList<String> processed = new ArrayList<>();
         for (String s : msgBody.split("\n")) {
             if (s.length() == 3) {
