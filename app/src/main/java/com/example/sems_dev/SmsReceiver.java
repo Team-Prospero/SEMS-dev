@@ -19,7 +19,6 @@ public class SmsReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
         // parseSmsMessage() 메서드의 코드들은 SMS문자의 내용을 뽑아내는 정형화된 코드이다.
-        // 복잡해 보일 수 있으나 그냥 그대로 가져다 쓰면 된다.
         SmsMessage[] messages = parseSmsMessage(bundle);
 
         if(messages.length>0){

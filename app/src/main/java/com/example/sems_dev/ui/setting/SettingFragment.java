@@ -30,6 +30,8 @@ public class SettingFragment extends Fragment{
     private static SettingNumberAdapter settingNumberAdapter;
 
     private Button addNum, delNum;
+    private boolean index[] = {false, false, false, false, false};
+    private int currentIndex = 0;
     private int count = 0;
 
     @Override
@@ -47,6 +49,7 @@ public class SettingFragment extends Fragment{
         delNum = view.findViewById(R.id.delNum);
 
         loadData();
+        loadCount();
 
         addNum.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +64,7 @@ public class SettingFragment extends Fragment{
 
     public void loadData(){
         for(int i = 0 ; i<=5 ; i++){
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Farm"+i, 0);
-        count = sharedPreferences.getInt("count",0);
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(i+ "_Farm", 0);
         String name = sharedPreferences.getString("name","");
         String number = sharedPreferences.getString("number","");
             if(name.length() != 0 || number.length() != 0) {
@@ -71,15 +73,49 @@ public class SettingFragment extends Fragment{
         }
     }
     public void saveData(String name, String number){
-        count++;
-        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("Farm"+count, 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("name", name);
-        editor.putString("number",number);
-        editor.putInt("count", count);
-        editor.commit();
+        if(count <= 5){
+            SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(count + "_Farm", 0);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("name", name);
+            editor.putString("number",number);
+            editor.commit();
+            saveCount();
+        }
+        else{
+            Toast.makeText(getActivity(),"더이상 저장할 수 없습니다.", Toast.LENGTH_LONG).show();
+        }
 
     }
+    public void loadCount(){
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("COUNT", 0);
+        for(int i = 0 ; i<=4 ; i++){
+            index[i] = sharedPreferences.getBoolean("index" + i, false);
+        }
+        count = sharedPreferences.getInt("count", 0);
+        currentIndex = sharedPreferences.getInt("currentIndex", 0);
+    }
+    public void saveCount(){
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("COUNT", 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        index[currentIndex] = true;
+        editor.putBoolean("index" + currentIndex, index[currentIndex]);
+        count++;
+        for(int i = 0 ; i<=5 ; i++){
+            if(index[i]==false){
+                currentIndex = i;
+                break;
+            }
+            else{
+                currentIndex = -1;
+            }
+        }
+        editor.putInt("count", count);
+        editor.putInt("currentIndex", currentIndex);
+        editor.commit();
+    }
+
+
+
     public class MyDismissListener extends DismissListener{
         @Override
         public void onDismiss(DialogInterface dialog) {
@@ -88,8 +124,9 @@ public class SettingFragment extends Fragment{
             if(name.length() != 0 || number.length() != 0) {
                 settingNumber.add(new SettingNumberClass(name, number));
                 saveData(name, number);
-                count++;
             }
         }
     }
+
+
 }
