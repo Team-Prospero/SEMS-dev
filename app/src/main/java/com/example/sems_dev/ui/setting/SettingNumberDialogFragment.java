@@ -37,13 +37,16 @@ public class SettingNumberDialogFragment extends DialogFragment {
                         String name = new String();
                         String number = new String();
 
-                        if (etName.length() == 0) {
+                        if (etName.length() == 0) { // 이름 입력 안했을 때 자동 지정
                             name = Integer.toString(count) + "번";
                         }
-                        if (etNumber.length() <= 11 ) {
+
+                        if (etNumber.length() < 11 ) {
                             Toast.makeText(getActivity(), "올바른 전화번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                             etName.setText("");
                             etNumber.setText("");
+                            dismissListener.setValue("name", "");
+                            dismissListener.setValue("number", "");
                         } else {
                             name = etName.getText().toString();
                             number = etNumber.getText().toString();
@@ -52,6 +55,7 @@ public class SettingNumberDialogFragment extends DialogFragment {
                             if (dismissListener != null) {
                                 dismissListener.setValue("name", name);
                                 dismissListener.setValue("number", number);
+
                             }
                         }
                     }
@@ -60,13 +64,11 @@ public class SettingNumberDialogFragment extends DialogFragment {
         builder.setNegativeButton("취소", null);
 
         return builder.create();
-
     }
 
     @Override
     public void onActivityCreated(Bundle arg0) {
         super.onActivityCreated(arg0);
-
         //받은 리스너를 등록한다
         getDialog().setOnDismissListener(dismissListener);
     }

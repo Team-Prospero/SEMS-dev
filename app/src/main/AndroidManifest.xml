@@ -31,7 +31,7 @@
         <activity android:name=".ui.sensor_on_off.SensorOnOffActivity"/>
         <activity android:name=".ui.sensor_warning.SensorWarningActivity"/>
         <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity"/>
-
+        <service android:name=".CheckSMS"></service>
     </application>
 
     <!-- SMS 관련 -->

@@ -11,7 +11,7 @@ public abstract class DismissListener implements DialogInterface.OnDismissListen
         if(mStrMap == null)
             mStrMap = new HashMap<String, String>();
 
-        mStrMap.put(key, value);
+            mStrMap.put(key, value);
     }
 
     public String getValueForStr(String key) {
