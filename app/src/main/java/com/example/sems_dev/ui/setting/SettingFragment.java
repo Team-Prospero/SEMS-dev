@@ -59,6 +59,13 @@ public class SettingFragment extends Fragment{
                 settingNumberDialogFragment.show(getFragmentManager(), "추가");
             }
         });
+
+        delNum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         return view;
     }
 
