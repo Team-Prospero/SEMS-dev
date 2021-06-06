@@ -11,13 +11,13 @@ import com.example.sems_dev.R;
 
 import java.util.ArrayList;
 
-
+// sp에서 데이터 들고옴 -> ui에 출력
 public class SensorKindActivity extends AppCompatActivity {
-    RecyclerView mRecyclerView = null;
-    RecyclerImageTextAdapter mAdapter = null;
+    RecyclerView mRecyclerView;
+    RecyclerImageTextAdapter mAdapter;
 
     ArrayList<RecyclerItem> mList = new ArrayList<RecyclerItem>();
-    String msgbody = "S1-KIND\n1:3\n2:1\n3:1\n4:1\n5:1\n6:1\n7:1\n8:1";
+    String msgbody = "1\n1\n2\n3\n2\n1\n0\n3";
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
@@ -28,12 +28,8 @@ public class SensorKindActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_kind);
 
-        sharedPref = this.getSharedPreferences("sensor_kind", 0);
+        sharedPref = this.getSharedPreferences("1_KIND", 0);
         editor = sharedPref.edit();
-        for (int i = 0; i < sKind.size(); i++) {
-            editor.putString("sKind_" + Integer.toString(i), sKind.get(i));
-        }
-        editor.apply();
         /// 코드 계속 ...
         mRecyclerView = findViewById(R.id.recycler3);
 
@@ -44,32 +40,28 @@ public class SensorKindActivity extends AppCompatActivity {
         /// ... 코드 계속.
         // 아이템 추가.
         RecyclerItem item = new RecyclerItem();
-
-
+        addItem(item.getS1_1(), item.getS1_2(), item.getS1_3(), item.getS1_4(), item.getS1_5(), item.getS1_6(), item.getS1_7(), item.getS1_8());
         mAdapter.notifyDataSetChanged();
     }
 
-    public void addItem(ArrayList<String> equip1_kind, ArrayList<String> equip2_kind, ArrayList<String> equip3_kind, ArrayList<String> equip4_kind) {// 리사이클러뷰에 아이템을 추가하는 메소드
+    public void addItem(String s1_1, String s1_2, String s1_3, String s1_4, String s1_5, String s1_6, String s1_7, String s1_8) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        switch (msgbody.substring(0,2)){
-            case "S1":
+        item.setS1_1(sharedPref.getString("S1_1T","-"));
+        item.setS1_2(sharedPref.getString("S1_2T","-"));
+        item.setS1_3(sharedPref.getString("S1_3T","-"));
+        item.setS1_4(sharedPref.getString("S1_4T","-"));
+        item.setS1_5(sharedPref.getString("S1_5T","-"));
+        item.setS1_6(sharedPref.getString("S1_6T","-"));
+        item.setS1_7(sharedPref.getString("S1_7T","-"));
+        item.setS1_8(sharedPref.getString("S1_8T","-"));
 
-            case "S2":
-
-            case "S3":
-
-            case "S4":
-
-        }
         mList.add(item);
     }
 
     public ArrayList<String> extractSensorKind(String msgBody) { // 메시지 내용에서 센서종류만 추출하는 메소드
         ArrayList<String> processed = new ArrayList<>();
         for (String s : msgBody.split("\n")) {
-            if (s.length() == 3) {
-                processed.add(Character.toString(s.charAt(s.length())));
-            }
+                processed.add(s);
         }
         return processed;
     }

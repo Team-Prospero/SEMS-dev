@@ -113,7 +113,7 @@ public class CheckSMS extends Service {
                         }
                     }
                     else{
-                        editor.putString(Integer.toString(i), "NULL");
+                        editor.putString(Integer.toString(i), "-");
                     }
                 }
                 editor.commit();
@@ -125,11 +125,11 @@ public class CheckSMS extends Service {
                 for(int i = 1 ; i <= 2 ; i++){
                     if(temp[i].contains(",")){
                         editor.putString(i + "_Hour", temp[1].substring(0,2));
-                        editor.putString(i + "_Min", temp[1].substring(2,5));
+                        editor.putString(i + "_Min", temp[1].substring(3,5));
                     }
                     else{
-                        editor.putString(i + "_Hour", "NULL");
-                        editor.putString(i + "_Min", "NULL");
+                        editor.putString(i + "_Hour", "-");
+                        editor.putString(i + "_Min", "-");
                     }
                 }
                 editor.commit();

@@ -81,7 +81,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pNum_4 = itemView.findViewById(R.id.pNum_4);
             pNum_5 = itemView.findViewById(R.id.pNum_5);
             phonenumber_edit = itemView.findViewById(R.id.phonenumber_edit);
-            sp = itemView.getContext().getSharedPreferences("emergency_call", 0);
+            sp = itemView.getContext().getSharedPreferences("1_NUM", 0);
             editor = sp.edit();
             phonenumber_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_emergency_call, null);
@@ -103,23 +103,23 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             editor.commit();
                             String temp;
                             switch (pos){
-                                case "em_call_1":
+                                case "1":
                                     temp = sp.getString(pos, "-");
                                     pNum_1.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
                                     break;
-                                case "em_call_2":
+                                case "2":
                                     temp = sp.getString(pos, "-");
                                     pNum_2.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
                                     break;
-                                case "em_call_3":
+                                case "3":
                                     temp = sp.getString(pos, "-");
                                     pNum_3.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
                                     break;
-                                case "em_call_4":
+                                case "4":
                                     temp = sp.getString(pos, "-");
                                     pNum_4.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
                                     break;
-                                case "em_call_5":
+                                case "5":
                                     temp = sp.getString(pos, "-");
                                     pNum_5.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
                                     break;
@@ -155,19 +155,19 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
                             switch (position){
                                 case 0:
-                                    pos="em_call_1";
+                                    pos="1";
                                     break;
                                 case 1:
-                                    pos="em_call_2";
+                                    pos="2";
                                     break;
                                 case 2:
-                                    pos="em_call_3";
+                                    pos="3";
                                     break;
                                 case 3:
-                                    pos="em_call_4";
+                                    pos="4";
                                     break;
                                 case 4:
-                                    pos="em_call_5";
+                                    pos="5";
                                     break;
                             }
                         }

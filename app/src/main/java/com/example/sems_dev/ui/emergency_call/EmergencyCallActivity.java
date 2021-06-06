@@ -26,7 +26,7 @@ public class EmergencyCallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_call);
 
-        sharedPref = this.getSharedPreferences("emergency_call", 0);
+        sharedPref = this.getSharedPreferences("1_NUM", 0);
         editor = sharedPref.edit();
         /// 코드 계속 ...
         mRecyclerView = findViewById(R.id.recycler1);
@@ -47,21 +47,44 @@ public class EmergencyCallActivity extends AppCompatActivity {
         RecyclerItem item = new RecyclerItem();
         item.setFarmNumber("test 농장");
 
-        String temp = sharedPref.getString("em_call_1", "-");
-        item.setpNum_1(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
 
-        temp = sharedPref.getString("em_call_2", "-");
-        item.setpNum_2(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+        if (sharedPref.getAll() == null) {
+            item.setpNum_1(sharedPref.getString("1", "-"));
+            item.setpNum_2(sharedPref.getString("2", "-"));
+            item.setpNum_3(sharedPref.getString("3", "-"));
+            item.setpNum_4(sharedPref.getString("4", "-"));
+            item.setpNum_5(sharedPref.getString("5", "-"));
+        } else {
+            String temp = sharedPref.getString("1", "-");
+            if (temp.length() == 1)
+                item.setpNum_1(temp);
+            else
+                item.setpNum_1(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
 
-        temp = sharedPref.getString("em_call_3", "-");
-        item.setpNum_3(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+            temp = sharedPref.getString("2", "-");
+            if (temp.length() == 1)
+                item.setpNum_2(temp);
+            else
+                item.setpNum_2(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
 
-        temp = sharedPref.getString("em_call_4", "-");
-        item.setpNum_4(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+            temp = sharedPref.getString("3", "-");
+            if (temp.length() == 1)
+                item.setpNum_3(temp);
+            else
+                item.setpNum_3(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
 
-        temp = sharedPref.getString("em_call_5", "-");
-        item.setpNum_5(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7,temp.length()));
+            temp = sharedPref.getString("4", "-");
+            if (temp.length() == 1)
+                item.setpNum_4(temp);
+            else
+                item.setpNum_4(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
 
+            temp = sharedPref.getString("5", "-");
+            if (temp.length() == 1)
+                item.setpNum_5(temp);
+            else
+                item.setpNum_5(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+        }
         mList.add(item);
     }
 

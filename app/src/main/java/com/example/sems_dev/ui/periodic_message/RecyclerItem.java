@@ -17,16 +17,16 @@ public class RecyclerItem {
         return farmNumber;
     }
 
-    public void setMsgTime_1(String msgTime) {
-        msgTime_1 = msgTime;
+    public void setMsgTime_1(String hour, String minute) {
+        msgTime_1 = hour+minute;
     }
 
     public String getMsgTime_1() {
         return msgTime_1;
     }
 
-    public void setMsgTime_2(String msgTime) {
-        msgTime_2 = msgTime;
+    public void setMsgTime_2(String hour, String minute) {
+        msgTime_2 = hour+minute;
     }
 
     public String getMsgTime_2() {

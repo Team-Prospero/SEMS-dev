@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sems_dev.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
@@ -47,9 +48,9 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     public void onBindViewHolder(RecyclerImageTextAdapter.ViewHolder holder, int position) {
 
         RecyclerItem item = mData.get(position);
-        holder.farmNumber.setText(item.getFarmNumber());
-        holder.pd_msg_1.setText(holder.sp.getString("msg_time_1", "-"));
-        holder.pd_msg_2.setText(holder.sp.getString("msg_time_2", "-"));
+        holder.farmNumber.setText(item.getFarmNumber()+" 농장");
+        holder.pd_msg_1.setText(holder.sp.getString("1_Hour", "-") + " : " + holder.sp.getString("1_Min", "-"));
+        holder.pd_msg_2.setText(holder.sp.getString("2_Hour", "-") + " : " + holder.sp.getString("2_Min", "-"));
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
@@ -75,8 +76,9 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pd_msg_1 = itemView.findViewById(R.id.pd_msg_1);
             pd_msg_2 = itemView.findViewById(R.id.pd_msg_2);
             pd_msg_edit = itemView.findViewById(R.id.pd_msg_edit);
-            sp = itemView.getContext().getSharedPreferences("periodic_message", 0);
+            sp = itemView.getContext().getSharedPreferences("1_TIME", 0);
             editor = sp.edit();
+
             pd_msg_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_periodic_message, null);
                 Spinner pdMsg_spinner = dialog.findViewById(R.id.pd_msg_spinner);
@@ -92,15 +94,14 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             saveResult = setMsgTime(pdMsg_timepicker.getHour(), pdMsg_timepicker.getMinute());
-                            editor.putString(pos, saveResult);
-                            editor.commit();
-                            Log.d("[committed]", pos + " - " + sp.getString(pos, "-"));
+
                             switch (pos) {
-                                case "msg_time_1":
-                                    pd_msg_1.setText(sp.getString(pos, "-"));
+                                case "1_HourN1_Min":
+                                    pd_msg_1.setText(sp.getString("1_Hour", "-") + " : " + sp.getString("1_Minute", "-"));
                                     break;
-                                case "msg_time_2":
-                                    pd_msg_2.setText(sp.getString(pos, "-"));
+
+                                case "2_HourN2_Min":
+                                    pd_msg_2.setText(sp.getString("2_Hour", "-") + " : " + sp.getString("2_Minute", "-"));
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
@@ -131,10 +132,12 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             switch (position) {
                                 case 0:
-                                    pos = "msg_time_1";
+                                    pos = "1_HourN1_Min";
+                                    Toast.makeText(itemView.getContext(), pos, Toast.LENGTH_SHORT).show();
                                     break;
                                 case 1:
-                                    pos = "msg_time_2";
+                                    pos = "2_HourN2_Min";
+                                    Toast.makeText(itemView.getContext(), pos, Toast.LENGTH_SHORT).show();
                                     break;
                             }
                         }
