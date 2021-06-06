@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".SmsReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
 
         <activity android:name=".ui.emergency_call.EmergencyCallActivity"/>
         <activity android:name=".ui.periodic_message.PeriodicMessageActivity"/>
@@ -26,7 +31,11 @@
         <activity android:name=".ui.sensor_on_off.SensorOnOffActivity"/>
         <activity android:name=".ui.sensor_warning.SensorWarningActivity"/>
         <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity"/>
-
+        <service android:name=".CheckSMS"></service>
     </application>
 
+    <!-- SMS 관련 -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_MMS" />
 </manifest>
