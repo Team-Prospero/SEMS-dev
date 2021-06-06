@@ -1,5 +1,6 @@
 package com.example.sems_dev.ui.get_value;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import androidx.viewpager.widget.ViewPager;
 
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

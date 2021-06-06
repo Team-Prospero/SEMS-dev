@@ -12,7 +12,7 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class SmsReceiver extends BroadcastReceiver {
+public class ReceiveSMS extends BroadcastReceiver {
     private static final String TAG = "SmsReceiver";
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
