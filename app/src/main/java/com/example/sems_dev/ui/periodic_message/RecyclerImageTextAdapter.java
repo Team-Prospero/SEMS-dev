@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.periodic_message;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,9 +20,9 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
@@ -80,12 +81,32 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             sp = itemView.getContext().getSharedPreferences("0_TIME", 0);
             editor = sp.edit();
 
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    switch (key){
+                        case "1_Hour":
+                        case "1_Min":
+                            pd_msg_1.setText(sharedPreferences.getString("1_Hour","-")+" : "+sharedPreferences.getString("1_Min","-"));
+                            Log.d("[spChanged]",sharedPreferences.getString("1_Hour","-")+" : "+sharedPreferences.getString("1_Min","-"));
+                            break;
+
+                        case "2_Hour":
+                        case "2_Min":
+                            pd_msg_2.setText(sharedPreferences.getString("2_Hour","-")+" : "+sharedPreferences.getString("2_Min","-"));
+                            Log.d("[spChanged]",sharedPreferences.getString("2_Hour","-")+" : "+sharedPreferences.getString("2_Min","-"));
+                            break;
+                    }
+                }
+            };
+
             pd_msg_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_periodic_message, null);
                 Spinner pdMsg_spinner = dialog.findViewById(R.id.pd_msg_spinner);
                 TimePicker pdMsg_timepicker = dialog.findViewById(R.id.pd_msg_timepicker);
                 String[] pdMsg_item = {"1번 문자시간", "2번 문자시간"};
-                String saveResult, pos;
+                String saveResult, pos, phone="01220788729";
 
                 @Override
                 public void onClick(View v) {
@@ -113,7 +134,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                                     msgbody = "SET TIME2:"+saveResult;
                                     break;
                             }
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data",msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
                             dialog.dismiss();
                         }
                     });
@@ -178,7 +203,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pd_msg_lookup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", "01220788729");
+                    intent.putExtra("data","GET TIME");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }
