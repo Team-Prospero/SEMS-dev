@@ -5,14 +5,16 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 
+import com.example.sems_dev.MainActivity;
 import com.example.sems_dev.R;
 
-public class SettingNumberDialogFragment extends DialogFragment {
+public class SettingNumberDialogFragment extends DialogFragment{
 
     public static final String KEY_RESULT = "Result";
     private DismissListener dismissListener;
@@ -26,6 +28,7 @@ public class SettingNumberDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        setCancelable(false);
         builder.setView(inflater.inflate(R.layout.dialogfragment_add_number, null));
         builder.setTitle("전화번호 추가");
         builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
@@ -61,7 +64,19 @@ public class SettingNumberDialogFragment extends DialogFragment {
                     }
                 }
         );
-        builder.setNegativeButton("취소", null);
+        builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                EditText etName = (EditText) getDialog().findViewById(R.id.etName);
+                EditText etNumber = (EditText) getDialog().findViewById(R.id.etNum);
+                etName.setText("");
+                etNumber.setText("");
+                dismissListener.setValue("name", "");
+                dismissListener.setValue("number", "");
+                Toast.makeText(getActivity(), "취소하였습니다.", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
         return builder.create();
     }
@@ -86,4 +101,5 @@ public class SettingNumberDialogFragment extends DialogFragment {
         dismissListener = listener;
 
     }
+
 }

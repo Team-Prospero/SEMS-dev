@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+<!--    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -18,13 +18,39 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="추가"/>
-        <Button
+       <Button
             android:id="@+id/delNum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="삭제"/>
+    </LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="SEMS 경보기 전화번호를 등록하여 주세요."/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/addNum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="추가"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#737070" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,14 +71,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:layout_weight="1"
-            android:text="ON/OFF"/>
+            android:layout_weight="2" />
 
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#737070"/>
 
     <ListView
         android:id="@+id/numberList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
+
+
 
 </LinearLayout>

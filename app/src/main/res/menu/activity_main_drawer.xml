@@ -16,9 +16,9 @@
             android:id="@+id/nav_info"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_info" />
-        <item
+<!--        <item
             android:id="@+id/nav_msg_log"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_msg_log" />
+            android:title="@string/menu_msg_log" />-->
     </group>
 </menu>

@@ -1,9 +1,13 @@
 package com.example.sems_dev.ui.get_value;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,6 +30,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.example.sems_dev.MainActivity;
 import com.example.sems_dev.R;
 import com.example.sems_dev.SendSMS;
 
@@ -46,6 +51,8 @@ public class GetValueFragment extends Fragment{
     Date mDate;
     String format_time,text;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private String number = "01220788729";
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         if(v != null){
@@ -80,6 +87,11 @@ public class GetValueFragment extends Fragment{
                 editor.commit();
                 text = sf.getString("nFile","");
                 LastViewTime.setText("최근 조회 시간 : "+text);
+
+                Intent intent = new Intent(getActivity(),SendSMS.class);
+                intent.putExtra("number",number);
+                intent.putExtra("data","INFO");
+                startActivity(intent);
             }
         });
         //농장 선택 Adapter

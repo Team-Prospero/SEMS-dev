@@ -10,12 +10,13 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.sems_dev.ui.setting.SettingFragment;
+import com.example.sems_dev.ui.get_value.GetValueFragment;
 
-public class SendSMS extends Activity {
 
-    String number;
-    String data;
+public class SendSMS extends Activity{
+
+    private String number;
+    private String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class SendSMS extends Activity {
         Button btnSend = (Button)findViewById(R.id.btnSend);
 
         Intent intent = getIntent();
+
         number = intent.getStringExtra("number");
         data = intent.getStringExtra("data");
 
@@ -62,5 +64,6 @@ public class SendSMS extends Activity {
         //안드로이드 백버튼 막기
         return;
     }
+
 
 }
