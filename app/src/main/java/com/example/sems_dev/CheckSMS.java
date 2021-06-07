@@ -199,11 +199,13 @@ public class CheckSMS extends Service {
         SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
         String savedHighTemp = sharedPreferences.getString("S" + section + "_" + t + "T_HIGH", "");
         String savedLowTemp = sharedPreferences.getString("S" + section + "_" + t + "T_LOW", "");
-        // 메세지의 온도 값이 최대 값보다 높거나, 최소 값보다 낮은 경우
-        if (Integer.parseInt(temperature) >= Integer.parseInt(savedHighTemp)) {
-            notification(section, t, Integer.parseInt(temperature) - Integer.parseInt(savedHighTemp), "HIGH");
-        } else if (Integer.parseInt(temperature) <= Integer.parseInt(savedLowTemp)) {
-            notification(section, t, Integer.parseInt(savedLowTemp) - Integer.parseInt(temperature), "LOW");
+        if(savedHighTemp.length()>0 && savedLowTemp.length()>0){
+            // 메세지의 온도 값이 최대 값보다 높거나, 최소 값보다 낮은 경우
+            if (Integer.parseInt(temperature) >= Integer.parseInt(savedHighTemp)) {
+                notification(section, t, Integer.parseInt(temperature) - Integer.parseInt(savedHighTemp), "HIGH");
+            } else if (Integer.parseInt(temperature) <= Integer.parseInt(savedLowTemp)) {
+                notification(section, t, Integer.parseInt(savedLowTemp) - Integer.parseInt(temperature), "LOW");
+            }
         }
     }
 
