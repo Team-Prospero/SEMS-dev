@@ -17,14 +17,16 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:layout_marginRight="20dp"
             android:text="1번 정규문자시간"
             android:textSize="15sp"
             android:textColor="@android:color/black" />
@@ -39,14 +41,16 @@
             android:layout_weight="5"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:layout_marginRight="20dp"
             android:text="2번 정규문자시간"
             android:textSize="15sp"
             android:textColor="@android:color/black" />
@@ -64,9 +68,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="정규문자시간 조회"
+            android:id="@+id/pd_msg_lookup"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

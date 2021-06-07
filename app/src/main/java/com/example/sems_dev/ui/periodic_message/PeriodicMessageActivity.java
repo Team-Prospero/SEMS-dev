@@ -24,7 +24,7 @@ public class PeriodicMessageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_periodic_message);
 
-        sharedPref = this.getSharedPreferences("1_TIME", 0);
+        sharedPref = this.getSharedPreferences("0_TIME", 0);
         editor = sharedPref.edit();
         /// 코드 계속 ...
         mRecyclerView = findViewById(R.id.recycler2);

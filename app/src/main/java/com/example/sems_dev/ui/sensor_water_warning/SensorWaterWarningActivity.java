@@ -27,20 +27,6 @@ public class SensorWaterWarningActivity extends AppCompatActivity {
         Point size = new Point();
         newDisplay.getSize(size);
         int width = size.x;
-        ArrayList<GroupList> DataList = new ArrayList<GroupList>();
-        listView = findViewById(R.id.sensor_water_warning_expList);
-        GroupList temp = new GroupList("농장 1");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 2");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 3");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 4");
-        temp.child.add("");
-        DataList.add(temp);
 
         listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
             @Override
@@ -56,11 +42,9 @@ public class SensorWaterWarningActivity extends AppCompatActivity {
         });
 
 
-        ExpandAdapter adapter = new ExpandAdapter(this, R.layout.explist_sensor_waterwarning_row, R.layout.explist_sensor_waterwarning_childrow, DataList);
         Drawable icon = getDrawable(R.drawable.arrow_down_black_24);
         listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
         listView.setGroupIndicator(icon);
-        listView.setAdapter(adapter);
     }
 
     public void hideSoftKeyBoard() {

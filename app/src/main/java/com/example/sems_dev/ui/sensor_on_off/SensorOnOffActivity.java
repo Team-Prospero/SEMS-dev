@@ -1,72 +1,57 @@
 package com.example.sems_dev.ui.sensor_on_off;
 
-import android.graphics.Point;
-import android.graphics.drawable.Drawable;
+import android.content.SharedPreferences;
+
 import android.os.Bundle;
-import android.view.Display;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ExpandableListView;
+
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.example.sems_dev.R;
 
 import java.util.ArrayList;
 
 public class SensorOnOffActivity extends AppCompatActivity {
-    private ExpandableListView listView;
-    private int last_expanded = -1;
+    RecyclerView mRecyclerView;
+    RecyclerImageTextAdapter mAdapter;
+
+    ArrayList<RecyclerItem> mList = new ArrayList<RecyclerItem>();
+
+    SharedPreferences sharedPref;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_on_off);
-        Display newDisplay = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        newDisplay.getSize(size);
-        int width = size.x;
-        ArrayList<GroupList> DataList = new ArrayList<GroupList>();
-        listView = findViewById(R.id.sensor_on_off_expList);
-        GroupList temp = new GroupList("농장 1");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 2");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 3");
-        temp.child.add("");
-        DataList.add(temp);
-        temp = new GroupList("농장 4");
-        temp.child.add("");
-        DataList.add(temp);
 
-        listView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() { // 그룹 클릭리스너
-            @Override
-            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                boolean isExpanded = (!listView.isGroupExpanded(groupPosition)); //선택한 그룹 포지션의 펼침/닫힘 상태체크
-                listView.collapseGroup(last_expanded); //이전에 열려있던 그룹 닫기
-                if (isExpanded) {
-                    listView.expandGroup(groupPosition); // 현재 선택한 그룹이 있으면 펼쳐줌
-                }
-                last_expanded = groupPosition; // 현재 선택한 그룹을 last_expanded 로 설정
-                return true;
-            }
-        });
+        sharedPref = this.getSharedPreferences("0_USE", 0);
+        editor = sharedPref.edit();
+        mRecyclerView = findViewById(R.id.recycler4);
 
 
-        ExpandAdapter adapter = new ExpandAdapter(this, R.layout.explist_sensor_onoff_row, R.layout.explist_sensor_onoff_childrow, DataList);
-        Drawable icon = getDrawable(R.drawable.arrow_down_black_24);
-        listView.setIndicatorBounds(width - 50, width); //이 코드를 지우면 화살표 위치가 바뀐다.
-        listView.setGroupIndicator(icon);
-        listView.setAdapter(adapter);
+        mAdapter = new RecyclerImageTextAdapter(mList);
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        // 아이템 추가.
+        RecyclerItem item = new RecyclerItem();
+        addItem(item.getS1_1(), item.getS1_2(), item.getS1_3(), item.getS1_4(), item.getS1_5(), item.getS1_6(), item.getS1_7(), item.getS1_8());
+        mAdapter.notifyDataSetChanged();
     }
 
-    public void hideSoftKeyBoard() {
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        if (imm.isAcceptingText()) {
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
+    public void addItem(String s1_1, String s1_2, String s1_3, String s1_4, String s1_5, String s1_6, String s1_7, String s1_8) {// 리사이클러뷰에 아이템을 추가하는 메소드
+        RecyclerItem item = new RecyclerItem();
+        item.setS1_1(sharedPref.getString("S1_1T","-"));
+        item.setS1_2(sharedPref.getString("S1_2T","-"));
+        item.setS1_3(sharedPref.getString("S1_3T","-"));
+        item.setS1_4(sharedPref.getString("S1_4T","-"));
+        item.setS1_5(sharedPref.getString("S1_5T","-"));
+        item.setS1_6(sharedPref.getString("S1_6T","-"));
+        item.setS1_7(sharedPref.getString("S1_7T","-"));
+        item.setS1_8(sharedPref.getString("S1_8T","-"));
+        mList.add(item);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.sems_dev.ui.sensor_kind;
+package com.example.sems_dev.ui.sensor_on_off;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -37,7 +37,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.recycler_item_sensor_kind, parent, false);
+        View view = inflater.inflate(R.layout.recycler_item_sensor_onoff, parent, false);
         RecyclerImageTextAdapter.ViewHolder vh = new RecyclerImageTextAdapter.ViewHolder(view);
 
         return vh;
@@ -70,44 +70,44 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         TableLayout dataTable;
         TableRow Area_1, Area_2, Area_3, Area_4, Area_5, Area_6, Area_7, Area_8;
         TextView s1_1, s1_2, s1_3, s1_4, s1_5, s1_6, s1_7, s1_8;
-        Button kind_lookup_btn, kind_manage_btn;
-        AlertDialog.Builder sKindDialog = new AlertDialog.Builder(itemView.getContext());
+        Button onoff_lookup_btn, onoff_manage_btn;
+        AlertDialog.Builder onOffDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
             farmNumber = itemView.findViewById(R.id.farmNumber);
-            Area_1 = itemView.findViewById(R.id.area_1);
-            Area_2 = itemView.findViewById(R.id.area_2);
-            Area_3 = itemView.findViewById(R.id.area_3);
-            Area_4 = itemView.findViewById(R.id.area_4);
-            Area_5 = itemView.findViewById(R.id.area_5);
-            Area_6 = itemView.findViewById(R.id.area_6);
-            Area_7 = itemView.findViewById(R.id.area_7);
-            Area_8 = itemView.findViewById(R.id.area_8);
-            s1_1 = itemView.findViewById(R.id.s1_1);
-            s1_2 = itemView.findViewById(R.id.s1_2);
-            s1_3 = itemView.findViewById(R.id.s1_3);
-            s1_4 = itemView.findViewById(R.id.s1_4);
-            s1_5 = itemView.findViewById(R.id.s1_5);
-            s1_6 = itemView.findViewById(R.id.s1_6);
-            s1_7 = itemView.findViewById(R.id.s1_7);
-            s1_8 = itemView.findViewById(R.id.s1_8);
-            kind_lookup_btn = itemView.findViewById(R.id.kind_lookup_btn);
-            kind_manage_btn = itemView.findViewById(R.id.kind_manage_btn);
-            sp = itemView.getContext().getSharedPreferences("0_KIND", 0);
+            Area_1 = itemView.findViewById(R.id.of_area_1);
+            Area_2 = itemView.findViewById(R.id.of_area_2);
+            Area_3 = itemView.findViewById(R.id.of_area_3);
+            Area_4 = itemView.findViewById(R.id.of_area_4);
+            Area_5 = itemView.findViewById(R.id.of_area_5);
+            Area_6 = itemView.findViewById(R.id.of_area_6);
+            Area_7 = itemView.findViewById(R.id.of_area_7);
+            Area_8 = itemView.findViewById(R.id.of_area_8);
+            s1_1 = itemView.findViewById(R.id.of1_1);
+            s1_2 = itemView.findViewById(R.id.of1_2);
+            s1_3 = itemView.findViewById(R.id.of1_3);
+            s1_4 = itemView.findViewById(R.id.of1_4);
+            s1_5 = itemView.findViewById(R.id.of1_5);
+            s1_6 = itemView.findViewById(R.id.of1_6);
+            s1_7 = itemView.findViewById(R.id.of1_7);
+            s1_8 = itemView.findViewById(R.id.of1_8);
+            onoff_manage_btn = itemView.findViewById(R.id.on_off_manage_btn);
+            onoff_lookup_btn = itemView.findViewById(R.id.on_off_lookup_btn);
+            sp = itemView.getContext().getSharedPreferences("0_USE", 0);
             editor = sp.edit();
 
-            kind_manage_btn.setOnClickListener(new View.OnClickListener() {
-                View dialog = inflater.inflate(R.layout.dialog_kind_manage, null);
-                Spinner equipNumber = dialog.findViewById(R.id.kind_equip_number);
+            onoff_manage_btn.setOnClickListener(new View.OnClickListener() {
+                View dialog = inflater.inflate(R.layout.dialog_onoff_manage, null);
+                Spinner equipNumber = dialog.findViewById(R.id.on_off_equip_number);
                 String[] equipItem = {"1번 장비"};
-                Spinner sensorNumber = dialog.findViewById(R.id.kind_sensor_number);
+                Spinner sensorNumber = dialog.findViewById(R.id.on_off_sensor_number);
                 String[] sensorItem = {"1구역","2구역","3구역","4구역","5구역","6구역","7구역","8구역"};
-                Spinner sensorKind = dialog.findViewById(R.id.sensor_kind);
-                String[] kindItem = {"기타","온도","습도","음수"};
+                Spinner sensorOnOff = dialog.findViewById(R.id.sensor_on_off);
+                String[] onOffItem = {"사용","미사용"};
 
-                String sKind = null;
+                String isOnOff = null;
                 int col;
                 TableRow selectedRow;
 
@@ -121,9 +121,9 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sensorNumber.setAdapter(sensorNumberAdapter);
 
-                    ArrayAdapter<String> sensorKindAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, kindItem);
-                    sensorKindAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    sensorKind.setAdapter(sensorKindAdapter);
+                    ArrayAdapter<String> sensorOnOffAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, onOffItem);
+                    sensorOnOffAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    sensorOnOff.setAdapter(sensorOnOffAdapter);
 
                     equipNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
@@ -156,28 +156,28 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             switch (position){
                                 case 0:
-                                    selectedRow=itemView.findViewById(R.id.area_1);
+                                    selectedRow=itemView.findViewById(R.id.of_area_1);
                                     break;
                                 case 1:
-                                    selectedRow=itemView.findViewById(R.id.area_2);
+                                    selectedRow=itemView.findViewById(R.id.of_area_2);
                                     break;
                                 case 2:
-                                    selectedRow=itemView.findViewById(R.id.area_3);
+                                    selectedRow=itemView.findViewById(R.id.of_area_3);
                                     break;
                                 case 3:
-                                    selectedRow=itemView.findViewById(R.id.area_4);
+                                    selectedRow=itemView.findViewById(R.id.of_area_4);
                                     break;
                                 case 4:
-                                    selectedRow=itemView.findViewById(R.id.area_5);
+                                    selectedRow=itemView.findViewById(R.id.of_area_5);
                                     break;
                                 case 5:
-                                    selectedRow=itemView.findViewById(R.id.area_6);
+                                    selectedRow=itemView.findViewById(R.id.of_area_6);
                                     break;
                                 case 6:
-                                    selectedRow=itemView.findViewById(R.id.area_7);
+                                    selectedRow=itemView.findViewById(R.id.of_area_7);
                                     break;
                                 case 7:
-                                    selectedRow=itemView.findViewById(R.id.area_8);
+                                    selectedRow=itemView.findViewById(R.id.of_area_8);
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), sensorItem[position], Toast.LENGTH_SHORT).show();
@@ -189,24 +189,18 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         }
                     });
 
-                    sensorKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    sensorOnOff.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             switch (position){
                                 case 0:
-                                    sKind="기타";
+                                    isOnOff="ON";
                                     break;
                                 case 1:
-                                    sKind="온도";
-                                    break;
-                                case 2:
-                                    sKind="습도";
-                                    break;
-                                case 3:
-                                    sKind="음수";
+                                    isOnOff="OFF";
                                     break;
                             }
-                            Toast.makeText(itemView.getContext(), kindItem[position], Toast.LENGTH_SHORT).show();
+                            Toast.makeText(itemView.getContext(), onOffItem[position], Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -218,17 +212,17 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 @Override
                 public void onClick(View v) {
                     setAdapter();
-                    sKindDialog.setTitle("센서종류 변경");
-                    sKindDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    onOffDialog.setTitle("센서종류 변경");
+                    onOffDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             TextView textView = (TextView) selectedRow.getChildAt(col);
-                            textView.setText(sKind);
+                            textView.setText(isOnOff);
                             Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     });
-                    sKindDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    onOffDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(itemView.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
@@ -238,11 +232,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     if(dialog.getParent()!=null){ // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
-                    sKindDialog.setView(dialog);
-                    sKindDialog.show();
+                    onOffDialog.setView(dialog);
+                    onOffDialog.show();
                 }
             });
-            kind_lookup_btn.setOnClickListener(new View.OnClickListener() {
+            onoff_lookup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     RecyclerItem item = new RecyclerItem();

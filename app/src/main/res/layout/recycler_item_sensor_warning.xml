@@ -162,7 +162,7 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/area_1">
+        <TableRow android:id="@+id/lm_area_1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -175,6 +175,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_1T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -185,6 +186,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_1T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -255,7 +257,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_2">
+        <TableRow android:id="@+id/lm_area_2">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -268,6 +270,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_2T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -278,6 +281,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_2T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -348,7 +352,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_3">
+        <TableRow android:id="@+id/lm_area_3">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -361,6 +365,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_3T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -371,6 +376,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_3T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -441,7 +447,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_4">
+        <TableRow android:id="@+id/lm_area_4">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -454,6 +460,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_4T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -464,6 +471,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_4T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -534,7 +542,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_5">
+        <TableRow android:id="@+id/lm_area_5">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -547,6 +555,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_5T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -557,6 +566,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_5T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -627,7 +637,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_6">
+        <TableRow android:id="@+id/lm_area_6">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -640,6 +650,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_6T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -650,6 +661,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_6T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -721,7 +733,7 @@
         </TableRow>
 
 
-        <TableRow android:id="@+id/area_7">
+        <TableRow android:id="@+id/lm_area_7">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -734,6 +746,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_7T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -744,6 +757,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_7T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -814,7 +828,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_8">
+        <TableRow android:id="@+id/lm_area_8">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -827,6 +841,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_8T_H"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -837,6 +852,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/S1_8T_L"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"

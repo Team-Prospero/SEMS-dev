@@ -26,7 +26,7 @@ public class EmergencyCallActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_call);
 
-        sharedPref = this.getSharedPreferences("1_NUM", 0);
+        sharedPref = this.getSharedPreferences("0_NUM", 0);
         editor = sharedPref.edit();
         /// 코드 계속 ...
         mRecyclerView = findViewById(R.id.recycler1);

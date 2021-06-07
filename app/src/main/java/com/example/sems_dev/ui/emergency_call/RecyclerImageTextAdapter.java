@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
-
+    public String msgbody = null;
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -66,7 +66,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
         TextView pNum_1, pNum_2, pNum_3, pNum_4, pNum_5;
-        Button phonenumber_edit;
+        Button phonenumber_edit, phonenumber_lookup;
         SharedPreferences sp;
         SharedPreferences.Editor editor;
         AlertDialog.Builder emCallDialog = new AlertDialog.Builder(itemView.getContext());
@@ -81,7 +81,8 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pNum_4 = itemView.findViewById(R.id.pNum_4);
             pNum_5 = itemView.findViewById(R.id.pNum_5);
             phonenumber_edit = itemView.findViewById(R.id.phonenumber_edit);
-            sp = itemView.getContext().getSharedPreferences("1_NUM", 0);
+            phonenumber_lookup = itemView.findViewById(R.id.phonenumber_lookup);
+            sp = itemView.getContext().getSharedPreferences("0_NUM", 0);
             editor = sp.edit();
             phonenumber_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_emergency_call, null);
@@ -89,6 +90,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 EditText emCall_edit = dialog.findViewById(R.id.em_call_edit);
                 String[] emCall_item = {"1번 연락처", "2번 연락처", "3번 연락처", "4번 연락처", "5번 연락처"};
                 String phoneNumber, saveResult, pos;
+
                 @Override
                 public void onClick(View v) {
                     setAdapter();
@@ -97,31 +99,36 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             phoneNumber = emCall_edit.getText().toString();
-                            Log.d("[phone]",phoneNumber);
+                            Log.d("[phone]", phoneNumber);
                             saveResult = phoneNumber;
                             editor.putString(pos, saveResult);
-                            editor.commit();
+                            editor.apply();
                             String temp;
-                            switch (pos){
+                            switch (pos) {
                                 case "1":
                                     temp = sp.getString(pos, "-");
-                                    pNum_1.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    pNum_1.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
+                                    msgbody = "SET 1:"+temp;
                                     break;
                                 case "2":
                                     temp = sp.getString(pos, "-");
-                                    pNum_2.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    pNum_2.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
+                                    msgbody = "SET 2:"+temp;
                                     break;
                                 case "3":
                                     temp = sp.getString(pos, "-");
-                                    pNum_3.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    pNum_3.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
+                                    msgbody = "SET 3:"+temp;
                                     break;
                                 case "4":
                                     temp = sp.getString(pos, "-");
-                                    pNum_4.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    pNum_4.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
+                                    msgbody = "SET 4:"+temp;
                                     break;
                                 case "5":
                                     temp = sp.getString(pos, "-");
-                                    pNum_5.setText(temp.substring(0,3)+"-"+temp.substring(4,8)+"-"+temp.substring(7));
+                                    pNum_5.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
+                                    msgbody = "SET 5:"+temp;
                                     break;
                             }
                             emCall_edit.setText("");
@@ -137,7 +144,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             dialog.cancel();
                         }
                     });
-                    if(dialog.getParent()!=null){ // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
+                    if (dialog.getParent() != null) { // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
                     emCallDialog.setView(dialog);
@@ -153,21 +160,21 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    pos="1";
+                                    pos = "1";
                                     break;
                                 case 1:
-                                    pos="2";
+                                    pos = "2";
                                     break;
                                 case 2:
-                                    pos="3";
+                                    pos = "3";
                                     break;
                                 case 3:
-                                    pos="4";
+                                    pos = "4";
                                     break;
                                 case 4:
-                                    pos="5";
+                                    pos = "5";
                                     break;
                             }
                         }
@@ -179,6 +186,29 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     });
                 }
             });
+            phonenumber_lookup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    for (int i = 1; i < 6; i++) {
+                        String element = sp.getString(Integer.toString(i), "-");
+                        if (element.length() == 1) {
+                            arrayList.add(element);
+                        } else {
+                            arrayList.add(element.substring(0, 3) + "-" + element.substring(4, 8) + "-" + element.substring(7));
+                        }
+                    }
+                    pNum_1.setText(arrayList.get(0));
+                    pNum_2.setText(arrayList.get(1));
+                    pNum_3.setText(arrayList.get(2));
+                    pNum_4.setText(arrayList.get(3));
+                    pNum_5.setText(arrayList.get(4));
+                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+    }
+    public String getEmCallMessageBody(){
+        return msgbody;
     }
 }

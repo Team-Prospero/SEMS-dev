@@ -126,7 +126,7 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/area_1">
+        <TableRow android:id="@+id/of_area_1">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,6 +139,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/of1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -184,7 +185,7 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/area_2">
+        <TableRow android:id="@+id/of_area_2">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -197,6 +198,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/of1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -241,7 +243,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_3">
+        <TableRow android:id="@+id/of_area_3">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -254,6 +256,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/of1_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -299,7 +302,7 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/area_4">
+        <TableRow android:id="@+id/of_area_4">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -312,6 +315,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/of1_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -358,7 +362,7 @@
 
         </TableRow>
 
-        <TableRow android:id="@+id/area_5">
+        <TableRow android:id="@+id/of_area_5">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -373,6 +377,7 @@
 
 
             <TextView
+                android:id="@+id/of1_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -417,7 +422,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_6">
+        <TableRow android:id="@+id/of_area_6">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -432,6 +437,7 @@
 
 
             <TextView
+                android:id="@+id/of1_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -477,7 +483,7 @@
         </TableRow>
 
 
-        <TableRow android:id="@+id/area_7">
+        <TableRow android:id="@+id/of_area_7">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -490,6 +496,7 @@
                 android:textColor="@color/black" />
 
             <TextView
+                android:id="@+id/of1_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -534,7 +541,7 @@
                 android:textColor="@color/black" />
         </TableRow>
 
-        <TableRow android:id="@+id/area_8">
+        <TableRow android:id="@+id/of_area_8">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -549,6 +556,7 @@
 
 
             <TextView
+                android:id="@+id/of1_8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"

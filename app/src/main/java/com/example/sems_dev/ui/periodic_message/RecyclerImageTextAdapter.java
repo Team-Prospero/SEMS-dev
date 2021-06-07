@@ -25,7 +25,7 @@ import java.util.Collections;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
-
+    public String msgbody = null;
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -64,7 +64,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
         TextView pd_msg_1, pd_msg_2;
-        Button pd_msg_edit;
+        Button pd_msg_edit, pd_msg_lookup;
         SharedPreferences sp;
         SharedPreferences.Editor editor;
         AlertDialog.Builder pdMsgDialog = new AlertDialog.Builder(itemView.getContext());
@@ -76,7 +76,8 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pd_msg_1 = itemView.findViewById(R.id.pd_msg_1);
             pd_msg_2 = itemView.findViewById(R.id.pd_msg_2);
             pd_msg_edit = itemView.findViewById(R.id.pd_msg_edit);
-            sp = itemView.getContext().getSharedPreferences("1_TIME", 0);
+            pd_msg_lookup = itemView.findViewById(R.id.pd_msg_lookup);
+            sp = itemView.getContext().getSharedPreferences("0_TIME", 0);
             editor = sp.edit();
 
             pd_msg_edit.setOnClickListener(new View.OnClickListener() {
@@ -97,11 +98,19 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
                             switch (pos) {
                                 case "1_HourN1_Min":
-                                    pd_msg_1.setText(sp.getString("1_Hour", "-") + " : " + sp.getString("1_Minute", "-"));
+                                    editor.putString("1_Hour", saveResult.substring(0,2));
+                                    editor.putString("1_Min", saveResult.substring(2));
+                                    editor.apply();
+                                    pd_msg_1.setText(sp.getString("1_Hour", "-") + " : " + sp.getString("1_Min", "-"));
+                                    msgbody = "SET TIME1:"+saveResult;
                                     break;
 
                                 case "2_HourN2_Min":
-                                    pd_msg_2.setText(sp.getString("2_Hour", "-") + " : " + sp.getString("2_Minute", "-"));
+                                    editor.putString("2_Hour", saveResult.substring(0,2));
+                                    editor.putString("2_Min", saveResult.substring(2));
+                                    editor.apply();
+                                    pd_msg_2.setText(sp.getString("2_Hour", "-") + " : " + sp.getString("2_Min", "-"));
+                                    msgbody = "SET TIME2:"+saveResult;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
@@ -163,6 +172,13 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         m = "0" + Integer.toString(minute);
                     }
                     return h + m;
+                }
+            });
+
+            pd_msg_lookup.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
                 }
             });
         }
