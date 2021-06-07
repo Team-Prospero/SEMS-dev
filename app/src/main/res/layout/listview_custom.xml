@@ -8,14 +8,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btnListViewDelete"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:visibility="gone"
-            android:layout_marginLeft="10dp"
-            android:text="삭제"/>
         <TextView
             android:id="@+id/tvListViewName"
             android:layout_width="0dp"
@@ -29,6 +21,8 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:layout_weight="3"/>
+
+<!--
         <Button
             android:id="@+id/btnListViewOnOff"
             android:layout_width="0dp"
@@ -36,5 +30,15 @@
             android:layout_weight="1"
             android:layout_marginRight="10dp"
             android:text="Off"/>
+-->
+
+        <Button
+            android:id="@+id/btnListViewDelete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:layout_marginRight="10dp"
+            android:text="삭제"/>
     </LinearLayout>
 </LinearLayout>

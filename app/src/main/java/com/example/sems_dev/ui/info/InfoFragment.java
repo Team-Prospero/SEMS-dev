@@ -23,7 +23,7 @@ import com.example.sems_dev.ui.sensor_warning.SensorWarningActivity;
 import com.example.sems_dev.ui.sensor_water_warning.SensorWaterWarningActivity;
 
 public class InfoFragment extends Fragment {
-    static final String[] INFO_LIST = {"비상연락처 조회", "정규 문자 시간 조회", "센서 경고범위 조회", "센서종류 조회", "센서 사용유무조회", "음수량 경고범위 조회"};
+    static final String[] INFO_LIST = {"비상연락처", "정규 문자 시간", "센서 경고범위", "센서 종류", "센서 사용유무", "음수량 경고범위"};
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

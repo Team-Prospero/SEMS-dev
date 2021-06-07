@@ -1,8 +1,13 @@
 package com.example.sems_dev.ui.get_value;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Telephony;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,48 +30,51 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
+import com.example.sems_dev.MainActivity;
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GetValueFragment extends Fragment {
+public class GetValueFragment extends Fragment{
     private static final String TAG = "GetValueFragment";
     public Button[] equipment = new Button[4];
     ViewPager pager;
     private Spinner spinner;
-    public SimpleDateFormat simpleDateFormat, simpleHoursFormat;
+    public SimpleDateFormat simpleDateFormat,simpleHoursFormat;
     LinearLayout Sams_data_table;
     TextView LastViewTime;
     Button currentVal;
-    private View v;
+    private View v ;
     long mNow;
     Date mDate;
-    String format_time, text;
+    String format_time,text;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private String number = "01220788729";
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        if (v != null) {
+        if(v != null){
             return v;
         }
         v = inflater.inflate(R.layout.fragment_get_val, container, false);
         pager = (ViewPager) v.findViewById(R.id.pager1);
-        Sams_data_table = (LinearLayout) v.findViewById(R.id.Sams_data_table);
+        Sams_data_table = (LinearLayout)v.findViewById(R.id.Sams_data_table);
         equipment[0] = v.findViewById(R.id.equipment1);
         equipment[1] = v.findViewById(R.id.equipment2);
         equipment[2] = v.findViewById(R.id.equipment3);
         equipment[3] = v.findViewById(R.id.equipment4);
-        spinner = (Spinner) v.findViewById(R.id.farmName);
-        currentVal = (Button) v.findViewById(R.id.currentVal);
-        LastViewTime = (TextView) v.findViewById(R.id.LastViewTime);
+        spinner = (Spinner)v.findViewById(R.id.farmName);
+        currentVal =(Button)v.findViewById(R.id.currentVal);
+        LastViewTime = (TextView)v.findViewById(R.id.LastViewTime);
         pager.setAdapter(new pagerAdapter(getFragmentManager()));
         pager.setCurrentItem(0);
 
-        SharedPreferences sf = this.getActivity().getSharedPreferences("nFile", 0);
-        text = sf.getString("nFile", "");
-        LastViewTime.setText("최근 조회 시간 : " + text);
-        final String[] country = {"-농장 선택-", "농장1", "농장2", "농장3", "농장4"};
+        SharedPreferences sf = this.getActivity().getSharedPreferences("nFile",0);
+        text = sf.getString("nFile","");
+        LastViewTime.setText("최근 조회 시간 : "+text);
+        final String[] country = {"-농장 선택-","농장1", "농장2","농장3","농장4"};
         //현재값 조회
         currentVal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,10 +83,15 @@ public class GetValueFragment extends Fragment {
                 mDate = new Date(mNow);
                 format_time = mFormat.format(mDate);
                 SharedPreferences.Editor editor = sf.edit();
-                editor.putString("nFile", format_time);
+                editor.putString("nFile",format_time);
                 editor.commit();
-                text = sf.getString("nFile", "");
-                LastViewTime.setText("최근 조회 시간 : " + text);
+                text = sf.getString("nFile","");
+                LastViewTime.setText("최근 조회 시간 : "+text);
+
+                Intent intent = new Intent(getActivity(),SendSMS.class);
+                intent.putExtra("number",number);
+                intent.putExtra("data","INFO");
+                startActivity(intent);
             }
         });
         //농장 선택 Adapter
@@ -91,18 +104,20 @@ public class GetValueFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
                 if (spinner.getSelectedItemPosition() == 0) {
                     Sams_data_table.setBackgroundColor(Color.parseColor("#ff00ddff"));
-                } else if (spinner.getSelectedItemPosition() == 1) {
+                } else if (spinner.getSelectedItemPosition() == 1){
                     Sams_data_table.setBackgroundColor(Color.parseColor("#7cfc00"));
-                    //  Toast.makeText(getContext(), "Selected Country: " + country[position], Toast.LENGTH_SHORT).show();
-                } else if (spinner.getSelectedItemPosition() == 2) {
+                  //  Toast.makeText(getContext(), "Selected Country: " + country[position], Toast.LENGTH_SHORT).show();
+                }
+                else if (spinner.getSelectedItemPosition() == 2){
                     Sams_data_table.setBackgroundColor(Color.parseColor("#7FFFD4"));
-                } else if (spinner.getSelectedItemPosition() == 3) {
+                }
+                else if (spinner.getSelectedItemPosition() == 3){
                     Sams_data_table.setBackgroundColor(Color.parseColor("#B0C4DE"));
-                } else if (spinner.getSelectedItemPosition() == 4) {
+                }
+                else if (spinner.getSelectedItemPosition() == 4){
                     Sams_data_table.setBackgroundColor(Color.parseColor("#8A2BE2"));
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
@@ -112,13 +127,14 @@ public class GetValueFragment extends Fragment {
         pager.setOnPageChangeListener(onPageChangeListener); //디프리케이트됨
 
         //뷰페이저
-        View.OnClickListener movePageListener = new View.OnClickListener() {
+        View.OnClickListener movePageListener = new View.OnClickListener()
+        {
             @Override
             public void onClick(View view) {
-                int tag = (int) view.getTag();
+                int tag = (int)view.getTag();
                 setButtonsPink();
                 view.setBackgroundColor(Color.parseColor("#fccaca"));
-                pager.setCurrentItem(tag, true);
+                pager.setCurrentItem(tag,true);
             }
         };
         for (int i = 0; i < equipment.length; i++) {
@@ -129,12 +145,11 @@ public class GetValueFragment extends Fragment {
 
         return v;
     }
-
-    /* private String getTime(){
-         mNow = System.currentTimeMillis();
-         mDate = new Date(mNow);
-         return mFormat.format(mDate);
-     }*/
+   /* private String getTime(){
+        mNow = System.currentTimeMillis();
+        mDate = new Date(mNow);
+        return mFormat.format(mDate);
+    }*/
     //onPageChangeListener
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -154,11 +169,10 @@ public class GetValueFragment extends Fragment {
 
         }
     };
-
     //setButtonColor
-    private void setButtonColor(int position) {
-        for (Button btn : equipment) {
-            if (Integer.parseInt(btn.getTag().toString()) != position) {
+    private void setButtonColor(int position){
+        for(Button btn : equipment){
+            if(Integer.parseInt(btn.getTag().toString()) != position){
                 btn.setBackgroundColor(Color.parseColor("#B3E5FC"));
                 btn.setSelected(false);
             } else {
@@ -167,9 +181,10 @@ public class GetValueFragment extends Fragment {
             }
         }
     }
-
-    private class pagerAdapter extends FragmentStatePagerAdapter {
-        public pagerAdapter(FragmentManager fm) {
+    private class pagerAdapter extends FragmentStatePagerAdapter
+    {
+        public pagerAdapter(FragmentManager fm)
+        {
             super(fm);
         }
 
@@ -177,7 +192,7 @@ public class GetValueFragment extends Fragment {
         public Fragment getItem(int position) {
             equipment[position].setSelected(true);
             equipment[position].setBackgroundColor(Color.parseColor("#B3E5FC"));
-            return new CustomAdapter("sFile" + position);
+            return new CustomAdapter("sFile"+position);
         }
 
         @Override
@@ -186,7 +201,6 @@ public class GetValueFragment extends Fragment {
             return 4;
         }
     }
-
     private void setButtonsPink() {
         for (int i = 0; i < equipment.length; i++) {
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
