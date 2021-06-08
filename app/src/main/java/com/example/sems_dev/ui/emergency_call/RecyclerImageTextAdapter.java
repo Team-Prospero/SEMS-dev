@@ -97,35 +97,35 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     switch (key) {
                         case "1":
                             temp = sharedPreferences.getString("1", "-");
-                            if (temp.equals("NULL"))
+                            if (temp.equals("-"))
                                 pNum_1.setText("-");
                             else
                                 pNum_1.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
                             break;
                         case "2":
                             temp = sharedPreferences.getString("2", "-");
-                            if (temp.equals("NULL"))
+                            if (temp.equals("-"))
                                 pNum_2.setText("-");
                             else
                                 pNum_2.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
                             break;
                         case "3":
                             temp = sharedPreferences.getString("3", "-");
-                            if (temp.equals("NULL"))
+                            if (temp.equals("-"))
                                 pNum_3.setText("-");
                             else
                                 pNum_3.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
                             break;
                         case "4":
                             temp = sharedPreferences.getString("4", "-");
-                            if (temp.equals("NULL"))
+                            if (temp.equals("-"))
                                 pNum_4.setText("-");
                             else
                                 pNum_4.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
                             break;
                         case "5":
                             temp = sharedPreferences.getString("5", "-");
-                            if (temp.equals("NULL"))
+                            if (temp.equals("-"))
                                 pNum_5.setText("-");
                             else
                                 pNum_5.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
@@ -133,15 +133,13 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     }
                 }
             };
-
-
+            
             phonenumber_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_emergency_call, null);
                 Spinner emCall_spinner = dialog.findViewById(R.id.em_call_spinner);
                 EditText emCall_edit = dialog.findViewById(R.id.em_call_edit);
                 String[] emCall_item = {"1번 연락처", "2번 연락처", "3번 연락처", "4번 연락처", "5번 연락처"};
                 String phoneNumber, saveResult, pos, phone = msg_sp.getString("number", "01220788729");
-                ;
 
                 @Override
                 public void onClick(View v) {
