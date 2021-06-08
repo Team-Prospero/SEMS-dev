@@ -57,7 +57,6 @@ public class EmergencyCallActivity extends AppCompatActivity {
             item.setpNum_3(sharedPref.getString("3", "-"));
             item.setpNum_4(sharedPref.getString("4", "-"));
             item.setpNum_5(sharedPref.getString("5", "-"));
-            mList.add(item);
         } else {
             String temp = sharedPref.getString("1", "-");
             if (temp.equals("-"))
