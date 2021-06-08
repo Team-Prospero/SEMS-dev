@@ -2,6 +2,7 @@ package com.example.sems_dev;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.view.MotionEvent;
@@ -10,13 +11,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.sems_dev.ui.get_value.GetValueFragment;
+import com.example.sems_dev.ui.setting.SettingFragment;
 
+public class SendSMS extends Activity {
 
-public class SendSMS extends Activity{
-
-    private String number;
-    private String data;
+    String number,name;
+    String data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,13 @@ public class SendSMS extends Activity{
         Button btnSend = (Button)findViewById(R.id.btnSend);
 
         Intent intent = getIntent();
-
         number = intent.getStringExtra("number");
-        data = intent.getStringExtra("data");
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SmsManager sms = SmsManager.getDefault();
-                sms.sendTextMessage(number, null, data, null, null);
+                //sms.sendTextMessage(number, null, data, null, null);
+                sms.sendTextMessage(number, null, "INFO", null, null);
                 Toast.makeText(getApplicationContext(),"메세지를 전송 하였습니다.", Toast.LENGTH_LONG).show();
                 finish();
             }
@@ -64,6 +62,5 @@ public class SendSMS extends Activity{
         //안드로이드 백버튼 막기
         return;
     }
-
 
 }

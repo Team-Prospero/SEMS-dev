@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.sems_dev.ui.get_value.GetValueFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -21,6 +22,7 @@ import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) { // 권한 여부를 다 묻고 실행되는 메소드
                             // check if all permissions are granted
                             if (multiplePermissionsReport.areAllPermissionsGranted()) {
-                                Toast.makeText(MainActivity.this, "권한 허용", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "모든 권한 허용", Toast.LENGTH_SHORT).show();
                             }
 
                         }// onPermissionsChecked()..
@@ -74,11 +76,20 @@ public class MainActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        // mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_get_val, R.id.nav_setting, R.id.nav_info, R.id.nav_msg_log).setOpenableLayout(drawer).build();
-        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_get_val, R.id.nav_setting, R.id.nav_info).setOpenableLayout(drawer).build();
+        mAppBarConfiguration = new AppBarConfiguration.Builder(R.id.nav_get_val, R.id.nav_setting, R.id.nav_info, R.id.nav_msg_log).setOpenableLayout(drawer).build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        Fragment hostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        Fragment currentFragment = hostFragment.getChildFragmentManager().getFragments().get(0);
+
+        ((GetValueFragment)currentFragment).updateUI();
     }
 
 /*    @Override

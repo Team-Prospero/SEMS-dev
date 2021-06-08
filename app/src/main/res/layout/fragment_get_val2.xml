@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
     <TableLayout
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
@@ -36,7 +37,11 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="1구역" />
+                        android:text="1구역"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        />
 
                     <EditText
                         android:id="@+id/Editsensor1_Name"
@@ -45,6 +50,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="1구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
                 </TableRow>
 
@@ -83,13 +90,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="28" />
+                        android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="29"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                        android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor3_Label_Table"
@@ -101,7 +113,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="3구역" />
+                        android:text="3구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor3_Name"
                         android:layout_width="0dip"
@@ -109,6 +123,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="3구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -147,13 +163,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="29" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="27"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor5_Label_Table"
@@ -165,7 +185,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="5구역" />
+                        android:text="5구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor5_Name"
                         android:layout_width="0dip"
@@ -173,6 +195,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="5구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -211,13 +235,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="28" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="29"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor7_Label_Table"
@@ -229,7 +257,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="7구역" />
+                        android:text="7구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor7_Name"
                         android:layout_width="0dip"
@@ -237,6 +267,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="7구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -275,13 +307,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="27" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="27"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"/>
                 </TableRow>
             </TableLayout>
 
@@ -300,7 +336,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="2구역" />
+                        android:text="2구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor2_Name"
                         android:layout_width="0dip"
@@ -308,6 +346,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="2구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -346,13 +386,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="29" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="25"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:textSize="18sp"
+                        android:textColor="@color/black"
+                        android:text="온도"
+                        />
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor4_Label_Table"
@@ -364,7 +409,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="4구역" />
+                        android:text="4구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor4_Name"
                         android:layout_width="0dip"
@@ -372,6 +419,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="4구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -410,13 +459,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="30" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="26"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="온도" />
+                        android:text="온도"
+                       android:textSize="18sp"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor6_Label_Table"
@@ -428,7 +481,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="6구역" />
+                        android:text="6구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor6_Name"
                         android:layout_width="0dip"
@@ -436,6 +491,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="6구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -476,13 +533,17 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="29" />
+                        android:hint="25"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor8_Label_Table"
@@ -494,7 +555,9 @@
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:text="8구역" />
+                        android:text="8구역"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor8_Name"
                         android:layout_width="0dip"
@@ -502,6 +565,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:hint="8구역"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
                         />
 
                 </TableRow>
@@ -540,13 +605,18 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="NULL" />
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:hint="NULL"/>
                     <TextView
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도" />
+                        android:hint="온도"
+                       android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"/>
                 </TableRow>
             </TableLayout>
 

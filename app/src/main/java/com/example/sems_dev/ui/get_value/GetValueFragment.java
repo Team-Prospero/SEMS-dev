@@ -1,13 +1,11 @@
 package com.example.sems_dev.ui.get_value;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.Telephony;
-import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,17 +28,25 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 
-import com.example.sems_dev.MainActivity;
 import com.example.sems_dev.R;
 import com.example.sems_dev.SendSMS;
 
+import org.json.JSONObject;
+
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 public class GetValueFragment extends Fragment{
     private static final String TAG = "GetValueFragment";
     public Button[] equipment = new Button[4];
     ViewPager pager;
+    private int farmNo;
+    public static Context mContext;
     private Spinner spinner;
     public SimpleDateFormat simpleDateFormat,simpleHoursFormat;
     LinearLayout Sams_data_table;
@@ -51,13 +57,12 @@ public class GetValueFragment extends Fragment{
     Date mDate;
     String format_time,text;
     SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-    private String number = "01220788729";
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         if(v != null){
             return v;
         }
+
         v = inflater.inflate(R.layout.fragment_get_val, container, false);
         pager = (ViewPager) v.findViewById(R.id.pager1);
         Sams_data_table = (LinearLayout)v.findViewById(R.id.Sams_data_table);
@@ -68,13 +73,41 @@ public class GetValueFragment extends Fragment{
         spinner = (Spinner)v.findViewById(R.id.farmName);
         currentVal =(Button)v.findViewById(R.id.currentVal);
         LastViewTime = (TextView)v.findViewById(R.id.LastViewTime);
-        pager.setAdapter(new pagerAdapter(getFragmentManager()));
+        pagerAdapter pagerAdapter = new pagerAdapter(getFragmentManager());
+        pagerAdapter.setSpinnerPosition(spinner.getSelectedItemPosition());
+        pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(0);
-
         SharedPreferences sf = this.getActivity().getSharedPreferences("nFile",0);
         text = sf.getString("nFile","");
         LastViewTime.setText("최근 조회 시간 : "+text);
-        final String[] country = {"-농장 선택-","농장1", "농장2","농장3","농장4"};
+
+
+        //spinner에 제공해주는 arrayadapter 사용하지 않고 custom adapter를 사용해야 하는데, 사실 저도 할게 좀 많아서 .. 편법 쓸께요
+        //나중에 custom adapter필요하면 수정해서 사용해요
+        int num = 0;
+        SharedPreferences sf1 = null;
+        List<HashMap<String, String>> spinnerArray = new ArrayList<>();
+        List<String> titleList = new ArrayList<String>();
+        while(true){
+            sf1 = null;
+            String name = num + "_Farm";
+            sf1 = this.getActivity().getSharedPreferences(name, 0);
+
+            if(sf1.getAll().size() > 0) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("sf", name);
+                map.put("number", sf1.getString("number", ""));
+                spinnerArray.add(map);
+                titleList.add(sf1.getString("name", ""));
+                num ++;
+            } else {
+                break;
+            }
+        }
+
+
+
+        // final String[] country = {"-농장 선택-","test", "농장2","농장3","농장4"};
         //현재값 조회
         currentVal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,40 +121,31 @@ public class GetValueFragment extends Fragment{
                 text = sf.getString("nFile","");
                 LastViewTime.setText("최근 조회 시간 : "+text);
 
-                Intent intent = new Intent(getActivity(),SendSMS.class);
-                intent.putExtra("number",number);
-                intent.putExtra("data","INFO");
+                Intent intent = new Intent(getActivity(), SendSMS.class);
+                intent.putExtra("number", getActivity().getSharedPreferences(spinnerArray.get(spinner.getSelectedItemPosition()).get("sf"), 0).getString("number", ""));
                 startActivity(intent);
             }
         });
         //농장 선택 Adapter
-        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, country);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, titleList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setGravity(Gravity.CENTER);
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                if (spinner.getSelectedItemPosition() == 0) {
-                    Sams_data_table.setBackgroundColor(Color.parseColor("#ff00ddff"));
-                } else if (spinner.getSelectedItemPosition() == 1){
-                    Sams_data_table.setBackgroundColor(Color.parseColor("#7cfc00"));
-                  //  Toast.makeText(getContext(), "Selected Country: " + country[position], Toast.LENGTH_SHORT).show();
-                }
-                else if (spinner.getSelectedItemPosition() == 2){
-                    Sams_data_table.setBackgroundColor(Color.parseColor("#7FFFD4"));
-                }
-                else if (spinner.getSelectedItemPosition() == 3){
-                    Sams_data_table.setBackgroundColor(Color.parseColor("#B0C4DE"));
-                }
-                else if (spinner.getSelectedItemPosition() == 4){
-                    Sams_data_table.setBackgroundColor(Color.parseColor("#8A2BE2"));
-                }
+                pager = (ViewPager) v.findViewById(R.id.pager1);
+                pagerAdapter pagerAdapter = new pagerAdapter(getFragmentManager());
+                pagerAdapter.setSpinnerPosition(spinner.getSelectedItemPosition());
+                pager.setAdapter(pagerAdapter);
+                pager.setCurrentItem(0);
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
-
         });
 
         pager.setOnPageChangeListener(onPageChangeListener); //디프리케이트됨
@@ -145,11 +169,11 @@ public class GetValueFragment extends Fragment{
 
         return v;
     }
-   /* private String getTime(){
-        mNow = System.currentTimeMillis();
-        mDate = new Date(mNow);
-        return mFormat.format(mDate);
-    }*/
+    /* private String getTime(){
+         mNow = System.currentTimeMillis();
+         mDate = new Date(mNow);
+         return mFormat.format(mDate);
+     }*/
     //onPageChangeListener
     private ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
@@ -183,6 +207,8 @@ public class GetValueFragment extends Fragment{
     }
     private class pagerAdapter extends FragmentStatePagerAdapter
     {
+        private int spinnerPosition = -1;
+
         public pagerAdapter(FragmentManager fm)
         {
             super(fm);
@@ -192,7 +218,7 @@ public class GetValueFragment extends Fragment{
         public Fragment getItem(int position) {
             equipment[position].setSelected(true);
             equipment[position].setBackgroundColor(Color.parseColor("#B3E5FC"));
-            return new CustomAdapter("sFile"+position);
+            return new CustomAdapter("sFile"+position,spinnerPosition+"_INFO", position+1);
         }
 
         @Override
@@ -200,7 +226,17 @@ public class GetValueFragment extends Fragment{
             // total page count
             return 4;
         }
+
+        public void setSpinnerPosition(int position){
+            spinnerPosition = position;
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return super.getItemPosition(object);
+        }
     }
+
     private void setButtonsPink() {
         for (int i = 0; i < equipment.length; i++) {
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
@@ -208,5 +244,11 @@ public class GetValueFragment extends Fragment{
         }
     }
 
+    public void updateUI(){
+        Log.e(TAG, "startUpdate");
+
+
+
+    }
 }
 
