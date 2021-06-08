@@ -3,7 +3,13 @@ package com.example.sems_dev.ui.sensor_warning;
 public class RecyclerItem {
     String s1_1_H,s1_1_L, s1_2_H, s1_2_L, s1_3_H, s1_3_L, s1_4_H, s1_4_L,
             s1_5_H, s1_5_L, s1_6_H, s1_6_L, s1_7_H, s1_7_L, s1_8_H, s1_8_L;
-
+    private String farmNumber;
+    public void setFarmNumber(String fNum) {
+        farmNumber=fNum;
+    }
+    public String getFarmNumber() {
+        return this.farmNumber;
+    }
     public void setS1_1_H(String s1_1_H) {
         this.s1_1_H = s1_1_H;
     }

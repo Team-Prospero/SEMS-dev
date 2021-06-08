@@ -2,7 +2,13 @@ package com.example.sems_dev.ui.sensor_on_off;
 
 public class RecyclerItem {
     String s1_1, s1_2, s1_3, s1_4, s1_5, s1_6, s1_7, s1_8;
-
+    private String farmNumber;
+    public void setFarmNumber(String fNum) {
+        farmNumber=fNum;
+    }
+    public String getFarmNumber() {
+        return this.farmNumber;
+    }
     public String getS1_1() {
         return s1_1;
     }

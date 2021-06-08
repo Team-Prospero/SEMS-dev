@@ -41,6 +41,7 @@ public class SensorOnOffActivity extends AppCompatActivity {
 
     public void addItem(String s1_1, String s1_2, String s1_3, String s1_4, String s1_5, String s1_6, String s1_7, String s1_8) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
+        item.setFarmNumber("EXPO 시연");
         item.setS1_1(sharedPref.getString("S1_1","-"));
         item.setS1_2(sharedPref.getString("S1_2","-"));
         item.setS1_3(sharedPref.getString("S1_3","-"));

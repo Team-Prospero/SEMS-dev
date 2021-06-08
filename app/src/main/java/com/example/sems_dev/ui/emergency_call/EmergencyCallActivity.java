@@ -24,7 +24,6 @@ public class EmergencyCallActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emergency_call);
-
         sharedPref = this.getSharedPreferences("0_NUM", 0);
         editor = sharedPref.edit();
         /// 코드 계속 ...
@@ -44,7 +43,7 @@ public class EmergencyCallActivity extends AppCompatActivity {
 
     public void addItem(String fNum, String pNum1, String pNum2, String pNum3, String pNum4, String pNum5) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        item.setFarmNumber("test");
+        item.setFarmNumber("EXPO 시연");
         if (sharedPref.getAll() == null) {
             editor.putString("1", "-");
             editor.putString("2", "-");

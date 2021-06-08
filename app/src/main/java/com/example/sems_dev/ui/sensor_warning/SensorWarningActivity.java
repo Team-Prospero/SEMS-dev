@@ -39,14 +39,15 @@ public class SensorWarningActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         // 아이템 추가.
         RecyclerItem item = new RecyclerItem();
-        addItem(item.getS1_1_H(), item.getS1_1_L(), item.getS1_2_H(), item.getS1_2_L(), item.getS1_3_H(), item.getS1_3_L(), item.getS1_4_H(), item.getS1_4_L(),
+        addItem(item.getFarmNumber(), item.getS1_1_H(), item.getS1_1_L(), item.getS1_2_H(), item.getS1_2_L(), item.getS1_3_H(), item.getS1_3_L(), item.getS1_4_H(), item.getS1_4_L(),
                 item.getS1_5_H(), item.getS1_5_L(), item.getS1_6_H(), item.getS1_6_L(), item.getS1_7_H(), item.getS1_7_L(), item.getS1_8_H(), item.getS1_8_L());
         mAdapter.notifyDataSetChanged();
     }
 
-    public void addItem(String s1_1_H, String s1_1_L, String s1_2_H, String s1_2_L, String s1_3_H, String s1_3_L, String s1_4_H, String s1_4_L,
+    public void addItem(String fname, String s1_1_H, String s1_1_L, String s1_2_H, String s1_2_L, String s1_3_H, String s1_3_L, String s1_4_H, String s1_4_L,
                         String s1_5_H, String s1_5_L, String s1_6_H, String s1_6_L, String s1_7_H, String s1_7_L, String s1_8_H, String s1_8_L) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
+        item.setFarmNumber("EXPO 시연");
         item.setS1_1_H(sharedPref.getString("S1_1_HIGH","-"));
         item.setS1_2_H(sharedPref.getString("S1_2_HIGH","-"));
         item.setS1_3_H(sharedPref.getString("S1_3_HIGH","-"));

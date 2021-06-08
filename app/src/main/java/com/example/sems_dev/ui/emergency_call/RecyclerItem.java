@@ -4,13 +4,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class RecyclerItem {
-    private String farmNumber;
-    private String pNum_1, pNum_2, pNum_3, pNum_4, pNum_5;
 
+    private String pNum_1, pNum_2, pNum_3, pNum_4, pNum_5;
+    private String farmNumber;
     public void setFarmNumber(String fNum) {
         farmNumber=fNum;
     }
-
+    public String getFarmNumber() {
+        return this.farmNumber;
+    }
     public void setpNum_1(String pNum) {
         pNum_1=pNum;
     }
@@ -31,9 +33,7 @@ public class RecyclerItem {
         pNum_5=pNum;
     }
 
-    public String getFarmNumber() {
-        return this.farmNumber;
-    }
+
 
     public String getpNum_1() {
         return this.pNum_1;

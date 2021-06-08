@@ -49,6 +49,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     @Override
     public void onBindViewHolder(RecyclerImageTextAdapter.ViewHolder holder, int position) {
         RecyclerItem item = mData.get(position);
+        holder.farmNumber.setText(item.getFarmNumber() + " 농장");
         holder.s1_1.setText(item.getS1_1());
         holder.s1_2.setText(item.getS1_2());
         holder.s1_3.setText(item.getS1_3());
@@ -79,7 +80,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
-            farmNumber = itemView.findViewById(R.id.farmNumber);
+            farmNumber = itemView.findViewById(R.id.sk_farmNumber);
             Area_1 = itemView.findViewById(R.id.area_1);
             Area_2 = itemView.findViewById(R.id.area_2);
             Area_3 = itemView.findViewById(R.id.area_3);
