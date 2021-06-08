@@ -29,13 +29,14 @@ public class SendSMS extends Activity {
         Button btnSend = (Button)findViewById(R.id.btnSend);
 
         Intent intent = getIntent();
+        data = intent.getStringExtra("data");
         number = intent.getStringExtra("number");
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SmsManager sms = SmsManager.getDefault();
                 //sms.sendTextMessage(number, null, data, null, null);
-                sms.sendTextMessage(number, null, "INFO", null, null);
+                sms.sendTextMessage(number, null, data, null, null);
                 Toast.makeText(getApplicationContext(),"메세지를 전송 하였습니다.", Toast.LENGTH_LONG).show();
                 finish();
             }

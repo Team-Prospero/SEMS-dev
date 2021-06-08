@@ -11,7 +11,7 @@ tools:context=".ui.get_value.GetValueFragment">
     android:id="@+id/Sams_data_table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="#F2EAFF"
     >
 
     <TableLayout
@@ -31,25 +31,24 @@ tools:context=".ui.get_value.GetValueFragment">
                 android:id="@+id/farmName"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:hint="농장 이름"
                 android:layout_margin="2dp"
+                android:layout_weight="2"
                 android:gravity="center"
+                android:autoSizeTextType="uniform"
                 android:textAlignment="center"
-                android:textSize="20sp"
-                android:textColor="@color/black"
-                android:background="#FFF59D" />
+                android:backgroundTint="@color/white"
+                android:background="@drawable/tbox"/>
 
-    <Button
-        android:id="@+id/currentVal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="2dp"
-        android:backgroundTint="#E1BEE7"
-        android:gravity="center"
-        android:hint="현재 값 조회"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+            <Button
+                android:id="@+id/currentVal"
+                android:layout_width="113dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:backgroundTint="#EAEAEA"
+                android:gravity="center"
+                android:hint="현재 값 조회"
+                android:textColorHint="@color/black"
+                android:textSize="14sp" />
         </TableRow>
     <TableLayout
         android:layout_marginTop="10dp"
@@ -64,10 +63,11 @@ tools:context=".ui.get_value.GetValueFragment">
         android:layout_height="wrap_content"
         android:hint="최근 조회 시간"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="#FF5E00"
         android:textSize="20sp"
-        android:background="#B2EBF2"
+        android:background="#F2EAFF"
         android:id="@+id/LastViewTime"
+        android:textStyle="bold"
         >
     </TextView>
     </TableLayout>
@@ -86,7 +86,7 @@ tools:context=".ui.get_value.GetValueFragment">
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:text="1번 장비"
-                android:backgroundTint="#B3E5FC"/>
+                android:backgroundTint="#C69FFF"/>
             <Button
                 android:id="@+id/equipment2"
                 android:layout_width="0dip"
@@ -97,7 +97,7 @@ tools:context=".ui.get_value.GetValueFragment">
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:text="2번 장비"
-                android:backgroundTint="#B3E5FC"/>
+                android:backgroundTint="#C69FFF"/>
             <Button
                 android:id="@+id/equipment3"
                 android:layout_width="0dip"
@@ -109,7 +109,7 @@ tools:context=".ui.get_value.GetValueFragment">
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:text="3번 장비"
-                android:backgroundTint="#B3E5FC"/>
+                android:backgroundTint="#C69FFF"/>
             <Button
                 android:id="@+id/equipment4"
                 android:layout_width="0dip"
@@ -121,7 +121,7 @@ tools:context=".ui.get_value.GetValueFragment">
                 android:textColor="@color/black"
                 android:textSize="14dp"
                 android:text="4번 장비"
-                android:backgroundTint="#B3E5FC"/>
+                android:backgroundTint="#C69FFF"/>
         </TableRow>
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager1"

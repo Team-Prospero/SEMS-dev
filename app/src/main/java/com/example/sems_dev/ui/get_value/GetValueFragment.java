@@ -75,15 +75,13 @@ public class GetValueFragment extends Fragment{
         LastViewTime = (TextView)v.findViewById(R.id.LastViewTime);
         pagerAdapter pagerAdapter = new pagerAdapter(getFragmentManager());
         pagerAdapter.setSpinnerPosition(spinner.getSelectedItemPosition());
+
         pager.setAdapter(pagerAdapter);
         pager.setCurrentItem(0);
         SharedPreferences sf = this.getActivity().getSharedPreferences("nFile",0);
         text = sf.getString("nFile","");
         LastViewTime.setText("최근 조회 시간 : "+text);
 
-
-        //spinner에 제공해주는 arrayadapter 사용하지 않고 custom adapter를 사용해야 하는데, 사실 저도 할게 좀 많아서 .. 편법 쓸께요
-        //나중에 custom adapter필요하면 수정해서 사용해요
         int num = 0;
         SharedPreferences sf1 = null;
         List<HashMap<String, String>> spinnerArray = new ArrayList<>();
@@ -123,15 +121,17 @@ public class GetValueFragment extends Fragment{
 
                 Intent intent = new Intent(getActivity(), SendSMS.class);
                 intent.putExtra("number", getActivity().getSharedPreferences(spinnerArray.get(spinner.getSelectedItemPosition()).get("sf"), 0).getString("number", ""));
+                intent.putExtra("data", "INFO");
                 startActivity(intent);
             }
         });
         //농장 선택 Adapter
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, titleList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item, titleList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setGravity(Gravity.CENTER);
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -157,7 +157,7 @@ public class GetValueFragment extends Fragment{
             public void onClick(View view) {
                 int tag = (int)view.getTag();
                 setButtonsPink();
-                view.setBackgroundColor(Color.parseColor("#fccaca"));
+                view.setBackgroundColor(Color.parseColor("#C69FFF"));
                 pager.setCurrentItem(tag,true);
             }
         };
@@ -197,10 +197,10 @@ public class GetValueFragment extends Fragment{
     private void setButtonColor(int position){
         for(Button btn : equipment){
             if(Integer.parseInt(btn.getTag().toString()) != position){
-                btn.setBackgroundColor(Color.parseColor("#B3E5FC"));
+                btn.setBackgroundColor(Color.parseColor("#8A3CFF"));
                 btn.setSelected(false);
             } else {
-                btn.setBackgroundColor(Color.parseColor("#fccaca"));
+                btn.setBackgroundColor(Color.parseColor("#C69FFF"));
                 btn.setSelected(true);
             }
         }
@@ -217,7 +217,7 @@ public class GetValueFragment extends Fragment{
         @Override
         public Fragment getItem(int position) {
             equipment[position].setSelected(true);
-            equipment[position].setBackgroundColor(Color.parseColor("#B3E5FC"));
+            equipment[position].setBackgroundColor(Color.parseColor("#8A3CFF"));
             return new CustomAdapter("sFile"+position,spinnerPosition+"_INFO", position+1);
         }
 
@@ -240,7 +240,7 @@ public class GetValueFragment extends Fragment{
     private void setButtonsPink() {
         for (int i = 0; i < equipment.length; i++) {
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
-            equipment[i].setBackgroundColor(Color.parseColor("#B3E5FC"));
+            equipment[i].setBackgroundColor(Color.parseColor("#8A3CFF"));
         }
     }
 
@@ -250,5 +250,6 @@ public class GetValueFragment extends Fragment{
 
 
     }
+
 }
 
