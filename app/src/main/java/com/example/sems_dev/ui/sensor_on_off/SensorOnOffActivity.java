@@ -41,14 +41,14 @@ public class SensorOnOffActivity extends AppCompatActivity {
 
     public void addItem(String s1_1, String s1_2, String s1_3, String s1_4, String s1_5, String s1_6, String s1_7, String s1_8) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        item.setS1_1(sharedPref.getString("S1_1T","-"));
-        item.setS1_2(sharedPref.getString("S1_2T","-"));
-        item.setS1_3(sharedPref.getString("S1_3T","-"));
-        item.setS1_4(sharedPref.getString("S1_4T","-"));
-        item.setS1_5(sharedPref.getString("S1_5T","-"));
-        item.setS1_6(sharedPref.getString("S1_6T","-"));
-        item.setS1_7(sharedPref.getString("S1_7T","-"));
-        item.setS1_8(sharedPref.getString("S1_8T","-"));
+        item.setS1_1(sharedPref.getString("S1_1","-"));
+        item.setS1_2(sharedPref.getString("S1_2","-"));
+        item.setS1_3(sharedPref.getString("S1_3","-"));
+        item.setS1_4(sharedPref.getString("S1_4","-"));
+        item.setS1_5(sharedPref.getString("S1_5","-"));
+        item.setS1_6(sharedPref.getString("S1_6","-"));
+        item.setS1_7(sharedPref.getString("S1_7","-"));
+        item.setS1_8(sharedPref.getString("S1_8","-"));
         mList.add(item);
     }
 

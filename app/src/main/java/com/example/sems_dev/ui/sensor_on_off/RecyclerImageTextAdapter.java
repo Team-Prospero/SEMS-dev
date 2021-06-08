@@ -111,57 +111,57 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     String temp;
                     switch (key) {
-                        case "S1_1T":
-                            temp = sharedPreferences.getString("S1_1T", "-");
+                        case "S1_1":
+                            temp = sharedPreferences.getString("S1_1", "-");
                             if(temp.equals("0"))
                                 s1_1.setText("OFF");
                             if(temp.equals("1"))
                                 s1_1.setText("ON");
                             break;
-                        case "S1_2T":
-                            temp = sharedPreferences.getString("S1_2T", "-");
+                        case "S1_2":
+                            temp = sharedPreferences.getString("S1_2", "-");
                             if(temp.equals("0"))
                                 s1_2.setText("OFF");
                             if(temp.equals("1"))
                                 s1_2.setText("ON");
                             break;
-                        case "S1_3T":
-                            temp = sharedPreferences.getString("S1_3T", "-");
+                        case "S1_3":
+                            temp = sharedPreferences.getString("S1_3", "-");
                             if(temp.equals("0"))
                                 s1_3.setText("OFF");
                             if(temp.equals("1"))
                                 s1_3.setText("ON");
                             break;
-                        case "S1_4T":
-                            temp = sharedPreferences.getString("S1_4T", "-");
+                        case "S1_4":
+                            temp = sharedPreferences.getString("S1_4", "-");
                             if(temp.equals("0"))
                                 s1_4.setText("OFF");
                             if(temp.equals("1"))
                                 s1_4.setText("ON");
                             break;
-                        case "S1_5T":
-                            temp = sharedPreferences.getString("S1_5T", "-");
+                        case "S1_5":
+                            temp = sharedPreferences.getString("S1_5", "-");
                             if(temp.equals("0"))
                                 s1_5.setText("OFF");
                             if(temp.equals("1"))
                                 s1_5.setText("ON");
                             break;
-                        case "S1_6T":
-                            temp = sharedPreferences.getString("S1_6T", "-");
+                        case "S1_6":
+                            temp = sharedPreferences.getString("S1_6", "-");
                             if(temp.equals("0"))
                                 s1_6.setText("OFF");
                             if(temp.equals("1"))
                                 s1_6.setText("ON");
                             break;
-                        case "S1_7T":
-                            temp = sharedPreferences.getString("S1_7T", "-");
+                        case "S1_7":
+                            temp = sharedPreferences.getString("S1_7", "-");
                             if(temp.equals("0"))
                                 s1_7.setText("OFF");
                             if(temp.equals("1"))
                                 s1_7.setText("ON");
                             break;
-                        case "S1_8T":
-                            temp = sharedPreferences.getString("S1_8T", "-");
+                        case "S1_8":
+                            temp = sharedPreferences.getString("S1_8", "-");
                             if(temp.equals("0"))
                                 s1_8.setText("OFF");
                             if(temp.equals("1"))
