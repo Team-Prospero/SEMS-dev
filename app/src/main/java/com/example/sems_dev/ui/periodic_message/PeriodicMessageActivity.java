@@ -42,7 +42,7 @@ public class PeriodicMessageActivity extends AppCompatActivity {
 
     public void addItem(String fNum, String msgtime_1, String msgtime_2) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        item.setFarmNumber("test");
+        item.setFarmNumber("EXPO 시연");
         item.setMsgTime_1("0","0");
         item.setMsgTime_2("0","0");
         mList.add(item);

@@ -50,7 +50,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     public void onBindViewHolder(RecyclerImageTextAdapter.ViewHolder holder, int position) {
 
         RecyclerItem item = mData.get(position);
-        holder.farmNumber.setText(item.getFarmNumber() + "농장");
+        holder.farmNumber.setText(item.getFarmNumber() + " 농장");
         holder.pNum_1.setText(item.getpNum_1());
         holder.pNum_2.setText(item.getpNum_2());
         holder.pNum_3.setText(item.getpNum_3());

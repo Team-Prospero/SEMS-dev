@@ -25,12 +25,12 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ui.emergency_call.EmergencyCallActivity"/>
-        <activity android:name=".ui.periodic_message.PeriodicMessageActivity"/>
-        <activity android:name=".ui.sensor_kind.SensorKindActivity"/>
-        <activity android:name=".ui.sensor_on_off.SensorOnOffActivity"/>
-        <activity android:name=".ui.sensor_warning.SensorWarningActivity"/>
-        <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity"/>
+        <activity android:name=".ui.emergency_call.EmergencyCallActivity" android:label="비상연락처 설정/조회"/>
+        <activity android:name=".ui.periodic_message.PeriodicMessageActivity" android:label="정규문자시간 설정/조회"/>
+        <activity android:name=".ui.sensor_kind.SensorKindActivity" android:label="센서종류 설정/조회"/>
+        <activity android:name=".ui.sensor_on_off.SensorOnOffActivity" android:label="센서 사용유무 설정/조회"/>
+        <activity android:name=".ui.sensor_warning.SensorWarningActivity" android:label="센서 경고범위 설정/조회"/>
+        <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity" android:label="음수량 경고범위 설정/조회"/>
         <activity android:name=".SendSMS" android:theme="@android:style/Theme.Dialog"/>
         <service android:name=".CheckSMS"></service>
     </application>
