@@ -93,7 +93,7 @@
                         android:id="@+id/SensorData1"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColorHint="@color/black"
+                        android:text="온도"
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
@@ -156,8 +156,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColorHint="@color/black"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
+                        android:text="온도"
                         android:textStyle="bold" />
                 </TableRow>
                 <TableRow
@@ -222,7 +223,8 @@
                         android:textStyle="bold"
                        android:textSize="18sp"
                         android:id="@+id/SensorData5"
-                        android:textColorHint="@color/black"/>
+                        android:text="습도"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor7_Label_Table"
@@ -285,7 +287,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColorHint="@color/black"
+                        android:text="강수"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:id="@+id/SensorData7"/>

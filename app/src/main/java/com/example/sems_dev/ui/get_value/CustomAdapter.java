@@ -85,8 +85,8 @@ public class CustomAdapter extends Fragment {
             SharedPreferences sf1 = this.getActivity().getSharedPreferences(fileName1, 0);
 
             temp = sf1.getString("S" + position + "_" +(i+1)+"T", "");
-            String temp1 = sf1.getString("S" + position + "_" +(i+1)+"H", "");
-            String temp2 = sf1.getString("S" + position + "_" +(i+1)+"W", "");
+//            String temp1 = sf1.getString("S" + position + "_" +(i+1)+"H", "");
+//            String temp2 = sf1.getString("S" + position + "_" +(i+1)+"W", "");
             tempArr.add(temp);
             //tempArr.add(temp1);tempArr.add(temp2);
             Temperature[i].setText(temp);
@@ -95,15 +95,15 @@ public class CustomAdapter extends Fragment {
 
 
         }
-        for(int i = 0; i < Editsensor_Name.length; i++) {
-            if (Temperature[i].getText().toString().contains("T")) {
-                SensorData[i].setText("온도");
-            } else if (Temperature[i].getText().toString().contains("H")) {
-                SensorData[i].setText("습도");
-            } else if (Temperature[i].getText().toString().contains("W")) {
-                SensorData[i].setText("강수");
-            }
-        }
+//        for(int i = 0; i < Editsensor_Name.length; i++) {
+//            if (Temperature[i].getText().toString().contains("T")) {
+//                SensorData[i].setText("온도");
+//            } else if (Temperature[i].getText().toString().contains("H")) {
+//                SensorData[i].setText("습도");
+//            } else if (Temperature[i].getText().toString().contains("W")) {
+//                SensorData[i].setText("강수");
+//            }
+//        }
         return layout;
     }
 
