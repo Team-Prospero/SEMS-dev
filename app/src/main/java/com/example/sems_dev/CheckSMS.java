@@ -125,8 +125,8 @@ public class CheckSMS extends Service {
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 for (int i = 1; i <= 2; i++) {
                     if (temp[i].contains(",")) {
-                        editor.putString(i + "_Hour", temp[1].substring(0, 2));
-                        editor.putString(i + "_Min", temp[1].substring(3, 5));
+                        editor.putString(i + "_Hour", temp[i].substring(0, 2));
+                        editor.putString(i + "_Min", temp[i].substring(3, 5));
                     } else {
                         editor.putString(i + "_Hour", "NULL");
                         editor.putString(i + "_Min", "NULL");
