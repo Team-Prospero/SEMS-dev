@@ -131,53 +131,53 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     // S1_1T_HIGH -> S(장비번호)_(구역번호)T_(HIGH or LOW)
                     switch (key) {
-                        case "S1_1T_H":
+                        case "S1_1T_HIGH":
                             s1_1_H.setText(sp.getString("S1_1T_HIGH", "-"));
                             break;
-                        case "S1_2T_H":
+                        case "S1_2T_HIGH":
                             s1_2_H.setText(sp.getString("S1_2T_HIGH", "-"));
                             break;
-                        case "S1_3T_H":
+                        case "S1_3T_HIGH":
                             s1_3_H.setText(sp.getString("S1_3T_HIGH", "-"));
                             break;
-                        case "S1_4T_H":
+                        case "S1_4T_HIGH":
                             s1_4_H.setText(sp.getString("S1_4T_HIGH", "-"));
                             break;
-                        case "S1_5T_H":
+                        case "S1_5T_HIGH":
                             s1_5_H.setText(sp.getString("S1_5T_HIGH", "-"));
                             break;
-                        case "S1_6T_H":
+                        case "S1_6T_HIGH":
                             s1_6_H.setText(sp.getString("S1_6T_HIGH", "-"));
                             break;
-                        case "S1_7T_H":
+                        case "S1_7T_HIGH":
                             s1_7_H.setText(sp.getString("S1_7T_HIGH", "-"));
                             break;
-                        case "S1_8T_H":
+                        case "S1_8T_HIGH":
                             s1_8_H.setText(sp.getString("S1_8T_HIGH", "-"));
                             break;
 
-                        case "S1_1T_L":
+                        case "S1_1T_LOW":
                             s1_1_L.setText(sp.getString("S1_1T_LOW", "-"));
                             break;
-                        case "S1_2T_L":
+                        case "S1_2T_LOW":
                             s1_2_L.setText(sp.getString("S1_2T_LOW", "-"));
                             break;
-                        case "S1_3T_L":
+                        case "S1_3T_LOW":
                             s1_3_L.setText(sp.getString("S1_3T_LOW", "-"));
                             break;
-                        case "S1_4T_L":
+                        case "S1_4T_LOW":
                             s1_4_L.setText(sp.getString("S1_4T_LOW", "-"));
                             break;
-                        case "S1_5T_L":
+                        case "S1_5T_LOW":
                             s1_5_L.setText(sp.getString("S1_5T_LOW", "-"));
                             break;
-                        case "S1_6T_L":
+                        case "S1_6T_LOW":
                             s1_6_L.setText(sp.getString("S1_6T_LOW", "-"));
                             break;
-                        case "S1_7T_L":
+                        case "S1_7T_LOW":
                             s1_7_L.setText(sp.getString("S1_7T_LOW", "-"));
                             break;
-                        case "S1_8T_L":
+                        case "S1_8T_LOW":
                             s1_8_L.setText(sp.getString("S1_8T_LOW", "-"));
                             break;
                     }

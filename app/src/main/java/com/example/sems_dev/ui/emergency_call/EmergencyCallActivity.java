@@ -45,11 +45,18 @@ public class EmergencyCallActivity extends AppCompatActivity {
         RecyclerItem item = new RecyclerItem();
         item.setFarmNumber("test");
         if (sharedPref.getAll() == null) {
+            editor.putString("1","-");
+            editor.putString("2","-");
+            editor.putString("3","-");
+            editor.putString("4","-");
+            editor.putString("5","-");
+            editor.apply();
             item.setpNum_1(sharedPref.getString("1", "-"));
             item.setpNum_2(sharedPref.getString("2", "-"));
             item.setpNum_3(sharedPref.getString("3", "-"));
             item.setpNum_4(sharedPref.getString("4", "-"));
             item.setpNum_5(sharedPref.getString("5", "-"));
+            mList.add(item);
         } else {
             String temp = sharedPref.getString("1", "-");
             if (temp.equals("NULL"))
@@ -80,7 +87,8 @@ public class EmergencyCallActivity extends AppCompatActivity {
                 item.setpNum_5("-");
             else
                 item.setpNum_5(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+
+            mList.add(item);
         }
-        mList.add(item);
     }
 }

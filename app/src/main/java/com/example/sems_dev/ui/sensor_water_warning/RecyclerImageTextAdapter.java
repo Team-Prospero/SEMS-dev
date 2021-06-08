@@ -37,7 +37,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.recycler_item_sensor_warning, parent, false);
+        View view = inflater.inflate(R.layout.recycler_item_sensor_waterwarning, parent, false);
         ViewHolder vh = new ViewHolder(view);
 
         return vh;
@@ -83,13 +83,12 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         Button warning_lookup_btn, warning_manage_btn;
         SharedPreferences sp, msg_sp;
         SharedPreferences.Editor editor;
-        AlertDialog.Builder warningDialog = new AlertDialog.Builder(itemView.getContext());
+        AlertDialog.Builder waterWarningDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
             farmNumber = itemView.findViewById(R.id.wa_farmNumber);
-
             Area_1 = itemView.findViewById(R.id.wa_area_1);
             Area_2 = itemView.findViewById(R.id.wa_area_2);
             Area_3 = itemView.findViewById(R.id.wa_area_3);
@@ -122,7 +121,6 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             sp = itemView.getContext().getSharedPreferences("0_WA", 0);
             msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
             editor = sp.edit();
-            AlertDialog.Builder sensorWarningDialog = new AlertDialog.Builder(itemView.getContext());
 
 
             SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
@@ -130,59 +128,60 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
                     // S1_1T_HIGH -> S(장비번호)_(구역번호)T_(HIGH or LOW)
                     switch (key) {
-                        case "S1_1T_H":
+                        case "S1_1T_HIGH":
                             s1_1_H.setText(sp.getString("S1_1T_HIGH", "-"));
                             break;
-                        case "S1_2T_H":
+                        case "S1_2T_HIGH":
                             s1_2_H.setText(sp.getString("S1_2T_HIGH", "-"));
                             break;
-                        case "S1_3T_H":
+                        case "S1_3T_HIGH":
                             s1_3_H.setText(sp.getString("S1_3T_HIGH", "-"));
                             break;
-                        case "S1_4T_H":
+                        case "S1_4T_HIGH":
                             s1_4_H.setText(sp.getString("S1_4T_HIGH", "-"));
                             break;
-                        case "S1_5T_H":
+                        case "S1_5T_HIGH":
                             s1_5_H.setText(sp.getString("S1_5T_HIGH", "-"));
                             break;
-                        case "S1_6T_H":
+                        case "S1_6T_HIGH":
                             s1_6_H.setText(sp.getString("S1_6T_HIGH", "-"));
                             break;
-                        case "S1_7T_H":
+                        case "S1_7T_HIGH":
                             s1_7_H.setText(sp.getString("S1_7T_HIGH", "-"));
                             break;
-                        case "S1_8T_H":
+                        case "S1_8T_HIGH":
                             s1_8_H.setText(sp.getString("S1_8T_HIGH", "-"));
                             break;
 
-                        case "S1_1T_L":
+                        case "S1_1T_LOW":
                             s1_1_L.setText(sp.getString("S1_1T_LOW", "-"));
                             break;
-                        case "S1_2T_L":
+                        case "S1_2T_LOW":
                             s1_2_L.setText(sp.getString("S1_2T_LOW", "-"));
                             break;
-                        case "S1_3T_L":
+                        case "S1_3T_LOW":
                             s1_3_L.setText(sp.getString("S1_3T_LOW", "-"));
                             break;
-                        case "S1_4T_L":
+                        case "S1_4T_LOW":
                             s1_4_L.setText(sp.getString("S1_4T_LOW", "-"));
                             break;
-                        case "S1_5T_L":
+                        case "S1_5T_LOW":
                             s1_5_L.setText(sp.getString("S1_5T_LOW", "-"));
                             break;
-                        case "S1_6T_L":
+                        case "S1_6T_LOW":
                             s1_6_L.setText(sp.getString("S1_6T_LOW", "-"));
                             break;
-                        case "S1_7T_L":
+                        case "S1_7T_LOW":
                             s1_7_L.setText(sp.getString("S1_7T_LOW", "-"));
                             break;
-                        case "S1_8T_L":
+                        case "S1_8T_LOW":
                             s1_8_L.setText(sp.getString("S1_8T_LOW", "-"));
                             break;
                     }
                 }
             };
-
+            sp.registerOnSharedPreferenceChangeListener(listener);
+            
             warning_manage_btn.setOnClickListener(new View.OnClickListener() {
 
                 View dialog = inflater.inflate(R.layout.dialog_warning_value_manage, null);
@@ -283,8 +282,8 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 @Override
                 public void onClick(View v) {
                     setAdapter();
-                    sensorWarningDialog.setTitle("센서종류 변경");
-                    sensorWarningDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    waterWarningDialog.setTitle("음수량 경고범위 변경");
+                    waterWarningDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String tag;
@@ -298,11 +297,10 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             intent.putExtra("number", phone);
                             intent.putExtra("data", msgbody);
                             itemView.getContext().startActivity(intent);
-                            sp.registerOnSharedPreferenceChangeListener(listener);
                             dialog.dismiss();
                         }
                     });
-                    sensorWarningDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    waterWarningDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(itemView.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
@@ -312,8 +310,8 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     if (dialog.getParent() != null) { // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
-                    sensorWarningDialog.setView(dialog);
-                    sensorWarningDialog.show();
+                    waterWarningDialog.setView(dialog);
+                    waterWarningDialog.show();
                 }
             });
             warning_lookup_btn.setOnClickListener(new View.OnClickListener() {
