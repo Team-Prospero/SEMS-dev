@@ -47,23 +47,23 @@ public class SensorWarningActivity extends AppCompatActivity {
     public void addItem(String s1_1_H, String s1_1_L, String s1_2_H, String s1_2_L, String s1_3_H, String s1_3_L, String s1_4_H, String s1_4_L,
                         String s1_5_H, String s1_5_L, String s1_6_H, String s1_6_L, String s1_7_H, String s1_7_L, String s1_8_H, String s1_8_L) {// 리사이클러뷰에 아이템을 추가하는 메소드
         RecyclerItem item = new RecyclerItem();
-        item.setS1_1_H(sharedPref.getString("S1_1T_HIGH","-"));
-        item.setS1_2_H(sharedPref.getString("S1_2T_HIGH","-"));
-        item.setS1_3_H(sharedPref.getString("S1_3T_HIGH","-"));
-        item.setS1_4_H(sharedPref.getString("S1_4T_HIGH","-"));
-        item.setS1_5_H(sharedPref.getString("S1_5T_HIGH","-"));
-        item.setS1_6_H(sharedPref.getString("S1_6T_HIGH","-"));
-        item.setS1_7_H(sharedPref.getString("S1_7T_HIGH","-"));
-        item.setS1_8_H(sharedPref.getString("S1_8T_HIGH","-"));
+        item.setS1_1_H(sharedPref.getString("S1_1_HIGH","-"));
+        item.setS1_2_H(sharedPref.getString("S1_2_HIGH","-"));
+        item.setS1_3_H(sharedPref.getString("S1_3_HIGH","-"));
+        item.setS1_4_H(sharedPref.getString("S1_4_HIGH","-"));
+        item.setS1_5_H(sharedPref.getString("S1_5_HIGH","-"));
+        item.setS1_6_H(sharedPref.getString("S1_6_HIGH","-"));
+        item.setS1_7_H(sharedPref.getString("S1_7_HIGH","-"));
+        item.setS1_8_H(sharedPref.getString("S1_8_HIGH","-"));
 
-        item.setS1_1_L(sharedPref.getString("S1_1T_LOW","-"));
-        item.setS1_2_L(sharedPref.getString("S1_2T_LOW","-"));
-        item.setS1_3_L(sharedPref.getString("S1_3T_LOW","-"));
-        item.setS1_4_L(sharedPref.getString("S1_4T_LOW","-"));
-        item.setS1_5_L(sharedPref.getString("S1_5T_LOW","-"));
-        item.setS1_6_L(sharedPref.getString("S1_6T_LOW","-"));
-        item.setS1_7_L(sharedPref.getString("S1_7T_LOW","-"));
-        item.setS1_8_L(sharedPref.getString("S1_8T_LOW","-"));
+        item.setS1_1_L(sharedPref.getString("S1_1_LOW","-"));
+        item.setS1_2_L(sharedPref.getString("S1_2_LOW","-"));
+        item.setS1_3_L(sharedPref.getString("S1_3_LOW","-"));
+        item.setS1_4_L(sharedPref.getString("S1_4_LOW","-"));
+        item.setS1_5_L(sharedPref.getString("S1_5_LOW","-"));
+        item.setS1_6_L(sharedPref.getString("S1_6_LOW","-"));
+        item.setS1_7_L(sharedPref.getString("S1_7_LOW","-"));
+        item.setS1_8_L(sharedPref.getString("S1_8_LOW","-"));
         mList.add(item);
     }
 }
