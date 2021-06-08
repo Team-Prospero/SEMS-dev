@@ -90,7 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:hint="온도"
+                        android:id="@+id/SensorData1"
                         android:textStyle="bold"
                         android:textSize="18sp"
                         android:textColorHint="@color/black"
@@ -149,15 +149,16 @@
                        android:textSize="18sp"
                         android:textColor="@color/black"
                         />
+
                     <TextView
+                        android:id="@+id/SensorData3"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-
-                        android:textStyle="bold"
-                       android:textSize="18sp"
-                        android:textColorHint="@color/black"/>
+                        android:textColorHint="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor5_Label_Table"
@@ -220,6 +221,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                        android:textSize="18sp"
+                        android:id="@+id/SensorData5"
                         android:textColorHint="@color/black"/>
                 </TableRow>
                 <TableRow
@@ -285,7 +287,8 @@
                         android:gravity="center"
                         android:textColorHint="@color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:id="@+id/SensorData7"/>
                 </TableRow>
             </TableLayout>
 
@@ -350,6 +353,7 @@
                        />
 
                     <TextView
+                        android:id="@+id/SensorData2"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -419,7 +423,8 @@
                         android:gravity="center"
                         android:textStyle="bold"
                         android:textColor="@color/black"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:id="@+id/SensorData4"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor6_Label_Table"
@@ -482,6 +487,7 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textStyle="bold"
+                        android:id="@+id/SensorData6"
                        android:textSize="18sp"
                         android:textColorHint="@color/black"/>
                 </TableRow>
@@ -547,7 +553,7 @@
                         android:gravity="center"
                         android:textStyle="bold"
                        android:textSize="18sp"
-                        android:textColorHint="@color/black"
+                        android:id="@+id/SensorData8"
                         android:textColor="@color/black"/>
                 </TableRow>
             </TableLayout>

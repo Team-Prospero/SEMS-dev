@@ -82,15 +82,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        Fragment hostFragment = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        Fragment currentFragment = hostFragment.getChildFragmentManager().getFragments().get(0);
-
-        ((GetValueFragment)currentFragment).updateUI();
-    }
 
 /*    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
