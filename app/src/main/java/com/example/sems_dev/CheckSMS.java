@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
@@ -115,21 +116,22 @@ public class CheckSMS extends Service {
                             editor.putString(Integer.toString(i), tmp.substring(0, tmp.length() - 2));
                         }
                     } else {
-                        editor.putString(Integer.toString(i), "-");
+                        editor.putString(Integer.toString(i), "NULL");
                     }
                 }
                 editor.commit();
                 Toast.makeText(this.getApplicationContext(), "비상연락처 수신 완료", Toast.LENGTH_LONG).show();
             } else { // 정규 문자 시간
+
                 SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_TIME", 0);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 for (int i = 1; i <= 2; i++) {
                     if (temp[i].contains(",")) {
-                        editor.putString(i + "_Hour", temp[1].substring(0, 2));
-                        editor.putString(i + "_Min", temp[1].substring(3, 5));
+                        editor.putString(i + "_Hour", temp[i].substring(0, 2));
+                        editor.putString(i + "_Min", temp[i].substring(3, 5));
                     } else {
-                        editor.putString(i + "_Hour", "-");
-                        editor.putString(i + "_Min", "-");
+                        editor.putString(i + "_Hour", "NULL");
+                        editor.putString(i + "_Min", "NULL");
                     }
                 }
                 editor.commit();

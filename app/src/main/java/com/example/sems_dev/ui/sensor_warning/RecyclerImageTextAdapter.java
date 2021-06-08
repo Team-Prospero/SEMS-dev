@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.sensor_warning;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,13 +21,12 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -82,7 +82,9 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         TextView s1_1_H, s1_2_H, s1_3_H, s1_4_H, s1_5_H, s1_6_H, s1_7_H, s1_8_H,
                 s1_1_L, s1_2_L, s1_3_L, s1_4_L, s1_5_L, s1_6_L, s1_7_L, s1_8_L;
         Button warning_lookup_btn, warning_manage_btn;
-        AlertDialog.Builder onOffDialog = new AlertDialog.Builder(itemView.getContext());
+        SharedPreferences sp, msg_sp;
+        SharedPreferences.Editor editor;
+        AlertDialog.Builder warningDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -116,11 +118,71 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             s1_7_L = itemView.findViewById(R.id.S1_7T_L);
             s1_8_L = itemView.findViewById(R.id.S1_8T_L);
 
-            sp = itemView.getContext().getSharedPreferences("0_LIMT", 0);
-            editor = sp.edit();
             warning_manage_btn = itemView.findViewById(R.id.warning_manage_btn);
             warning_lookup_btn = itemView.findViewById(R.id.warning_lookup_btn);
-            AlertDialog.Builder sensorWarningdialog = new AlertDialog.Builder(itemView.getContext());
+            sp = itemView.getContext().getSharedPreferences("0_LIMT", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
+            editor = sp.edit();
+            AlertDialog.Builder sensorWarningDialog = new AlertDialog.Builder(itemView.getContext());
+
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    // S1_1T_HIGH -> S(장비번호)_(구역번호)T_(HIGH or LOW)
+                    switch (key) {
+                        case "S1_1T_H":
+                            s1_1_H.setText(sp.getString("S1_1T_HIGH", "-"));
+                            break;
+                        case "S1_2T_H":
+                            s1_2_H.setText(sp.getString("S1_2T_HIGH", "-"));
+                            break;
+                        case "S1_3T_H":
+                            s1_3_H.setText(sp.getString("S1_3T_HIGH", "-"));
+                            break;
+                        case "S1_4T_H":
+                            s1_4_H.setText(sp.getString("S1_4T_HIGH", "-"));
+                            break;
+                        case "S1_5T_H":
+                            s1_5_H.setText(sp.getString("S1_5T_HIGH", "-"));
+                            break;
+                        case "S1_6T_H":
+                            s1_6_H.setText(sp.getString("S1_6T_HIGH", "-"));
+                            break;
+                        case "S1_7T_H":
+                            s1_7_H.setText(sp.getString("S1_7T_HIGH", "-"));
+                            break;
+                        case "S1_8T_H":
+                            s1_8_H.setText(sp.getString("S1_8T_HIGH", "-"));
+                            break;
+
+                        case "S1_1T_L":
+                            s1_1_L.setText(sp.getString("S1_1T_LOW", "-"));
+                            break;
+                        case "S1_2T_L":
+                            s1_2_L.setText(sp.getString("S1_2T_LOW", "-"));
+                            break;
+                        case "S1_3T_L":
+                            s1_3_L.setText(sp.getString("S1_3T_LOW", "-"));
+                            break;
+                        case "S1_4T_L":
+                            s1_4_L.setText(sp.getString("S1_4T_LOW", "-"));
+                            break;
+                        case "S1_5T_L":
+                            s1_5_L.setText(sp.getString("S1_5T_LOW", "-"));
+                            break;
+                        case "S1_6T_L":
+                            s1_6_L.setText(sp.getString("S1_6T_LOW", "-"));
+                            break;
+                        case "S1_7T_L":
+                            s1_7_L.setText(sp.getString("S1_7T_LOW", "-"));
+                            break;
+                        case "S1_8T_L":
+                            s1_8_L.setText(sp.getString("S1_8T_LOW", "-"));
+                            break;
+                    }
+                }
+            };
 
             warning_manage_btn.setOnClickListener(new View.OnClickListener() {
 
@@ -132,12 +194,12 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 String[] sensorItem = {"1구역", "2구역", "3구역", "4구역", "5구역", "6구역", "7구역", "8구역"};
                 EditText sensorHigh = dialog.findViewById(R.id.sensor_high);
                 EditText sensorLow = dialog.findViewById(R.id.sensor_low);
-
+                String msgbody, phone = msg_sp.getString("number", "01220788729");
                 String high, low;
                 int col, row;
                 TableRow selectedRow;
 
-                private void setAdapter(){
+                private void setAdapter() {
 
                     ArrayAdapter<String> equipNumberAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, equipItem);
                     equipNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -150,18 +212,18 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     equipNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    col=1;
+                                    col = 1;
                                     break;
                                 case 1:
-                                    col=3;
+                                    col = 3;
                                     break;
                                 case 2:
-                                    col=5;
+                                    col = 5;
                                     break;
                                 case 3:
-                                    col=7;
+                                    col = 7;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), equipItem[position], Toast.LENGTH_SHORT).show();
@@ -176,41 +238,40 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    row=1;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_1);
+                                    row = 1;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_1);
                                     break;
                                 case 1:
-                                    row=2;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_2);
+                                    row = 2;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_2);
                                     break;
                                 case 2:
-                                    row=3;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_3);
+                                    row = 3;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_3);
                                     break;
                                 case 3:
-                                    row=4;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_4);
+                                    row = 4;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_4);
                                     break;
                                 case 4:
-                                    row=5;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_5);
+                                    row = 5;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_5);
                                     break;
                                 case 5:
-                                    row=6;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_6);
+                                    row = 6;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_6);
                                     break;
                                 case 6:
-                                    row=7;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_7);
+                                    row = 7;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_7);
                                     break;
                                 case 7:
-                                    row=8;
-                                    selectedRow=itemView.findViewById(R.id.lm_area_8);
+                                    row = 8;
+                                    selectedRow = itemView.findViewById(R.id.lm_area_8);
                                     break;
                             }
-                            Toast.makeText(itemView.getContext(), "S1_"+row+"T_HIGH : S1_"+row+"T_LOW ", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -219,99 +280,51 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         }
                     });
                 }
+
                 @Override
                 public void onClick(View v) {
                     setAdapter();
-                    onOffDialog.setTitle("센서종류 변경");
-                    onOffDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    sensorWarningDialog.setTitle("센서종류 변경");
+                    sensorWarningDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String tag;
-                            TextView limitHigh = (TextView) selectedRow.getChildAt(col);
-                            TextView limitLow = (TextView) selectedRow.getChildAt(col+1);
-                            limitHigh.setText(sensorHigh.getText());
-                            limitLow.setText(sensorLow.getText());
-                            switch (col){
-                                case 1:
-                                    editor.putString("S1_"+row+"T_HIGH", String.valueOf(sensorHigh.getText()));
-                                    editor.putString("S1_"+row+"T_LOW",String.valueOf(sensorLow.getText()));
-                                    editor.apply();
-                                    break;
-                                case 3:
-                                    editor.putString("S2_"+row+"T_HIGH", String.valueOf(sensorHigh.getText()));
-                                    editor.putString("S2_"+row+"T_LOW",String.valueOf(sensorLow.getText()));
-                                    editor.apply();
-                                    break;
-                                case 5:
-                                    editor.putString("S3_"+row+"T_HIGH", String.valueOf(sensorHigh.getText()));
-                                    editor.putString("S3_"+row+"T_LOW",String.valueOf(sensorLow.getText()));
-                                    editor.apply();
-                                    break;
-                                case 7:
-                                    editor.putString("S4_"+row+"T_HIGH", String.valueOf(sensorHigh.getText()));
-                                    editor.putString("S4_"+row+"T_LOW",String.valueOf(sensorLow.getText()));
-                                    editor.apply();
-                                    break;
-                            }
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
+                            String limitHigh, limitLow;
+                            // SET LIMT(장비)-(구역):(상위)(하위)
+                            // S(장비번호)_(구역번호)T_(HIGH or LOW)
+                            limitHigh = String.valueOf(sensorHigh.getText());
+                            limitLow = String.valueOf(sensorLow.getText());
+                            msgbody = "SET LIMT" + col + "-" + row + ":" + limitHigh + limitLow;
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data", msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
                             dialog.dismiss();
                         }
                     });
-                    onOffDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    sensorWarningDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(itemView.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
                             dialog.cancel();
                         }
                     });
-                    if(dialog.getParent()!=null){ // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
+                    if (dialog.getParent() != null) { // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
-                    onOffDialog.setView(dialog);
-                    onOffDialog.show();
+                    sensorWarningDialog.setView(dialog);
+                    sensorWarningDialog.show();
                 }
             });
             warning_lookup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RecyclerItem item = new RecyclerItem();
-                    item.setS1_1_H(sp.getString("S1_1T_HIGH","-"));
-                    item.setS1_2_H(sp.getString("S1_2T_HIGH","-"));
-                    item.setS1_3_H(sp.getString("S1_3T_HIGH","-"));
-                    item.setS1_4_H(sp.getString("S1_4T_HIGH","-"));
-                    item.setS1_5_H(sp.getString("S1_5T_HIGH","-"));
-                    item.setS1_6_H(sp.getString("S1_6T_HIGH","-"));
-                    item.setS1_7_H(sp.getString("S1_7T_HIGH","-"));
-                    item.setS1_8_H(sp.getString("S1_8T_HIGH","-"));
-
-                    item.setS1_1_L(sp.getString("S1_1T_LOW","-"));
-                    item.setS1_2_L(sp.getString("S1_2T_LOW","-"));
-                    item.setS1_3_L(sp.getString("S1_3T_LOW","-"));
-                    item.setS1_4_L(sp.getString("S1_4T_LOW","-"));
-                    item.setS1_5_L(sp.getString("S1_5T_LOW","-"));
-                    item.setS1_6_L(sp.getString("S1_6T_LOW","-"));
-                    item.setS1_7_L(sp.getString("S1_7T_LOW","-"));
-                    item.setS1_8_L(sp.getString("S1_8T_LOW","-"));
-
-                    s1_1_H.setText(item.getS1_1_H());
-                    s1_2_H.setText(item.getS1_2_H());
-                    s1_3_H.setText(item.getS1_3_H());
-                    s1_4_H.setText(item.getS1_4_H());
-                    s1_5_H.setText(item.getS1_5_H());
-                    s1_6_H.setText(item.getS1_6_H());
-                    s1_7_H.setText(item.getS1_7_H());
-                    s1_8_H.setText(item.getS1_8_H());
-
-                    s1_1_L.setText(item.getS1_1_L());
-                    s1_2_L.setText(item.getS1_2_L());
-                    s1_3_L.setText(item.getS1_3_L());
-                    s1_4_L.setText(item.getS1_4_L());
-                    s1_5_L.setText(item.getS1_5_L());
-                    s1_6_L.setText(item.getS1_6_L());
-                    s1_7_L.setText(item.getS1_7_L());
-                    s1_8_L.setText(item.getS1_8_L());
-
-                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", msg_sp.getString("number", "-"));
+                    intent.putExtra("data", "GET LIMT1");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }

@@ -3,7 +3,9 @@ package com.example.sems_dev.ui.sensor_kind;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +21,13 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -67,10 +69,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
-        TableLayout dataTable;
         TableRow Area_1, Area_2, Area_3, Area_4, Area_5, Area_6, Area_7, Area_8;
         TextView s1_1, s1_2, s1_3, s1_4, s1_5, s1_6, s1_7, s1_8;
         Button kind_lookup_btn, kind_manage_btn;
+        SharedPreferences sp, msg_sp;
+        SharedPreferences.Editor editor;
         AlertDialog.Builder sKindDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
@@ -96,22 +99,122 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             kind_lookup_btn = itemView.findViewById(R.id.kind_lookup_btn);
             kind_manage_btn = itemView.findViewById(R.id.kind_manage_btn);
             sp = itemView.getContext().getSharedPreferences("0_KIND", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
             editor = sp.edit();
+
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    String temp;
+                    switch (key) {
+                        case "S1_1T":
+                            temp = sharedPreferences.getString("S1_1T", "-");
+                            if (temp.equals("0"))
+                                s1_1.setText("기타");
+                            if (temp.equals("1"))
+                                s1_1.setText("온도");
+                            if (temp.equals("2"))
+                                s1_1.setText("습도");
+                            if (temp.equals("3"))
+                                s1_1.setText("음수");
+                            break;
+                        case "S1_2T":
+                            temp = sharedPreferences.getString("S1_2T", "-");
+                            if (temp.equals("0"))
+                                s1_2.setText("기타");
+                            if (temp.equals("1"))
+                                s1_2.setText("온도");
+                            if (temp.equals("2"))
+                                s1_2.setText("습도");
+                            if (temp.equals("3"))
+                                s1_2.setText("음수");
+                            break;
+                        case "S1_3T":
+                            temp = sharedPreferences.getString("S1_3T", "-");
+                            if (temp.equals("0"))
+                                s1_3.setText("기타");
+                            if (temp.equals("1"))
+                                s1_3.setText("온도");
+                            if (temp.equals("2"))
+                                s1_3.setText("습도");
+                            if (temp.equals("3"))
+                                s1_3.setText("음수");
+                            break;
+                        case "S1_4T":
+                            temp = sharedPreferences.getString("S1_4T", "-");
+                            if (temp.equals("0"))
+                                s1_4.setText("기타");
+                            if (temp.equals("1"))
+                                s1_4.setText("온도");
+                            if (temp.equals("2"))
+                                s1_4.setText("습도");
+                            if (temp.equals("3"))
+                                s1_4.setText("음수");
+                            break;
+                        case "S1_5T":
+                            temp = sharedPreferences.getString("S1_5T", "-");
+                            if (temp.equals("0"))
+                                s1_5.setText("기타");
+                            if (temp.equals("1"))
+                                s1_5.setText("온도");
+                            if (temp.equals("2"))
+                                s1_5.setText("습도");
+                            if (temp.equals("3"))
+                                s1_5.setText("음수");
+                            break;
+                        case "S1_6T":
+                            temp = sharedPreferences.getString("S1_6T", "-");
+                            if (temp.equals("0"))
+                                s1_6.setText("기타");
+                            if (temp.equals("1"))
+                                s1_6.setText("온도");
+                            if (temp.equals("2"))
+                                s1_6.setText("습도");
+                            if (temp.equals("3"))
+                                s1_6.setText("음수");
+                            break;
+                        case "S1_7T":
+                            temp = sharedPreferences.getString("S1_7T", "-");
+                            if (temp.equals("0"))
+                                s1_7.setText("기타");
+                            if (temp.equals("1"))
+                                s1_7.setText("온도");
+                            if (temp.equals("2"))
+                                s1_7.setText("습도");
+                            if (temp.equals("3"))
+                                s1_7.setText("음수");
+                            break;
+                        case "S1_8T":
+                            temp = sharedPreferences.getString("S1_8T", "0");
+                            if (temp.equals("0"))
+                                s1_8.setText("기타");
+                            if (temp.equals("1"))
+                                s1_8.setText("온도");
+                            if (temp.equals("2"))
+                                s1_8.setText("습도");
+                            if (temp.equals("3"))
+                                s1_8.setText("음수");
+                            break;
+                    }
+                }
+            };
+
 
             kind_manage_btn.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_kind_manage, null);
                 Spinner equipNumber = dialog.findViewById(R.id.kind_equip_number);
                 String[] equipItem = {"1번 장비"};
                 Spinner sensorNumber = dialog.findViewById(R.id.kind_sensor_number);
-                String[] sensorItem = {"1구역","2구역","3구역","4구역","5구역","6구역","7구역","8구역"};
+                String[] sensorItem = {"1구역", "2구역", "3구역", "4구역", "5구역", "6구역", "7구역", "8구역"};
                 Spinner sensorKind = dialog.findViewById(R.id.sensor_kind);
-                String[] kindItem = {"기타","온도","습도","음수"};
+                String[] kindItem = {"기타", "온도", "습도", "음수"};
 
-                String sKind = null;
-                int col;
+                String msgbody, sKind = null, phone = msg_sp.getString("number", "01220788729");
+                int col, row, pos;
                 TableRow selectedRow;
 
-                private void setAdapter(){
+                private void setAdapter() {
 
                     ArrayAdapter<String> equipNumberAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, equipItem);
                     equipNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -128,18 +231,18 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     equipNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    col=1;
+                                    col = 1;
                                     break;
                                 case 1:
-                                    col=2;
+                                    col = 2;
                                     break;
                                 case 2:
-                                    col=3;
+                                    col = 3;
                                     break;
                                 case 3:
-                                    col=4;
+                                    col = 4;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), equipItem[position], Toast.LENGTH_SHORT).show();
@@ -154,30 +257,38 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    selectedRow=itemView.findViewById(R.id.area_1);
+                                    selectedRow = itemView.findViewById(R.id.area_1);
+                                    row = 1;
                                     break;
                                 case 1:
-                                    selectedRow=itemView.findViewById(R.id.area_2);
+                                    selectedRow = itemView.findViewById(R.id.area_2);
+                                    row = 2;
                                     break;
                                 case 2:
-                                    selectedRow=itemView.findViewById(R.id.area_3);
+                                    selectedRow = itemView.findViewById(R.id.area_3);
+                                    row = 3;
                                     break;
                                 case 3:
-                                    selectedRow=itemView.findViewById(R.id.area_4);
+                                    selectedRow = itemView.findViewById(R.id.area_4);
+                                    row = 4;
                                     break;
                                 case 4:
-                                    selectedRow=itemView.findViewById(R.id.area_5);
+                                    selectedRow = itemView.findViewById(R.id.area_5);
+                                    row = 5;
                                     break;
                                 case 5:
-                                    selectedRow=itemView.findViewById(R.id.area_6);
+                                    selectedRow = itemView.findViewById(R.id.area_6);
+                                    row = 6;
                                     break;
                                 case 6:
-                                    selectedRow=itemView.findViewById(R.id.area_7);
+                                    selectedRow = itemView.findViewById(R.id.area_7);
+                                    row = 7;
                                     break;
                                 case 7:
-                                    selectedRow=itemView.findViewById(R.id.area_8);
+                                    selectedRow = itemView.findViewById(R.id.area_8);
+                                    row = 8;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), sensorItem[position], Toast.LENGTH_SHORT).show();
@@ -192,18 +303,19 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorKind.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            pos = position;
+                            switch (pos) {
                                 case 0:
-                                    sKind="기타";
+                                    sKind = "기타";
                                     break;
                                 case 1:
-                                    sKind="온도";
+                                    sKind = "온도";
                                     break;
                                 case 2:
-                                    sKind="습도";
+                                    sKind = "습도";
                                     break;
                                 case 3:
-                                    sKind="음수";
+                                    sKind = "음수";
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), kindItem[position], Toast.LENGTH_SHORT).show();
@@ -215,6 +327,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         }
                     });
                 }
+
                 @Override
                 public void onClick(View v) {
                     setAdapter();
@@ -222,9 +335,13 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sKindDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            TextView textView = (TextView) selectedRow.getChildAt(col);
-                            textView.setText(sKind);
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
+                            msgbody = "SET KIND" + col + "-" + row + ":" + pos;
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data", msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
+
                             dialog.dismiss();
                         }
                     });
@@ -235,7 +352,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             dialog.cancel();
                         }
                     });
-                    if(dialog.getParent()!=null){ // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
+                    if (dialog.getParent() != null) { // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
                     sKindDialog.setView(dialog);
@@ -245,24 +362,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             kind_lookup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RecyclerItem item = new RecyclerItem();
-                    item.setS1_1(sp.getString("S1_1T","-"));
-                    item.setS1_2(sp.getString("S1_2T","-"));
-                    item.setS1_3(sp.getString("S1_3T","-"));
-                    item.setS1_4(sp.getString("S1_4T","-"));
-                    item.setS1_5(sp.getString("S1_5T","-"));
-                    item.setS1_6(sp.getString("S1_6T","-"));
-                    item.setS1_7(sp.getString("S1_7T","-"));
-                    item.setS1_8(sp.getString("S1_8T","-"));
-                    s1_1.setText(item.getS1_1());
-                    s1_2.setText(item.getS1_2());
-                    s1_3.setText(item.getS1_3());
-                    s1_4.setText(item.getS1_4());
-                    s1_5.setText(item.getS1_5());
-                    s1_6.setText(item.getS1_6());
-                    s1_7.setText(item.getS1_7());
-                    s1_8.setText(item.getS1_8());
-                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", "01220788729");
+                    intent.putExtra("data", "GET KIND1");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }

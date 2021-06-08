@@ -31,12 +31,9 @@ public class SensorWarningActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sensor_warning);
-
         sharedPref = this.getSharedPreferences("0_LIMT", 0);
         editor = sharedPref.edit();
         mRecyclerView = findViewById(R.id.recycler5);
-
-
         mAdapter = new RecyclerImageTextAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

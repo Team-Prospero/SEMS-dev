@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.sensor_water_warning;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,13 +20,12 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -37,7 +37,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View view = inflater.inflate(R.layout.recycler_item_sensor_onoff, parent, false);
+        View view = inflater.inflate(R.layout.recycler_item_sensor_warning, parent, false);
         ViewHolder vh = new ViewHolder(view);
 
         return vh;
@@ -47,14 +47,24 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         RecyclerItem item = mData.get(position);
-        holder.s1_1.setText(item.getS1_1());
-        holder.s1_2.setText(item.getS1_2());
-        holder.s1_3.setText(item.getS1_3());
-        holder.s1_4.setText(item.getS1_4());
-        holder.s1_5.setText(item.getS1_5());
-        holder.s1_6.setText(item.getS1_6());
-        holder.s1_7.setText(item.getS1_7());
-        holder.s1_8.setText(item.getS1_8());
+
+        holder.s1_1_H.setText(item.getS1_1_H());
+        holder.s1_2_H.setText(item.getS1_2_H());
+        holder.s1_3_H.setText(item.getS1_3_H());
+        holder.s1_4_H.setText(item.getS1_4_H());
+        holder.s1_5_H.setText(item.getS1_5_H());
+        holder.s1_6_H.setText(item.getS1_6_H());
+        holder.s1_7_H.setText(item.getS1_7_H());
+        holder.s1_8_H.setText(item.getS1_8_H());
+
+        holder.s1_1_L.setText(item.getS1_1_L());
+        holder.s1_2_L.setText(item.getS1_2_L());
+        holder.s1_3_L.setText(item.getS1_3_L());
+        holder.s1_4_L.setText(item.getS1_4_L());
+        holder.s1_5_L.setText(item.getS1_5_L());
+        holder.s1_6_L.setText(item.getS1_6_L());
+        holder.s1_7_L.setText(item.getS1_7_L());
+        holder.s1_8_L.setText(item.getS1_8_L());
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
@@ -67,51 +77,128 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
-        TableLayout dataTable;
         TableRow Area_1, Area_2, Area_3, Area_4, Area_5, Area_6, Area_7, Area_8;
-        TextView s1_1, s1_2, s1_3, s1_4, s1_5, s1_6, s1_7, s1_8;
-        Button onoff_lookup_btn, onoff_manage_btn;
-        AlertDialog.Builder onOffDialog = new AlertDialog.Builder(itemView.getContext());
+        TextView s1_1_H, s1_2_H, s1_3_H, s1_4_H, s1_5_H, s1_6_H, s1_7_H, s1_8_H,
+                s1_1_L, s1_2_L, s1_3_L, s1_4_L, s1_5_L, s1_6_L, s1_7_L, s1_8_L;
+        Button warning_lookup_btn, warning_manage_btn;
+        SharedPreferences sp, msg_sp;
+        SharedPreferences.Editor editor;
+        AlertDialog.Builder warningDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
-            farmNumber = itemView.findViewById(R.id.farmNumber);
-            Area_1 = itemView.findViewById(R.id.of_area_1);
-            Area_2 = itemView.findViewById(R.id.of_area_2);
-            Area_3 = itemView.findViewById(R.id.of_area_3);
-            Area_4 = itemView.findViewById(R.id.of_area_4);
-            Area_5 = itemView.findViewById(R.id.of_area_5);
-            Area_6 = itemView.findViewById(R.id.of_area_6);
-            Area_7 = itemView.findViewById(R.id.of_area_7);
-            Area_8 = itemView.findViewById(R.id.of_area_8);
-            s1_1 = itemView.findViewById(R.id.of1_1);
-            s1_2 = itemView.findViewById(R.id.of1_2);
-            s1_3 = itemView.findViewById(R.id.of1_3);
-            s1_4 = itemView.findViewById(R.id.of1_4);
-            s1_5 = itemView.findViewById(R.id.of1_5);
-            s1_6 = itemView.findViewById(R.id.of1_6);
-            s1_7 = itemView.findViewById(R.id.of1_7);
-            s1_8 = itemView.findViewById(R.id.of1_8);
-            onoff_manage_btn = itemView.findViewById(R.id.on_off_manage_btn);
-            onoff_lookup_btn = itemView.findViewById(R.id.on_off_lookup_btn);
-            sp = itemView.getContext().getSharedPreferences("0_USE", 0);
+            farmNumber = itemView.findViewById(R.id.wa_farmNumber);
+
+            Area_1 = itemView.findViewById(R.id.wa_area_1);
+            Area_2 = itemView.findViewById(R.id.wa_area_2);
+            Area_3 = itemView.findViewById(R.id.wa_area_3);
+            Area_4 = itemView.findViewById(R.id.wa_area_4);
+            Area_5 = itemView.findViewById(R.id.wa_area_5);
+            Area_6 = itemView.findViewById(R.id.wa_area_6);
+            Area_7 = itemView.findViewById(R.id.wa_area_7);
+            Area_8 = itemView.findViewById(R.id.wa_area_8);
+
+            s1_1_H = itemView.findViewById(R.id.wa_S1_1T_H);
+            s1_2_H = itemView.findViewById(R.id.wa_S1_2T_H);
+            s1_3_H = itemView.findViewById(R.id.wa_S1_3T_H);
+            s1_4_H = itemView.findViewById(R.id.wa_S1_4T_H);
+            s1_5_H = itemView.findViewById(R.id.wa_S1_5T_H);
+            s1_6_H = itemView.findViewById(R.id.wa_S1_6T_H);
+            s1_7_H = itemView.findViewById(R.id.wa_S1_7T_H);
+            s1_8_H = itemView.findViewById(R.id.wa_S1_8T_H);
+
+            s1_1_L = itemView.findViewById(R.id.wa_S1_1T_L);
+            s1_2_L = itemView.findViewById(R.id.wa_S1_2T_L);
+            s1_3_L = itemView.findViewById(R.id.wa_S1_3T_L);
+            s1_4_L = itemView.findViewById(R.id.wa_S1_4T_L);
+            s1_5_L = itemView.findViewById(R.id.wa_S1_5T_L);
+            s1_6_L = itemView.findViewById(R.id.wa_S1_6T_L);
+            s1_7_L = itemView.findViewById(R.id.wa_S1_7T_L);
+            s1_8_L = itemView.findViewById(R.id.wa_S1_8T_L);
+
+            warning_manage_btn = itemView.findViewById(R.id.water_warning_manage_btn);
+            warning_lookup_btn = itemView.findViewById(R.id.water_warning_lookup_btn);
+            sp = itemView.getContext().getSharedPreferences("0_WA", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
             editor = sp.edit();
+            AlertDialog.Builder sensorWarningDialog = new AlertDialog.Builder(itemView.getContext());
 
-            onoff_manage_btn.setOnClickListener(new View.OnClickListener() {
-                View dialog = inflater.inflate(R.layout.dialog_onoff_manage, null);
-                Spinner equipNumber = dialog.findViewById(R.id.on_off_equip_number);
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    // S1_1T_HIGH -> S(장비번호)_(구역번호)T_(HIGH or LOW)
+                    switch (key) {
+                        case "S1_1T_H":
+                            s1_1_H.setText(sp.getString("S1_1T_HIGH", "-"));
+                            break;
+                        case "S1_2T_H":
+                            s1_2_H.setText(sp.getString("S1_2T_HIGH", "-"));
+                            break;
+                        case "S1_3T_H":
+                            s1_3_H.setText(sp.getString("S1_3T_HIGH", "-"));
+                            break;
+                        case "S1_4T_H":
+                            s1_4_H.setText(sp.getString("S1_4T_HIGH", "-"));
+                            break;
+                        case "S1_5T_H":
+                            s1_5_H.setText(sp.getString("S1_5T_HIGH", "-"));
+                            break;
+                        case "S1_6T_H":
+                            s1_6_H.setText(sp.getString("S1_6T_HIGH", "-"));
+                            break;
+                        case "S1_7T_H":
+                            s1_7_H.setText(sp.getString("S1_7T_HIGH", "-"));
+                            break;
+                        case "S1_8T_H":
+                            s1_8_H.setText(sp.getString("S1_8T_HIGH", "-"));
+                            break;
+
+                        case "S1_1T_L":
+                            s1_1_L.setText(sp.getString("S1_1T_LOW", "-"));
+                            break;
+                        case "S1_2T_L":
+                            s1_2_L.setText(sp.getString("S1_2T_LOW", "-"));
+                            break;
+                        case "S1_3T_L":
+                            s1_3_L.setText(sp.getString("S1_3T_LOW", "-"));
+                            break;
+                        case "S1_4T_L":
+                            s1_4_L.setText(sp.getString("S1_4T_LOW", "-"));
+                            break;
+                        case "S1_5T_L":
+                            s1_5_L.setText(sp.getString("S1_5T_LOW", "-"));
+                            break;
+                        case "S1_6T_L":
+                            s1_6_L.setText(sp.getString("S1_6T_LOW", "-"));
+                            break;
+                        case "S1_7T_L":
+                            s1_7_L.setText(sp.getString("S1_7T_LOW", "-"));
+                            break;
+                        case "S1_8T_L":
+                            s1_8_L.setText(sp.getString("S1_8T_LOW", "-"));
+                            break;
+                    }
+                }
+            };
+
+            warning_manage_btn.setOnClickListener(new View.OnClickListener() {
+
+                View dialog = inflater.inflate(R.layout.dialog_warning_value_manage, null);
+
+                Spinner equipNumber = dialog.findViewById(R.id.warn_val_equip_number);
                 String[] equipItem = {"1번 장비"};
-                Spinner sensorNumber = dialog.findViewById(R.id.on_off_sensor_number);
-                String[] sensorItem = {"1구역","2구역","3구역","4구역","5구역","6구역","7구역","8구역"};
-                Spinner sensorOnOff = dialog.findViewById(R.id.sensor_on_off);
-                String[] onOffItem = {"사용","미사용"};
-
-                String isOnOff = null;
-                int col;
+                Spinner sensorNumber = dialog.findViewById(R.id.warn_val_sensor_number);
+                String[] sensorItem = {"1구역", "2구역", "3구역", "4구역", "5구역", "6구역", "7구역", "8구역"};
+                EditText sensorHigh = dialog.findViewById(R.id.sensor_high);
+                EditText sensorLow = dialog.findViewById(R.id.sensor_low);
+                String msgbody, phone = msg_sp.getString("number", "01220788729");
+                String high, low;
+                int col, row;
                 TableRow selectedRow;
 
-                private void setAdapter(){
+                private void setAdapter() {
 
                     ArrayAdapter<String> equipNumberAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, equipItem);
                     equipNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -121,25 +208,21 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorNumberAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     sensorNumber.setAdapter(sensorNumberAdapter);
 
-                    ArrayAdapter<String> sensorOnOffAdapter = new ArrayAdapter<String>(itemView.getContext(), android.R.layout.simple_spinner_item, onOffItem);
-                    sensorOnOffAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    sensorOnOff.setAdapter(sensorOnOffAdapter);
-
                     equipNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    col=1;
+                                    col = 1;
                                     break;
                                 case 1:
-                                    col=2;
+                                    col = 3;
                                     break;
                                 case 2:
-                                    col=3;
+                                    col = 5;
                                     break;
                                 case 3:
-                                    col=4;
+                                    col = 7;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), equipItem[position], Toast.LENGTH_SHORT).show();
@@ -154,53 +237,40 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorNumber.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            switch (position) {
                                 case 0:
-                                    selectedRow=itemView.findViewById(R.id.of_area_1);
+                                    row = 1;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_1);
                                     break;
                                 case 1:
-                                    selectedRow=itemView.findViewById(R.id.of_area_2);
+                                    row = 2;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_2);
                                     break;
                                 case 2:
-                                    selectedRow=itemView.findViewById(R.id.of_area_3);
+                                    row = 3;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_3);
                                     break;
                                 case 3:
-                                    selectedRow=itemView.findViewById(R.id.of_area_4);
+                                    row = 4;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_4);
                                     break;
                                 case 4:
-                                    selectedRow=itemView.findViewById(R.id.of_area_5);
+                                    row = 5;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_5);
                                     break;
                                 case 5:
-                                    selectedRow=itemView.findViewById(R.id.of_area_6);
+                                    row = 6;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_6);
                                     break;
                                 case 6:
-                                    selectedRow=itemView.findViewById(R.id.of_area_7);
+                                    row = 7;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_7);
                                     break;
                                 case 7:
-                                    selectedRow=itemView.findViewById(R.id.of_area_8);
+                                    row = 8;
+                                    selectedRow = itemView.findViewById(R.id.wa_area_8);
                                     break;
                             }
-                            Toast.makeText(itemView.getContext(), sensorItem[position], Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    sensorOnOff.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
-                                case 0:
-                                    isOnOff="ON";
-                                    break;
-                                case 1:
-                                    isOnOff="OFF";
-                                    break;
-                            }
-                            Toast.makeText(itemView.getContext(), onOffItem[position], Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -209,54 +279,51 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                         }
                     });
                 }
+
                 @Override
                 public void onClick(View v) {
                     setAdapter();
-                    onOffDialog.setTitle("센서종류 변경");
-                    onOffDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    sensorWarningDialog.setTitle("센서종류 변경");
+                    sensorWarningDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            TextView textView = (TextView) selectedRow.getChildAt(col);
-                            textView.setText(isOnOff);
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
+                            String tag;
+                            String limitHigh, limitLow;
+                            // SET LIMT(장비)-(구역):(상위)(하위)
+                            // S(장비번호)_(구역번호)T_(HIGH or LOW)
+                            limitHigh = String.valueOf(sensorHigh.getText());
+                            limitLow = String.valueOf(sensorLow.getText());
+                            msgbody = "SET WA" + col + "-" + row + ":" + limitLow + limitHigh;
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data", msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
                             dialog.dismiss();
                         }
                     });
-                    onOffDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    sensorWarningDialog.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Toast.makeText(itemView.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
                             dialog.cancel();
                         }
                     });
-                    if(dialog.getParent()!=null){ // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
+                    if (dialog.getParent() != null) { // 부모 뷰에 하위 뷰가 여러번 띄워지는 것을 방지
                         ((ViewGroup) dialog.getParent()).removeView(dialog);
                     }
-                    onOffDialog.setView(dialog);
-                    onOffDialog.show();
+                    sensorWarningDialog.setView(dialog);
+                    sensorWarningDialog.show();
                 }
             });
-            onoff_lookup_btn.setOnClickListener(new View.OnClickListener() {
+            warning_lookup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RecyclerItem item = new RecyclerItem();
-                    item.setS1_1(sp.getString("S1_1T","-"));
-                    item.setS1_2(sp.getString("S1_2T","-"));
-                    item.setS1_3(sp.getString("S1_3T","-"));
-                    item.setS1_4(sp.getString("S1_4T","-"));
-                    item.setS1_5(sp.getString("S1_5T","-"));
-                    item.setS1_6(sp.getString("S1_6T","-"));
-                    item.setS1_7(sp.getString("S1_7T","-"));
-                    item.setS1_8(sp.getString("S1_8T","-"));
-                    s1_1.setText(item.getS1_1());
-                    s1_2.setText(item.getS1_2());
-                    s1_3.setText(item.getS1_3());
-                    s1_4.setText(item.getS1_4());
-                    s1_5.setText(item.getS1_5());
-                    s1_6.setText(item.getS1_6());
-                    s1_7.setText(item.getS1_7());
-                    s1_8.setText(item.getS1_8());
-                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", msg_sp.getString("number", "-"));
+                    intent.putExtra("data", "GET WA1");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }

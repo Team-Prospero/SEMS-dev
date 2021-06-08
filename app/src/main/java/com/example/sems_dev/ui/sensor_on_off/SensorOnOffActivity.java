@@ -30,8 +30,6 @@ public class SensorOnOffActivity extends AppCompatActivity {
         sharedPref = this.getSharedPreferences("0_USE", 0);
         editor = sharedPref.edit();
         mRecyclerView = findViewById(R.id.recycler4);
-
-
         mAdapter = new RecyclerImageTextAdapter(mList);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));

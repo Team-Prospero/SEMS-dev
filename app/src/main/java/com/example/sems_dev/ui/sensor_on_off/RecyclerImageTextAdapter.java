@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.sensor_on_off;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,13 +20,13 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData;
-    SharedPreferences sp;
-    SharedPreferences.Editor editor;
+
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -67,16 +68,18 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
         LayoutInflater inflater = (LayoutInflater) itemView.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         TextView farmNumber;
-        TableLayout dataTable;
         TableRow Area_1, Area_2, Area_3, Area_4, Area_5, Area_6, Area_7, Area_8;
         TextView s1_1, s1_2, s1_3, s1_4, s1_5, s1_6, s1_7, s1_8;
         Button onoff_lookup_btn, onoff_manage_btn;
+        SharedPreferences sp, msg_sp;
+        SharedPreferences.Editor editor;
         AlertDialog.Builder onOffDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
             super(itemView);
             // 뷰 객체에 대한 참조. (hold strong reference)
             farmNumber = itemView.findViewById(R.id.farmNumber);
+
             Area_1 = itemView.findViewById(R.id.of_area_1);
             Area_2 = itemView.findViewById(R.id.of_area_2);
             Area_3 = itemView.findViewById(R.id.of_area_3);
@@ -85,6 +88,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             Area_6 = itemView.findViewById(R.id.of_area_6);
             Area_7 = itemView.findViewById(R.id.of_area_7);
             Area_8 = itemView.findViewById(R.id.of_area_8);
+
             s1_1 = itemView.findViewById(R.id.of1_1);
             s1_2 = itemView.findViewById(R.id.of1_2);
             s1_3 = itemView.findViewById(R.id.of1_3);
@@ -93,10 +97,81 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             s1_6 = itemView.findViewById(R.id.of1_6);
             s1_7 = itemView.findViewById(R.id.of1_7);
             s1_8 = itemView.findViewById(R.id.of1_8);
+
             onoff_manage_btn = itemView.findViewById(R.id.on_off_manage_btn);
             onoff_lookup_btn = itemView.findViewById(R.id.on_off_lookup_btn);
             sp = itemView.getContext().getSharedPreferences("0_USE", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
             editor = sp.edit();
+
+
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    String temp;
+                    switch (key) {
+                        case "S1_1T":
+                            temp = sharedPreferences.getString("S1_1T", "-");
+                            if(temp.equals("0"))
+                                s1_1.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_1.setText("ON");
+                            break;
+                        case "S1_2T":
+                            temp = sharedPreferences.getString("S1_2T", "-");
+                            if(temp.equals("0"))
+                                s1_2.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_2.setText("ON");
+                            break;
+                        case "S1_3T":
+                            temp = sharedPreferences.getString("S1_3T", "-");
+                            if(temp.equals("0"))
+                                s1_3.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_3.setText("ON");
+                            break;
+                        case "S1_4T":
+                            temp = sharedPreferences.getString("S1_4T", "-");
+                            if(temp.equals("0"))
+                                s1_4.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_4.setText("ON");
+                            break;
+                        case "S1_5T":
+                            temp = sharedPreferences.getString("S1_5T", "-");
+                            if(temp.equals("0"))
+                                s1_5.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_5.setText("ON");
+                            break;
+                        case "S1_6T":
+                            temp = sharedPreferences.getString("S1_6T", "-");
+                            if(temp.equals("0"))
+                                s1_6.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_6.setText("ON");
+                            break;
+                        case "S1_7T":
+                            temp = sharedPreferences.getString("S1_7T", "-");
+                            if(temp.equals("0"))
+                                s1_7.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_7.setText("ON");
+                            break;
+                        case "S1_8T":
+                            temp = sharedPreferences.getString("S1_8T", "-");
+                            if(temp.equals("0"))
+                                s1_8.setText("OFF");
+                            if(temp.equals("1"))
+                                s1_8.setText("ON");
+                            break;
+                    }
+                }
+            };
+
+
 
             onoff_manage_btn.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_onoff_manage, null);
@@ -105,10 +180,10 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 Spinner sensorNumber = dialog.findViewById(R.id.on_off_sensor_number);
                 String[] sensorItem = {"1구역","2구역","3구역","4구역","5구역","6구역","7구역","8구역"};
                 Spinner sensorOnOff = dialog.findViewById(R.id.sensor_on_off);
-                String[] onOffItem = {"사용","미사용"};
+                String[] onOffItem = {"미사용", "사용"};
 
-                String isOnOff = null;
-                int col;
+                String msgbody, isOnOff = null, phone = msg_sp.getString("number", "01220788729");
+                int col, row, pos;
                 TableRow selectedRow;
 
                 private void setAdapter(){
@@ -157,27 +232,35 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             switch (position){
                                 case 0:
                                     selectedRow=itemView.findViewById(R.id.of_area_1);
+                                    row=1;
                                     break;
                                 case 1:
                                     selectedRow=itemView.findViewById(R.id.of_area_2);
+                                    row=2;
                                     break;
                                 case 2:
                                     selectedRow=itemView.findViewById(R.id.of_area_3);
+                                    row=3;
                                     break;
                                 case 3:
                                     selectedRow=itemView.findViewById(R.id.of_area_4);
+                                    row=4;
                                     break;
                                 case 4:
                                     selectedRow=itemView.findViewById(R.id.of_area_5);
+                                    row=5;
                                     break;
                                 case 5:
                                     selectedRow=itemView.findViewById(R.id.of_area_6);
+                                    row=6;
                                     break;
                                 case 6:
                                     selectedRow=itemView.findViewById(R.id.of_area_7);
+                                    row=7;
                                     break;
                                 case 7:
                                     selectedRow=itemView.findViewById(R.id.of_area_8);
+                                    row=8;
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), sensorItem[position], Toast.LENGTH_SHORT).show();
@@ -192,12 +275,13 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     sensorOnOff.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            switch (position){
+                            pos = position;
+                            switch (pos){
                                 case 0:
-                                    isOnOff="ON";
+                                    isOnOff="OFF";
                                     break;
                                 case 1:
-                                    isOnOff="OFF";
+                                    isOnOff="ON";
                                     break;
                             }
                             Toast.makeText(itemView.getContext(), onOffItem[position], Toast.LENGTH_SHORT).show();
@@ -216,9 +300,14 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                     onOffDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            TextView textView = (TextView) selectedRow.getChildAt(col);
-                            textView.setText(isOnOff);
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
+                            // SET USE(장비)-(구역):(사용)
+                            msgbody = "SET USE" + col + "-" + row + ":" + pos;
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data", msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
+
                             dialog.dismiss();
                         }
                     });
@@ -239,24 +328,11 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             onoff_lookup_btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    RecyclerItem item = new RecyclerItem();
-                    item.setS1_1(sp.getString("S1_1T","-"));
-                    item.setS1_2(sp.getString("S1_2T","-"));
-                    item.setS1_3(sp.getString("S1_3T","-"));
-                    item.setS1_4(sp.getString("S1_4T","-"));
-                    item.setS1_5(sp.getString("S1_5T","-"));
-                    item.setS1_6(sp.getString("S1_6T","-"));
-                    item.setS1_7(sp.getString("S1_7T","-"));
-                    item.setS1_8(sp.getString("S1_8T","-"));
-                    s1_1.setText(item.getS1_1());
-                    s1_2.setText(item.getS1_2());
-                    s1_3.setText(item.getS1_3());
-                    s1_4.setText(item.getS1_4());
-                    s1_5.setText(item.getS1_5());
-                    s1_6.setText(item.getS1_6());
-                    s1_7.setText(item.getS1_7());
-                    s1_8.setText(item.getS1_8());
-                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", msg_sp.getString("number","-"));
+                    intent.putExtra("data", "GET USE1");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }

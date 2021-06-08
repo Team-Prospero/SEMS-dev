@@ -27,6 +27,7 @@ import java.util.ArrayList;
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
     public String msgbody = null;
+
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -49,7 +50,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     public void onBindViewHolder(RecyclerImageTextAdapter.ViewHolder holder, int position) {
 
         RecyclerItem item = mData.get(position);
-        holder.farmNumber.setText(item.getFarmNumber()+" 농장");
+        holder.farmNumber.setText(item.getFarmNumber() + " 농장");
         holder.pd_msg_1.setText(holder.sp.getString("1_Hour", "-") + " : " + holder.sp.getString("1_Min", "-"));
         holder.pd_msg_2.setText(holder.sp.getString("2_Hour", "-") + " : " + holder.sp.getString("2_Min", "-"));
     }
@@ -66,7 +67,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         TextView farmNumber;
         TextView pd_msg_1, pd_msg_2;
         Button pd_msg_edit, pd_msg_lookup;
-        SharedPreferences sp;
+        SharedPreferences sp, msg_sp;
         SharedPreferences.Editor editor;
         AlertDialog.Builder pdMsgDialog = new AlertDialog.Builder(itemView.getContext());
 
@@ -79,23 +80,23 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             pd_msg_edit = itemView.findViewById(R.id.pd_msg_edit);
             pd_msg_lookup = itemView.findViewById(R.id.pd_msg_lookup);
             sp = itemView.getContext().getSharedPreferences("0_TIME", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_Farm", 0);
             editor = sp.edit();
-
 
             SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
                 @Override
                 public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                    switch (key){
+                    switch (key) {
                         case "1_Hour":
                         case "1_Min":
-                            pd_msg_1.setText(sharedPreferences.getString("1_Hour","-")+" : "+sharedPreferences.getString("1_Min","-"));
-                            Log.d("[spChanged]",sharedPreferences.getString("1_Hour","-")+" : "+sharedPreferences.getString("1_Min","-"));
+                            pd_msg_1.setText(sharedPreferences.getString("1_Hour", "-") + " : " + sharedPreferences.getString("1_Min", "-"));
+                            Log.d("[spChanged]", sharedPreferences.getString("1_Hour", "-") + " : " + sharedPreferences.getString("1_Min", "-"));
                             break;
 
                         case "2_Hour":
                         case "2_Min":
-                            pd_msg_2.setText(sharedPreferences.getString("2_Hour","-")+" : "+sharedPreferences.getString("2_Min","-"));
-                            Log.d("[spChanged]",sharedPreferences.getString("2_Hour","-")+" : "+sharedPreferences.getString("2_Min","-"));
+                            pd_msg_2.setText(sharedPreferences.getString("2_Hour", "-") + " : " + sharedPreferences.getString("2_Min", "-"));
+                            Log.d("[spChanged]", sharedPreferences.getString("2_Hour", "-") + " : " + sharedPreferences.getString("2_Min", "-"));
                             break;
                     }
                 }
@@ -106,7 +107,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 Spinner pdMsg_spinner = dialog.findViewById(R.id.pd_msg_spinner);
                 TimePicker pdMsg_timepicker = dialog.findViewById(R.id.pd_msg_timepicker);
                 String[] pdMsg_item = {"1번 문자시간", "2번 문자시간"};
-                String saveResult, pos, phone="01220788729";
+                String saveResult, pos, phone = msg_sp.getString("number", "01220788729");
 
                 @Override
                 public void onClick(View v) {
@@ -119,24 +120,16 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
 
                             switch (pos) {
                                 case "1_HourN1_Min":
-                                    editor.putString("1_Hour", saveResult.substring(0,2));
-                                    editor.putString("1_Min", saveResult.substring(2));
-                                    editor.apply();
-                                    pd_msg_1.setText(sp.getString("1_Hour", "-") + " : " + sp.getString("1_Min", "-"));
-                                    msgbody = "SET TIME1:"+saveResult;
+                                    msgbody = "SET TIME1:" + saveResult;
                                     break;
 
                                 case "2_HourN2_Min":
-                                    editor.putString("2_Hour", saveResult.substring(0,2));
-                                    editor.putString("2_Min", saveResult.substring(2));
-                                    editor.apply();
-                                    pd_msg_2.setText(sp.getString("2_Hour", "-") + " : " + sp.getString("2_Min", "-"));
-                                    msgbody = "SET TIME2:"+saveResult;
+                                    msgbody = "SET TIME2:" + saveResult;
                                     break;
                             }
                             Intent intent = new Intent(itemView.getContext(), SendSMS.class);
                             intent.putExtra("number", phone);
-                            intent.putExtra("data",msgbody);
+                            intent.putExtra("data", msgbody);
                             itemView.getContext().startActivity(intent);
                             sp.registerOnSharedPreferenceChangeListener(listener);
                             dialog.dismiss();
@@ -167,11 +160,9 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                             switch (position) {
                                 case 0:
                                     pos = "1_HourN1_Min";
-                                    Toast.makeText(itemView.getContext(), pos, Toast.LENGTH_SHORT).show();
                                     break;
                                 case 1:
                                     pos = "2_HourN2_Min";
-                                    Toast.makeText(itemView.getContext(), pos, Toast.LENGTH_SHORT).show();
                                     break;
                             }
                         }
@@ -205,7 +196,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 public void onClick(View v) {
                     Intent intent = new Intent(itemView.getContext(), SendSMS.class);
                     intent.putExtra("number", "01220788729");
-                    intent.putExtra("data","GET TIME");
+                    intent.putExtra("data", "GET TIME");
                     itemView.getContext().startActivity(intent);
                     sp.registerOnSharedPreferenceChangeListener(listener);
                 }

@@ -3,6 +3,7 @@ package com.example.sems_dev.ui.emergency_call;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,12 +20,14 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sems_dev.R;
+import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 
 public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImageTextAdapter.ViewHolder> {
     private ArrayList<RecyclerItem> mData = null;
     public String msgbody = null;
+
     // 생성자에서 데이터 리스트 객체를 전달받음.
     RecyclerImageTextAdapter(ArrayList<RecyclerItem> list) {
         mData = list;
@@ -47,7 +50,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
     public void onBindViewHolder(RecyclerImageTextAdapter.ViewHolder holder, int position) {
 
         RecyclerItem item = mData.get(position);
-        holder.farmNumber.setText(item.getFarmNumber());
+        holder.farmNumber.setText(item.getFarmNumber() + "농장");
         holder.pNum_1.setText(item.getpNum_1());
         holder.pNum_2.setText(item.getpNum_2());
         holder.pNum_3.setText(item.getpNum_3());
@@ -67,8 +70,8 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
         TextView farmNumber;
         TextView pNum_1, pNum_2, pNum_3, pNum_4, pNum_5;
         Button phonenumber_edit, phonenumber_lookup;
-        SharedPreferences sp;
-        SharedPreferences.Editor editor;
+        SharedPreferences sp, msg_sp;
+        SharedPreferences.Editor editor, msg_editor;
         AlertDialog.Builder emCallDialog = new AlertDialog.Builder(itemView.getContext());
 
         ViewHolder(View itemView) {
@@ -83,13 +86,62 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             phonenumber_edit = itemView.findViewById(R.id.phonenumber_edit);
             phonenumber_lookup = itemView.findViewById(R.id.phonenumber_lookup);
             sp = itemView.getContext().getSharedPreferences("0_NUM", 0);
+            msg_sp = itemView.getContext().getSharedPreferences("0_FARM", 0);
             editor = sp.edit();
+
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                    String temp;
+                    switch (key) {
+                        case "1":
+                            temp = sharedPreferences.getString("1", "-");
+                            if (temp.equals("NULL"))
+                                pNum_1.setText("-");
+                            else
+                                pNum_1.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                            break;
+                        case "2":
+                            temp = sharedPreferences.getString("2", "-");
+                            if (temp.equals("NULL"))
+                                pNum_2.setText("-");
+                            else
+                                pNum_2.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                            break;
+                        case "3":
+                            temp = sharedPreferences.getString("3", "-");
+                            if (temp.equals("NULL"))
+                                pNum_3.setText("-");
+                            else
+                                pNum_3.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                            break;
+                        case "4":
+                            temp = sharedPreferences.getString("4", "-");
+                            if (temp.equals("NULL"))
+                                pNum_4.setText("-");
+                            else
+                                pNum_4.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                            break;
+                        case "5":
+                            temp = sharedPreferences.getString("5", "-");
+                            if (temp.equals("NULL"))
+                                pNum_5.setText("-");
+                            else
+                                pNum_5.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                            break;
+                    }
+                }
+            };
+
+
             phonenumber_edit.setOnClickListener(new View.OnClickListener() {
                 View dialog = inflater.inflate(R.layout.dialog_emergency_call, null);
                 Spinner emCall_spinner = dialog.findViewById(R.id.em_call_spinner);
                 EditText emCall_edit = dialog.findViewById(R.id.em_call_edit);
                 String[] emCall_item = {"1번 연락처", "2번 연락처", "3번 연락처", "4번 연락처", "5번 연락처"};
-                String phoneNumber, saveResult, pos;
+                String phoneNumber, saveResult, pos, phone = msg_sp.getString("number", "01220788729");
+                ;
 
                 @Override
                 public void onClick(View v) {
@@ -108,31 +160,35 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                                 case "1":
                                     temp = sp.getString(pos, "-");
                                     pNum_1.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
-                                    msgbody = "SET 1:"+temp;
+                                    msgbody = "SET 1:" + temp;
                                     break;
                                 case "2":
                                     temp = sp.getString(pos, "-");
                                     pNum_2.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
-                                    msgbody = "SET 2:"+temp;
+                                    msgbody = "SET 2:" + temp;
                                     break;
                                 case "3":
                                     temp = sp.getString(pos, "-");
                                     pNum_3.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
-                                    msgbody = "SET 3:"+temp;
+                                    msgbody = "SET 3:" + temp;
                                     break;
                                 case "4":
                                     temp = sp.getString(pos, "-");
                                     pNum_4.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
-                                    msgbody = "SET 4:"+temp;
+                                    msgbody = "SET 4:" + temp;
                                     break;
                                 case "5":
                                     temp = sp.getString(pos, "-");
                                     pNum_5.setText(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7));
-                                    msgbody = "SET 5:"+temp;
+                                    msgbody = "SET 5:" + temp;
                                     break;
                             }
+                            Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                            intent.putExtra("number", phone);
+                            intent.putExtra("data", msgbody);
+                            itemView.getContext().startActivity(intent);
+                            sp.registerOnSharedPreferenceChangeListener(listener);
                             emCall_edit.setText("");
-                            Toast.makeText(itemView.getContext(), "설정되었습니다", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
                     });
@@ -189,26 +245,13 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
             phonenumber_lookup.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ArrayList<String> arrayList = new ArrayList<>();
-                    for (int i = 1; i < 6; i++) {
-                        String element = sp.getString(Integer.toString(i), "-");
-                        if (element.length() == 1) {
-                            arrayList.add(element);
-                        } else {
-                            arrayList.add(element.substring(0, 3) + "-" + element.substring(4, 8) + "-" + element.substring(7));
-                        }
-                    }
-                    pNum_1.setText(arrayList.get(0));
-                    pNum_2.setText(arrayList.get(1));
-                    pNum_3.setText(arrayList.get(2));
-                    pNum_4.setText(arrayList.get(3));
-                    pNum_5.setText(arrayList.get(4));
-                    Toast.makeText(itemView.getContext(), "갱신완료", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(itemView.getContext(), SendSMS.class);
+                    intent.putExtra("number", "01220788729");
+                    intent.putExtra("data", "GET NUM");
+                    itemView.getContext().startActivity(intent);
+                    sp.registerOnSharedPreferenceChangeListener(listener);
                 }
             });
         }
-    }
-    public String getEmCallMessageBody(){
-        return msgbody;
     }
 }
