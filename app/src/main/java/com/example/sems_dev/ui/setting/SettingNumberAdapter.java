@@ -85,7 +85,7 @@ public class SettingNumberAdapter extends ArrayAdapter {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         /** 시연용 임시. 시연이 끝나고 삭제!! */
-                        Toast.makeText(context,"죄송합니다. 시연 중에는 삭제할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(context,"죄송합니다. 시연 중에는 삭제할 수 없습니다.", Toast.LENGTH_SHORT).show();
                         /** */
 
                         /** 시연용 임시. 시연이 끝나고 주석 해제!! */
