@@ -123,6 +123,7 @@ public class GetValueFragment extends Fragment{
 
                 Intent intent = new Intent(getActivity(), SendSMS.class);
                 intent.putExtra("number", getActivity().getSharedPreferences(spinnerArray.get(spinner.getSelectedItemPosition()).get("sf"), 0).getString("number", ""));
+                intent.putExtra("data", "INFO");
                 startActivity(intent);
             }
         });
@@ -157,7 +158,7 @@ public class GetValueFragment extends Fragment{
             public void onClick(View view) {
                 int tag = (int)view.getTag();
                 setButtonsPink();
-                view.setBackgroundColor(Color.parseColor("#fccaca"));
+                view.setBackgroundColor(Color.parseColor("#D1B2FF"));
                 pager.setCurrentItem(tag,true);
             }
         };
@@ -197,10 +198,10 @@ public class GetValueFragment extends Fragment{
     private void setButtonColor(int position){
         for(Button btn : equipment){
             if(Integer.parseInt(btn.getTag().toString()) != position){
-                btn.setBackgroundColor(Color.parseColor("#B3E5FC"));
+                btn.setBackgroundColor(Color.parseColor("#8A3CFF"));
                 btn.setSelected(false);
             } else {
-                btn.setBackgroundColor(Color.parseColor("#fccaca"));
+                btn.setBackgroundColor(Color.parseColor("#D1B2FF"));
                 btn.setSelected(true);
             }
         }
@@ -217,7 +218,7 @@ public class GetValueFragment extends Fragment{
         @Override
         public Fragment getItem(int position) {
             equipment[position].setSelected(true);
-            equipment[position].setBackgroundColor(Color.parseColor("#B3E5FC"));
+            equipment[position].setBackgroundColor(Color.parseColor("#8A3CFF"));
             return new CustomAdapter("sFile"+position,spinnerPosition+"_INFO", position+1);
         }
 
@@ -240,7 +241,7 @@ public class GetValueFragment extends Fragment{
     private void setButtonsPink() {
         for (int i = 0; i < equipment.length; i++) {
             // 버튼의 포지션(배열에서의 index)를 태그로 저장
-            equipment[i].setBackgroundColor(Color.parseColor("#B3E5FC"));
+            equipment[i].setBackgroundColor(Color.parseColor("#8A3CFF"));
         }
     }
 

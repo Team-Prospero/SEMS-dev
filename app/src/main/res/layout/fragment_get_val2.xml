@@ -97,6 +97,71 @@
                         android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
+                    android:id="@+id/sensor2_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor2_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="2구역"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:id="@+id/Editsensor2_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="2구역"
+                        android:layout_marginRight="15dp"
+                        android:textColorHint="@color/black"
+                        android:textSize="18sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor2_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    >
+
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor2_Label_Table2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature2"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                       android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:id="@+id/SensorData2"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:text="온도"
+                        android:textStyle="bold" />
+                </TableRow>
+                <TableRow
                     android:id="@+id/sensor3_Label_Table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -111,7 +176,6 @@
                         android:layout_marginTop="10dp"
                            android:textSize="18sp"
                         android:textColor="@color/black"/>
-
                     <EditText
                         android:id="@+id/Editsensor3_Name"
                         android:layout_width="0dip"
@@ -120,8 +184,9 @@
                         android:gravity="center"
                         android:hint="3구역"
                         android:layout_marginRight="15dp"
+                           android:textSize="18sp"
                         android:textColorHint="@color/black"
-                        android:textSize="18sp" />
+                        />
 
                 </TableRow>
 
@@ -133,9 +198,10 @@
                     >
 
 
+
                 </TableRow>
                 <TableRow
-                    android:id="@+id/sensor3_Label_Table3"
+                    android:id="@+id/sensor3_Label_Table5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/border_bottom">
@@ -149,18 +215,91 @@
                        android:textSize="18sp"
                         android:textColor="@color/black"
                         />
-
                     <TextView
-                        android:id="@+id/SensorData3"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                        android:textStyle="bold"
+                       android:textSize="18sp"
+                        android:id="@+id/SensorData3"
+                        android:text="습도"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor4_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor4_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="4구역"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/Editsensor4_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="4구역"
+                        android:layout_marginRight="15dp"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor4_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    >
+
+
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor4_Label_Table4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/Temperature4"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="음수"
                         android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:text="온도"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:id="@+id/SensorData4"/>
                 </TableRow>
+            </TableLayout>
+
+            <TableLayout
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
                 <TableRow
                     android:id="@+id/sensor5_Label_Table"
                     android:layout_width="match_parent"
@@ -172,9 +311,9 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:text="5구역"
+                           android:textSize="18sp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="10dp"
-                           android:textSize="18sp"
                         android:textColor="@color/black"/>
                     <EditText
                         android:id="@+id/Editsensor5_Name"
@@ -214,220 +353,18 @@
                         android:gravity="center"
                        android:textSize="18sp"
                         android:textColor="@color/black"
-                        />
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textStyle="bold"
-                       android:textSize="18sp"
-                        android:id="@+id/SensorData5"
-                        android:text="습도"
-                        android:textColor="@color/black"/>
-                </TableRow>
-                <TableRow
-                    android:id="@+id/sensor7_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor7_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="7구역"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/black"
-                        android:textSize="18sp" />
-
-                    <EditText
-                        android:id="@+id/Editsensor7_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="7구역"
-                        android:layout_marginRight="15dp"
-                           android:textSize="18sp"
-                        android:textColorHint="@color/black"
-                        />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor7_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    >
-
-
-
-                </TableRow>
-                <TableRow
-                    android:id="@+id/sensor7_Label_Table7"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border_bottom"
-                    android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:id="@+id/Temperature7"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="강수"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:id="@+id/SensorData7"/>
-                </TableRow>
-            </TableLayout>
-
-            <TableLayout
-                android:layout_width="0dip"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-
-                <TableRow
-                    android:id="@+id/sensor2_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor2_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="2구역"
-                           android:textSize="18sp"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/black"/>
-                    <EditText
-                        android:id="@+id/Editsensor2_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="2구역"
-                        android:layout_marginRight="15dp"
-                           android:textSize="18sp"
-                        android:textColorHint="@color/black"
-                        />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor2_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    >
-
-
-
-                </TableRow>
-                <TableRow
-                    android:id="@+id/sensor2_Label_Table2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/Temperature2"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                       android:textSize="18sp"
-                        android:textColor="@color/black"
                        />
 
                     <TextView
-                        android:id="@+id/SensorData2"
+                        android:id="@+id/SensorData5"
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textColor="@color/black"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
-                </TableRow>
-                <TableRow
-                    android:id="@+id/sensor4_Label_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/sensor4_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="4구역"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                           android:textSize="18sp"
-                        android:textColor="@color/black"/>
-                    <EditText
-                        android:id="@+id/Editsensor4_Name"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:hint="4구역"
-                        android:layout_marginRight="15dp"
-                           android:textSize="18sp"
-                        android:textColorHint="@color/black"
-                        />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/sensor4_Data_Table"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dip"
-                    android:layout_weight="1"
-                    >
-
-
-                </TableRow>
-                <TableRow
-                    android:id="@+id/sensor4_Label_Table4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border_bottom">
-
-                    <TextView
-                        android:id="@+id/Temperature4"
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                       android:textSize="18sp"
-                        android:textColor="@color/black"
-                        />
-
-                    <TextView
-                        android:layout_width="0dip"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
                         android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:id="@+id/SensorData4"/>
+                        android:text="온도"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor6_Label_Table"
@@ -466,8 +403,6 @@
                     >
 
 
-
-
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor6_Label_Table6"
@@ -481,6 +416,73 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
+                       android:textSize="18sp"
+                        android:textColor="@color/black"
+                        />
+
+                    <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:id="@+id/SensorData6"
+                        android:text="온도"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor7_Label_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/sensor7_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text="7구역"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                           android:textSize="18sp"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:id="@+id/Editsensor7_Name"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:hint="7구역"
+                        android:layout_marginRight="15dp"
+                           android:textSize="18sp"
+                        android:textColorHint="@color/black"
+                        />
+
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/sensor7_Data_Table"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="1"
+                    >
+
+
+
+
+                </TableRow>
+                <TableRow
+                    android:id="@+id/sensor7_Label_Table7"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_bottom">
+
+                    <TextView
+                        android:id="@+id/Temperature7"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
 
                        android:textSize="18sp"
                         android:textColor="@color/black"/>
@@ -490,9 +492,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:id="@+id/SensorData6"
+                        android:id="@+id/SensorData7"
                        android:textSize="18sp"
-                        android:textColorHint="@color/black"/>
+                        android:text="온도"
+                        android:textColor="@color/black"/>
                 </TableRow>
                 <TableRow
                     android:id="@+id/sensor8_Label_Table"
@@ -557,6 +560,7 @@
                         android:textStyle="bold"
                        android:textSize="18sp"
                         android:id="@+id/SensorData8"
+                        android:text="온도"
                         android:textColor="@color/black"/>
                 </TableRow>
             </TableLayout>
