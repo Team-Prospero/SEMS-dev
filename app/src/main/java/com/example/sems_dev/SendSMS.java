@@ -10,8 +10,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.sems_dev.ui.get_value.GetValueFragment;
-
 
 public class SendSMS extends Activity{
 

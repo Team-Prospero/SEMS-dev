@@ -57,6 +57,7 @@ public class CheckSMS extends Service {
                 notification("", 0, 0, "LLL");
             } else{
                 String temp[] = data[1].split(":");
+                String temp1[] = data[1].split("\n");
                 if (data[1].contains("S1") || data[1].contains("S2") || data[1].contains("S3") || data[1].contains("S4")) {
                     section = temp[0].substring(1, 2);
                     if (data[1].contains("LM")) { //센서 경보범위
@@ -93,7 +94,8 @@ public class CheckSMS extends Service {
                         }
                         editor.commit();
                         Toast.makeText(this.getApplicationContext(), "음수량 경고범위 수신 완료", Toast.LENGTH_LONG).show();
-                    } else { // 현재 값 조회
+                    }
+/*                    else { // 현재 값 조회
                         SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_INFO", 0);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -128,6 +130,26 @@ public class CheckSMS extends Service {
                         }
                         editor.commit();
                         Toast.makeText(this.getApplicationContext(), "현재 값 수신 완료", Toast.LENGTH_LONG).show();
+                    }*/
+                    else{ // 현재 값 조회
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_INFO", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        if(temp1[0].contains("OK")){
+                            editor.putString("S" + section + "_status", temp1[0].substring(3));
+                        }else{
+                            editor.putString("S" + section + "_status", temp1[0].substring(0,5));
+                        }
+                        for(int i = 0 ; i<temp1.length ; i ++ ){
+                            if(temp[i].contains("OFF")){
+                                editor.putString("S" + section + "_" + i + "T", temp1[i].substring(3));
+                            }
+                            else{
+                                editor.putString("S" + section + "_" + i + "T", temp1[i].substring(3));
+                            }
+                        }
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(),"현재 값 수신 완료", Toast.LENGTH_LONG).show();
                     }
                 } else if (data[1].substring(0, 2).equals("1:")) { // 비상연락처
                     SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_NUM", 0);
