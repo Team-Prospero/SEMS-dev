@@ -54,9 +54,9 @@ public class SettingFragment extends Fragment{
 
         /** 시연용 임시. 시연이 끝나고 삭제 !!*/
         if(currentIndex == 0){
-            settingNumber.add(new SettingNumberClass("대가대", "01220788729", currentIndex));
+            settingNumber.add(new SettingNumberClass("EXPO시연", "01220788729", currentIndex));
             settingNumberAdapter.notifyDataSetChanged();
-            saveData("대가대", "01220788729");
+            saveData("EXPO시연", "01220788729");
         }
         /** */
 

@@ -30,55 +30,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#7deb34"
+                android:background="#BC263A19"
                 android:padding="1dp"
                 android:text="장비번호"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#7deb34"
+                android:background="#BC263A19"
                 android:padding="1dp"
                 android:text="1번 장비"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#7deb34"
+                android:background="#BC263A19"
                 android:padding="1dp"
                 android:text="2번 장비"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#7deb34"
+                android:background="#BC263A19"
                 android:padding="1dp"
                 android:text="3번 장비"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#7deb34"
+                android:background="#BC263A19"
                 android:padding="1dp"
                 android:text="4번 장비"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
         </TableRow>
 
         <TableRow>
@@ -87,55 +87,55 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="구역번호"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#cc6600"
+                android:background="#A1876D"
                 android:padding="1dp"
                 android:text="사용유무"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#cc6600"
+                android:background="#A1876D"
                 android:padding="1dp"
                 android:text="사용유무"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#cc6600"
+                android:background="#A1876D"
                 android:padding="1dp"
                 android:text="사용유무"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
                 android:layout_span="2"
-                android:background="#cc6600"
+                android:background="#A1876D"
                 android:padding="1dp"
                 android:text="사용유무"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
         </TableRow>
 
@@ -145,20 +145,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="1구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/of1_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -167,9 +167,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -178,9 +178,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -189,9 +189,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -204,20 +204,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="2구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/of1_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -226,9 +226,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -237,9 +237,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -248,9 +248,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -262,20 +262,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="3구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/of1_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -284,9 +284,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -295,9 +295,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -306,9 +306,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -321,20 +321,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="4구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/of1_4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -343,9 +343,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -354,9 +354,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -365,9 +365,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -381,12 +381,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="5구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
-
+                android:textColor="@color/white" />
 
 
             <TextView
@@ -394,9 +393,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -405,9 +404,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -416,9 +415,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -427,9 +426,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -441,12 +440,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="6구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
-
+                android:textColor="@color/white" />
 
 
             <TextView
@@ -454,9 +452,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -465,9 +463,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -476,9 +474,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -487,9 +485,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -502,20 +500,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="7구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/of1_7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -524,9 +522,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -535,9 +533,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -546,9 +544,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -560,12 +558,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffff00"
+                android:background="#DD404007"
                 android:padding="1dp"
                 android:text="8구역"
                 android:textAlignment="center"
-                android:textColor="@color/black" />
-
+                android:textColor="@color/white" />
 
 
             <TextView
@@ -573,9 +570,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -584,9 +581,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -595,9 +592,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
@@ -606,9 +603,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
-                android:background="#ffaa80"
-                android:padding="1dp"
                 android:layout_span="2"
+                android:background="#F8F0EC"
+                android:padding="1dp"
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black" />
