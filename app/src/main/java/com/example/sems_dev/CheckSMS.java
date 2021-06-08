@@ -47,118 +47,121 @@ public class CheckSMS extends Service {
             }
         }
         if (farmNo != -1) {
-/*            if(data[1].equals("Po")){
-
-            }else if(data[1].equals("HHH")){
-
-            }else if(data[1].equals("LLL")){
-
-            }*/
-            String temp[] = data[1].split(":");
-            if (data[1].contains("S1") || data[1].contains("S2") || data[1].contains("S3") || data[1].contains("S4")) {
-                section = temp[0].substring(1, 2);
-                if (data[1].contains("LM")) { //센서 경보범위
-                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(0, 2));
-                        editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(3, 5));
-                    }
-                    editor.commit();
-                    Toast.makeText(this.getApplicationContext(), "센서 경고 범위 수신 완료", Toast.LENGTH_LONG).show();
-                } else if (data[1].contains("KIND")) { // 센서 종류
-                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_KIND", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
-                    }
-                    editor.commit();
-                    Toast.makeText(this.getApplicationContext(), "센서 종류 수신 완료", Toast.LENGTH_LONG).show();
-                } else if (data[1].contains("USE")) { // 센서 사용 유무
-                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_USE", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
-                    }
-                    editor.commit();
-                    Toast.makeText(this.getApplicationContext(), "센서 사용 유무 수신 완료", Toast.LENGTH_LONG).show();
-                } else if (data[1].contains("WA")) { // 음수량 경고범위
-                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_WA", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(0, 2));
-                        editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(3, 5));
-                    }
-                    editor.commit();
-                    Toast.makeText(this.getApplicationContext(), "음수량 경고범위 수신 완료", Toast.LENGTH_LONG).show();
-                } else { // 현재 값 조회
-                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_INFO", 0);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    if (temp[1].contains("OK")) {
-                        editor.putString("S" + section + "_status", temp[1].substring(0, 2));
-                    } else {
-                        editor.putString("S" + section + "_status", temp[1].substring(0, 5));
-                    }
-                    for (int i = 1; i <= 8; i++) {
-                        if(temp[i].contains("T")){
-                            if (temp[i + 1].contains("OFF")) {
-                                editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 3));
-                            } else {
-                                editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 2));
-                                checkTemp(section, i, temp[i + 1].substring(0, 2));
-                            }
-                        }else if(temp[i].contains("H")){
-                            if (temp[i + 1].contains("OFF")) {
-                                editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 3));
-                            } else {
-                                editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 2));
-                                checkTemp(section, i, temp[i + 1].substring(0, 2));
-                            }
-                        }else if(temp[i].contains("W")){
-                            if (temp[i + 1].contains("OFF")) {
-                                editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 3));
-                            } else {
-                                editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 2));
-                                checkTemp(section, i, temp[i + 1].substring(0, 2));
-                            }
+            if (data[1].contains("전원단절")) {
+                notification(data[1].substring(1, 2), Integer.parseInt(data[1].substring(3, 4)), 0, "전원단절");
+            } else if (data[1].contains("전원정상")) {
+                notification(data[1].substring(1, 2), Integer.parseInt(data[1].substring(3, 4)), 0, "전원정상");
+            } else if (data[1].equals("HHH")) {
+                notification("", 0, 0, "HHH");
+            } else if (data[1].equals("LLL")) {
+                notification("", 0, 0, "LLL");
+            } else{
+                String temp[] = data[1].split(":");
+                if (data[1].contains("S1") || data[1].contains("S2") || data[1].contains("S3") || data[1].contains("S4")) {
+                    section = temp[0].substring(1, 2);
+                    if (data[1].contains("LM")) { //센서 경보범위
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        for (int i = 1; i <= 8; i++) {
+                            editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(0, 2));
+                            editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(3, 5));
                         }
-                    }
-                    editor.commit();
-                    Toast.makeText(this.getApplicationContext(), "현재 값 수신 완료", Toast.LENGTH_LONG).show();
-                }
-            } else if (data[1].substring(0, 2).equals("1:")) { // 비상연락처
-                SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_NUM", 0);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                for (int i = 1; i <= 5; i++) {
-                    if (temp[i].length() > 3) {
-                        if (i == 5) {
-                            editor.putString(Integer.toString(i), temp[i].replace("-", ""));
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(), "센서 경고 범위 수신 완료", Toast.LENGTH_LONG).show();
+                    } else if (data[1].contains("KIND")) { // 센서 종류
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_KIND", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        for (int i = 1; i <= 8; i++) {
+                            editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
+                        }
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(), "센서 종류 수신 완료", Toast.LENGTH_LONG).show();
+                    } else if (data[1].contains("USE")) { // 센서 사용 유무
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_USE", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        for (int i = 1; i <= 8; i++) {
+                            editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
+                        }
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(), "센서 사용 유무 수신 완료", Toast.LENGTH_LONG).show();
+                    } else if (data[1].contains("WA")) { // 음수량 경고범위
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_WA", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        for (int i = 1; i <= 8; i++) {
+                            editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(0, 2));
+                            editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(3, 5));
+                        }
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(), "음수량 경고범위 수신 완료", Toast.LENGTH_LONG).show();
+                    } else { // 현재 값 조회
+                        SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_INFO", 0);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                        if (temp[1].contains("OK")) {
+                            editor.putString("S" + section + "_status", temp[1].substring(0, 2));
                         } else {
-                            String tmp = temp[i].replace("-", "");
-                            editor.putString(Integer.toString(i), tmp.substring(0, tmp.length() - 2));
+                            editor.putString("S" + section + "_status", temp[1].substring(0, 5));
                         }
-                    } else {
-                        editor.putString(Integer.toString(i), "-");
+                        for (int i = 1; i <= 8; i++) {
+                            if (temp[i].contains("T")) {
+                                if (temp[i + 1].contains("OFF")) {
+                                    editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 3));
+                                } else {
+                                    editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 2));
+                                    checkTemp(section, i, temp[i + 1].substring(0, 2));
+                                }
+                            } else if (temp[i].contains("H")) {
+                                if (temp[i + 1].contains("OFF")) {
+                                    editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 3));
+                                } else {
+                                    editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 2));
+                                    checkTemp(section, i, temp[i + 1].substring(0, 2));
+                                }
+                            } else if (temp[i].contains("W")) {
+                                if (temp[i + 1].contains("OFF")) {
+                                    editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 3));
+                                } else {
+                                    editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 2));
+                                    checkTemp(section, i, temp[i + 1].substring(0, 2));
+                                }
+                            }
+                        }
+                        editor.commit();
+                        Toast.makeText(this.getApplicationContext(), "현재 값 수신 완료", Toast.LENGTH_LONG).show();
                     }
-                }
-                editor.commit();
-                Toast.makeText(this.getApplicationContext(), "비상연락처 수신 완료", Toast.LENGTH_LONG).show();
-            } else { // 정규 문자 시간
+                } else if (data[1].substring(0, 2).equals("1:")) { // 비상연락처
+                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_NUM", 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    for (int i = 1; i <= 5; i++) {
+                        if (temp[i].length() > 3) {
+                            if (i == 5) {
+                                editor.putString(Integer.toString(i), temp[i].replace("-", ""));
+                            } else {
+                                String tmp = temp[i].replace("-", "");
+                                editor.putString(Integer.toString(i), tmp.substring(0, tmp.length() - 2));
+                            }
+                        } else {
+                            editor.putString(Integer.toString(i), "-");
+                        }
+                    }
+                    editor.commit();
+                    Toast.makeText(this.getApplicationContext(), "비상연락처 수신 완료", Toast.LENGTH_LONG).show();
+                } else { // 정규 문자 시간
 
-                SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_TIME", 0);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                for (int i = 1; i <= 2; i++) {
-                    if (temp[i].contains(",")) {
-                        editor.putString(i + "_Hour", temp[i].substring(0, 2));
-                        editor.putString(i + "_Min", temp[i].substring(3, 5));
-                    } else {
-                        editor.putString(i + "_Hour", "NULL");
-                        editor.putString(i + "_Min", "NULL");
+                    SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_TIME", 0);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    for (int i = 1; i <= 2; i++) {
+                        if (temp[i].contains(",")) {
+                            editor.putString(i + "_Hour", temp[i].substring(0, 2));
+                            editor.putString(i + "_Min", temp[i].substring(3, 5));
+                        } else {
+                            editor.putString(i + "_Hour", "-");
+                            editor.putString(i + "_Min", "-");
+                        }
                     }
+                    editor.commit();
+                    Toast.makeText(this.getApplicationContext(), "정규 문자 시간 수신 완료", Toast.LENGTH_LONG).show();
                 }
-                editor.commit();
-                Toast.makeText(this.getApplicationContext(), "정규 문자 시간 수신 완료", Toast.LENGTH_LONG).show();
             }
 
         }
@@ -182,15 +185,24 @@ public class CheckSMS extends Service {
         section = ""; // 장비 번호
     }
 
-    public void notification(String section, int t, int dif, String highLow) {
+    public void notification(String section, int t, int dif, String error) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             Notification.Builder builder = new Notification.Builder(this, "default");
             builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setContentTitle("경고");
-            if (highLow.equals("HIGH")) {
+
+            if (error.equals("HIGH")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 온도가 설정 값보다 " + dif + "도 높습니다!");
-            } else if (highLow.equals("LOW")) {
+            } else if (error.equals("LOW")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 온도가 설정 값보다 " + dif + "도 낮습니다!");
+            } else if (error.equals("전원단절")) {
+                builder.setContentText(section + "번 장비 " + t + "구역의 전원이 단절되었습니다!");
+            } else if (error.equals("전원정상")) {
+                builder.setContentText(section + "번 장비 " + t + "구역의 전원이 정상입니다.");
+            } else if (error.equals("HHH")) {
+                builder.setContentText("현재 장비의 온도가 너무 높습니다. 확인이 필요합니다.");
+            } else if (error.equals("LLL")) {
+                builder.setContentText("현재 장비의 온도가 너무 낮습니다. 확인이 필요합니다.");
             } else {
                 builder.setContentText("문제가 발생했습니다 어플을 실행하여 확인하십시오.");
             }
@@ -224,7 +236,7 @@ public class CheckSMS extends Service {
         SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
         String savedHighTemp = sharedPreferences.getString("S" + section + "_" + t + "T_HIGH", "");
         String savedLowTemp = sharedPreferences.getString("S" + section + "_" + t + "T_LOW", "");
-        if(savedHighTemp.length()>0 && savedLowTemp.length()>0){
+        if (savedHighTemp.length() > 0 && savedLowTemp.length() > 0) {
             // 메세지의 온도 값이 최대 값보다 높거나, 최소 값보다 낮은 경우
             if (Integer.parseInt(temperature) >= Integer.parseInt(savedHighTemp)) {
                 notification(section, t, Integer.parseInt(temperature) - Integer.parseInt(savedHighTemp), "HIGH");
