@@ -52,12 +52,23 @@ public class SettingFragment extends Fragment{
         loadData();
         loadCount();
 
+        /** 시연용 임시. 시연이 끝나고 삭제 !!*/
+        if(currentIndex == 0){
+            settingNumber.add(new SettingNumberClass("대가대", "01220788729", currentIndex));
+            settingNumberAdapter.notifyDataSetChanged();
+            saveData("대가대", "01220788729");
+        }
+        /** */
+
         addNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingNumberDialogFragment settingNumberDialogFragment = new SettingNumberDialogFragment(count);
+                /** 시연용 임시. 시연이 끝나고 추가!! */
+                Toast.makeText(getActivity(),"죄송합니다. 시연 중에는 추가할 수 없습니다.", Toast.LENGTH_LONG).show();
+/*                SettingNumberDialogFragment settingNumberDialogFragment = new SettingNumberDialogFragment(count);
                 settingNumberDialogFragment.setDismissListener(new MyDismissListener());
-                settingNumberDialogFragment.show(getFragmentManager(), "추가");
+                settingNumberDialogFragment.show(getFragmentManager(), "추가");*/
+                /** */
             }
         });
 

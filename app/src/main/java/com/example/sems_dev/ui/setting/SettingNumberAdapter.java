@@ -84,7 +84,12 @@ public class SettingNumberAdapter extends ArrayAdapter {
                 builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        // 삭제할 index의 파일 모두 초기화
+                        /** 시연용 임시. 시연이 끝나고 삭제!! */
+                        Toast.makeText(context,"죄송합니다. 시연 중에는 삭제할 수 없습니다.", Toast.LENGTH_LONG).show();
+                        /** */
+
+                        /** 시연용 임시. 시연이 끝나고 주석 해제!! */
+/*                        // 삭제할 index의 파일 모두 초기화
                         String command[] = {"_Farm", "_NUM", "_TIME", "_LIMT", "_KIND", "_USE", "_WA"};
                         for(int i = 0; i<7; i++){
                             SharedPreferences sharedPreferences = context.getSharedPreferences(settingNumberClass.getIndex() + command[i], 0);
@@ -120,7 +125,8 @@ public class SettingNumberAdapter extends ArrayAdapter {
 
                         list.remove(list.get(position));
                         notifyDataSetChanged();
-                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();*/
+                        /** */
                     }
                 });
                 builder.setNegativeButton("아니요", null);

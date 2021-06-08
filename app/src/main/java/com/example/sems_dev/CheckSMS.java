@@ -47,6 +47,13 @@ public class CheckSMS extends Service {
             }
         }
         if (farmNo != -1) {
+/*            if(data[1].equals("Po")){
+
+            }else if(data[1].equals("HHH")){
+
+            }else if(data[1].equals("LLL")){
+
+            }*/
             String temp[] = data[1].split(":");
             if (data[1].contains("S1") || data[1].contains("S2") || data[1].contains("S3") || data[1].contains("S4")) {
                 section = temp[0].substring(1, 2);
@@ -54,8 +61,8 @@ public class CheckSMS extends Service {
                     SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "T_HIGH", temp[i].substring(0, 2));
-                        editor.putString("S" + section + "_" + i + "T_LOW", temp[i].substring(3, 5));
+                        editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(0, 2));
+                        editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(3, 5));
                     }
                     editor.commit();
                     Toast.makeText(this.getApplicationContext(), "센서 경고 범위 수신 완료", Toast.LENGTH_LONG).show();
@@ -63,7 +70,7 @@ public class CheckSMS extends Service {
                     SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_KIND", 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "T", temp[i].substring(0, 1));
+                        editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
                     }
                     editor.commit();
                     Toast.makeText(this.getApplicationContext(), "센서 종류 수신 완료", Toast.LENGTH_LONG).show();
@@ -71,7 +78,7 @@ public class CheckSMS extends Service {
                     SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_USE", 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "T", temp[i].substring(0, 1));
+                        editor.putString("S" + section + "_" + i, temp[i].substring(0, 1));
                     }
                     editor.commit();
                     Toast.makeText(this.getApplicationContext(), "센서 사용 유무 수신 완료", Toast.LENGTH_LONG).show();
@@ -79,8 +86,8 @@ public class CheckSMS extends Service {
                     SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_WA", 0);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     for (int i = 1; i <= 8; i++) {
-                        editor.putString("S" + section + "_" + i + "T_HIGH", temp[i].substring(0, 2));
-                        editor.putString("S" + section + "_" + i + "T_LOW", temp[i].substring(3, 5));
+                        editor.putString("S" + section + "_" + i + "_LOW", temp[i].substring(0, 2));
+                        editor.putString("S" + section + "_" + i + "_HIGH", temp[i].substring(3, 5));
                     }
                     editor.commit();
                     Toast.makeText(this.getApplicationContext(), "음수량 경고범위 수신 완료", Toast.LENGTH_LONG).show();
@@ -94,11 +101,27 @@ public class CheckSMS extends Service {
                         editor.putString("S" + section + "_status", temp[1].substring(0, 5));
                     }
                     for (int i = 1; i <= 8; i++) {
-                        if (temp[i + 1].contains("OFF")) {
-                            editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 3));
-                        } else {
-                            editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 2));
-                            checkTemp(section, i, temp[i + 1].substring(0, 2));
+                        if(temp[i].contains("T")){
+                            if (temp[i + 1].contains("OFF")) {
+                                editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 3));
+                            } else {
+                                editor.putString("S" + section + "_" + i + "T", temp[i + 1].substring(0, 2));
+                                checkTemp(section, i, temp[i + 1].substring(0, 2));
+                            }
+                        }else if(temp[i].contains("H")){
+                            if (temp[i + 1].contains("OFF")) {
+                                editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 3));
+                            } else {
+                                editor.putString("S" + section + "_" + i + "H", temp[i + 1].substring(0, 2));
+                                checkTemp(section, i, temp[i + 1].substring(0, 2));
+                            }
+                        }else if(temp[i].contains("W")){
+                            if (temp[i + 1].contains("OFF")) {
+                                editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 3));
+                            } else {
+                                editor.putString("S" + section + "_" + i + "W", temp[i + 1].substring(0, 2));
+                                checkTemp(section, i, temp[i + 1].substring(0, 2));
+                            }
                         }
                     }
                     editor.commit();
