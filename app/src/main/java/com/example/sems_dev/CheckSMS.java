@@ -116,7 +116,7 @@ public class CheckSMS extends Service {
                             editor.putString(Integer.toString(i), tmp.substring(0, tmp.length() - 2));
                         }
                     } else {
-                        editor.putString(Integer.toString(i), "NULL");
+                        editor.putString(Integer.toString(i), "-");
                     }
                 }
                 editor.commit();

@@ -2,6 +2,7 @@ package com.example.sems_dev.ui.emergency_call;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,11 +46,11 @@ public class EmergencyCallActivity extends AppCompatActivity {
         RecyclerItem item = new RecyclerItem();
         item.setFarmNumber("test");
         if (sharedPref.getAll() == null) {
-            editor.putString("1","-");
-            editor.putString("2","-");
-            editor.putString("3","-");
-            editor.putString("4","-");
-            editor.putString("5","-");
+            editor.putString("1", "-");
+            editor.putString("2", "-");
+            editor.putString("3", "-");
+            editor.putString("4", "-");
+            editor.putString("5", "-");
             editor.apply();
             item.setpNum_1(sharedPref.getString("1", "-"));
             item.setpNum_2(sharedPref.getString("2", "-"));
@@ -59,34 +60,34 @@ public class EmergencyCallActivity extends AppCompatActivity {
             mList.add(item);
         } else {
             String temp = sharedPref.getString("1", "-");
-            if (temp.equals("NULL"))
+            if (temp.equals("-"))
                 item.setpNum_1("-");
             else
-                item.setpNum_1(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                item.setpNum_1(temp.substring(0, 3) + "-" + temp.substring(3, 7) + "-" + temp.substring(7));
 
             temp = sharedPref.getString("2", "-");
-            if (temp.equals("NULL"))
+            if (temp.equals("-"))
                 item.setpNum_2("-");
             else
-                item.setpNum_2(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                item.setpNum_2(temp.substring(0, 3) + "-" + temp.substring(3, 7) + "-" + temp.substring(7));
 
             temp = sharedPref.getString("3", "-");
-            if (temp.equals("NULL"))
+            if (temp.equals("-"))
                 item.setpNum_3("-");
             else
-                item.setpNum_3(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                item.setpNum_3(temp.substring(0, 3) + "-" + temp.substring(3, 7) + "-" + temp.substring(7));
 
             temp = sharedPref.getString("4", "-");
-            if (temp.equals("NULL"))
+            if (temp.equals("-"))
                 item.setpNum_4("-");
             else
-                item.setpNum_4(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                item.setpNum_4(temp.substring(0, 3) + "-" + temp.substring(3, 7) + "-" + temp.substring(7));
 
             temp = sharedPref.getString("5", "-");
-            if (temp.equals("NULL"))
+            if (temp.equals("-"))
                 item.setpNum_5("-");
             else
-                item.setpNum_5(temp.substring(0, 3) + "-" + temp.substring(4, 8) + "-" + temp.substring(7, temp.length()));
+                item.setpNum_5(temp.substring(0, 3) + "-" + temp.substring(3, 7) + "-" + temp.substring(7));
 
             mList.add(item);
         }
