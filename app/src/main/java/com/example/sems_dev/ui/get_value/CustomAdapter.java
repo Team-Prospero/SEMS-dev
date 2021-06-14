@@ -80,13 +80,53 @@ public class CustomAdapter extends Fragment {
             //getSharedPreferences Edittext저장
             SharedPreferences sf = this.getActivity().getSharedPreferences(fileName,0);
             Editsensor_Name[i].setText(sf.getString(String.valueOf(i),""));
-            //Editsensor_Name[i].setText(sf.getString("a"+i,""));
+            Log.d("[sp]", "S" + position + "_" +(2)+"T");
+
 
             SharedPreferences sf1 = this.getActivity().getSharedPreferences(fileName1, 0);
+
+            SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+                @Override
+                public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+
+                    switch (s){
+                        case "S1_1T":
+                            Temperature[0].setText(sf1.getString("S" + position + "_" +(1)+"T", ""));
+                            break;
+                        case "S1_2T":
+                            Log.d("[spchange]", sf1.getString("S" + position + "_" +(2)+"T", ""));
+                            Temperature[1].setText(sf1.getString("S" + position + "_" +(2)+"T", ""));
+                            break;
+                        case "S1_3T":
+                            Temperature[2].setText(sf1.getString("S" + position + "_" +(3)+"T", ""));
+                            break;
+                        case "S1_4T":
+                            Temperature[3].setText(sf1.getString("S" + position + "_" +(4)+"T", ""));
+                            break;
+                        case "S1_5T":
+                            Temperature[4].setText("OFF");
+                            break;
+                        case "S1_c6T":
+                            Temperature[5].setText("OFF");
+                            break;
+                        case "S1_7T":
+                            Temperature[6].setText("OFF");
+                            break;
+                        case "S1_8T":
+                            Temperature[7].setText("OFF");
+                            break;
+                    }
+                }
+            };
+            sf1.registerOnSharedPreferenceChangeListener(listener);
+
+
+
 
             temp = sf1.getString("S" + position + "_" +(i+1)+"T", "");
 //            String temp1 = sf1.getString("S" + position + "_" +(i+1)+"H", "");
 //            String temp2 = sf1.getString("S" + position + "_" +(i+1)+"W", "");
+
             tempArr.add(temp);
             //tempArr.add(temp1);tempArr.add(temp2);
             Temperature[i].setText(temp);

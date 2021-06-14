@@ -82,8 +82,6 @@ public class GetValueFragment extends Fragment{
         LastViewTime.setText("최근 조회 시간 : "+text);
 
 
-        //spinner에 제공해주는 arrayadapter 사용하지 않고 custom adapter를 사용해야 하는데, 사실 저도 할게 좀 많아서 .. 편법 쓸께요
-        //나중에 custom adapter필요하면 수정해서 사용해요
         int num = 0;
         SharedPreferences sf1 = null;
         List<HashMap<String, String>> spinnerArray = new ArrayList<>();
@@ -107,7 +105,30 @@ public class GetValueFragment extends Fragment{
 
 
 
-        // final String[] country = {"-농장 선택-","test", "농장2","농장3","농장4"};
+
+        //농장 선택 Adapter
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, titleList);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setGravity(Gravity.CENTER);
+
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    pager = (ViewPager) v.findViewById(R.id.pager1);
+                    pagerAdapter pagerAdapter = new pagerAdapter(getFragmentManager());
+                    pagerAdapter.setSpinnerPosition(spinner.getSelectedItemPosition());
+                    pager.setAdapter(pagerAdapter);
+                    pager.setCurrentItem(0);
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> adapterView) {
+                }
+            });
+// final String[] country = {"-농장 선택-","test", "농장2","농장3","농장4"};
         //현재값 조회
         currentVal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,28 +148,6 @@ public class GetValueFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        //농장 선택 Adapter
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, titleList);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
-            spinner.setGravity(Gravity.CENTER);
-
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                    pager = (ViewPager) v.findViewById(R.id.pager1);
-                    pagerAdapter pagerAdapter = new pagerAdapter(getFragmentManager());
-                    pagerAdapter.setSpinnerPosition(spinner.getSelectedItemPosition());
-                    pager.setAdapter(pagerAdapter);
-                    pager.setCurrentItem(0);
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
-                }
-            });
-
         pager.setOnPageChangeListener(onPageChangeListener); //디프리케이트됨
 
         //뷰페이저
@@ -219,6 +218,7 @@ public class GetValueFragment extends Fragment{
         public Fragment getItem(int position) {
             equipment[position].setSelected(true);
             equipment[position].setBackgroundColor(Color.parseColor("#8A3CFF"));
+
             return new CustomAdapter("sFile"+position,spinnerPosition+"_INFO", position+1);
         }
 
