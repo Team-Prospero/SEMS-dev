@@ -4,22 +4,16 @@ package com.example.sems_dev.ui.setting;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.sems_dev.R;
-import com.example.sems_dev.SendSMS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +31,7 @@ public class SettingNumberAdapter extends ArrayAdapter {
         public TextView tvName;
         public TextView tvNumber;
         public Button btnOnOff;
-        public Button btndelete;
+        public Button btnDelete;
     }
 
     public SettingNumberAdapter(Context context, ArrayList list){
@@ -59,7 +53,7 @@ public class SettingNumberAdapter extends ArrayAdapter {
         viewHolder.tvName = (TextView) convertView.findViewById(R.id.tvListViewName);
         viewHolder.tvNumber = (TextView) convertView.findViewById(R.id.tvListViewNumber);
 //        viewHolder.btnOnOff = (Button) convertView.findViewById(R.id.btnListViewOnOff);
-        viewHolder.btndelete = (Button) convertView.findViewById(R.id.btnListViewDelete);
+        viewHolder.btnDelete = (Button) convertView.findViewById(R.id.btnListViewDelete);
 
         final SettingNumberClass settingNumberClass = (SettingNumberClass) list.get(position);
         viewHolder.tvName.setText(settingNumberClass.getName());
@@ -70,13 +64,13 @@ public class SettingNumberAdapter extends ArrayAdapter {
                 Toast.makeText(context, "Button click", Toast.LENGTH_SHORT).show();
             }
         });*/
-        viewHolder.btndelete.setOnClickListener(new View.OnClickListener() {
+        viewHolder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "삭제하시려면 길게 눌러주세요.", Toast.LENGTH_SHORT).show();
             }
         });
-        viewHolder.btndelete.setOnLongClickListener(new View.OnLongClickListener(){
+        viewHolder.btnDelete.setOnLongClickListener(new View.OnLongClickListener(){
             @Override
             public boolean onLongClick(View v){
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -84,12 +78,8 @@ public class SettingNumberAdapter extends ArrayAdapter {
                 builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        /** 시연용 임시. 시연이 끝나고 삭제!! */
-                        Toast.makeText(context,"죄송합니다. 시연 중에는 삭제할 수 없습니다.", Toast.LENGTH_SHORT).show();
-                        /** */
 
-                        /** 시연용 임시. 시연이 끝나고 주석 해제!! */
-/*                        // 삭제할 index의 파일 모두 초기화
+                        // 삭제할 index의 파일 모두 초기화
                         String command[] = {"_Farm", "_NUM", "_TIME", "_LIMT", "_KIND", "_USE", "_WA"};
                         for(int i = 0; i<7; i++){
                             SharedPreferences sharedPreferences = context.getSharedPreferences(settingNumberClass.getIndex() + command[i], 0);
@@ -125,8 +115,7 @@ public class SettingNumberAdapter extends ArrayAdapter {
 
                         list.remove(list.get(position));
                         notifyDataSetChanged();
-                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();*/
-                        /** */
+                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.setNegativeButton("아니요", null);

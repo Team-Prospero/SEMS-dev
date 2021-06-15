@@ -141,11 +141,14 @@ public class CheckSMS extends Service {
                             editor.putString("S" + section + "_status", temp1[0].substring(0,5));
                         }
                         for(int i = 0 ; i<temp1.length ; i ++ ){
-                            if(temp[i].contains("OFF")){
+                            if(temp1[i].contains("OFF")){
                                 editor.putString("S" + section + "_" + i + "T", temp1[i].substring(3));
                             }
                             else{
                                 editor.putString("S" + section + "_" + i + "T", temp1[i].substring(3));
+                                if(i != 0){
+                                    checkTemp(section, i, temp1[i].substring(3));
+                                }
                             }
                         }
                         editor.commit();
@@ -256,8 +259,8 @@ public class CheckSMS extends Service {
 
     public void checkTemp(String section, int t, String temperature) {
         SharedPreferences sharedPreferences = getSharedPreferences(farmNo + "_LIMT", 0);
-        String savedHighTemp = sharedPreferences.getString("S" + section + "_" + t + "T_HIGH", "");
-        String savedLowTemp = sharedPreferences.getString("S" + section + "_" + t + "T_LOW", "");
+        String savedHighTemp = sharedPreferences.getString("S" + section + "_" + t + "_HIGH", "");
+        String savedLowTemp = sharedPreferences.getString("S" + section + "_" + t + "_LOW", "");
         if (savedHighTemp.length() > 0 && savedLowTemp.length() > 0) {
             // 메세지의 온도 값이 최대 값보다 높거나, 최소 값보다 낮은 경우
             if (Integer.parseInt(temperature) >= Integer.parseInt(savedHighTemp)) {
