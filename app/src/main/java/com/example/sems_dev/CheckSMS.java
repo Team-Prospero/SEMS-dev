@@ -1,27 +1,37 @@
 package com.example.sems_dev;
 
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 public class CheckSMS extends Service {
+
     private int count;
     private String number[] = new String[5]; // 농장 전화번호
     private boolean check[] = new boolean[5]; // 저장된 농장 순서값
     private int farmNo; // 저장된 농장 순서 값
     private String section; // 장비 번호
+    public static Context contextC;
+    public MediaPlayer player;
 
     @Override
     public void onCreate() {
@@ -35,6 +45,7 @@ public class CheckSMS extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        contextC = this;
         init();
         String data[] = intent.getStringExtra("msg").split("@"); // 문자 발신 번호와 내용 저장
 
@@ -212,39 +223,54 @@ public class CheckSMS extends Service {
 
     public void notification(String section, int t, int dif, String error) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            Notification.Builder builder = new Notification.Builder(this, "default");
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "default");
             builder.setSmallIcon(R.mipmap.ic_launcher);
             builder.setContentTitle("경고");
 
+/*            Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
+            builder.setSound(alarmSound);*/
+/*            Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.emergency);
+            builder.setSound(uri);*/
+
+            Intent intent = new Intent(this, EmergencyActivity.class);
+            intent.setAction(Intent.ACTION_MAIN)
+                    .addCategory(Intent.CATEGORY_LAUNCHER)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+            builder.setContentIntent(pendingIntent);
+
+            player = MediaPlayer.create(this,R.raw.emergency);
+            player.setLooping(true);
+            player.start();
+
             if (error.equals("HIGH")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 온도가 설정 값보다 " + dif + "도 높습니다!");
+                startActivity(intent);
             } else if (error.equals("LOW")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 온도가 설정 값보다 " + dif + "도 낮습니다!");
+                startActivity(intent);
             } else if (error.equals("전원단절")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 전원이 단절되었습니다!");
+                startActivity(intent);
             } else if (error.equals("전원정상")) {
                 builder.setContentText(section + "번 장비 " + t + "구역의 전원이 정상입니다.");
+                startActivity(intent);
             } else if (error.equals("HHH")) {
                 builder.setContentText("현재 장비의 온도가 너무 높습니다. 확인이 필요합니다.");
+                startActivity(intent);
             } else if (error.equals("LLL")) {
                 builder.setContentText("현재 장비의 온도가 너무 낮습니다. 확인이 필요합니다.");
+                startActivity(intent);
             } else {
                 builder.setContentText("문제가 발생했습니다 어플을 실행하여 확인하십시오.");
+                startActivity(intent);
             }
-
 
             builder.setColor(Color.RED);
             //builder.setSmallIcon();
 
             // 사용자가 탭을 클릭하면 자동 제거
             builder.setAutoCancel(true);
-
-            Intent intent = new Intent(this, MainActivity.class);
-            intent.setAction(Intent.ACTION_MAIN)
-                    .addCategory(Intent.CATEGORY_LAUNCHER)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
-            builder.setContentIntent(pendingIntent);
 
             NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

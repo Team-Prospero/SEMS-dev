@@ -284,7 +284,7 @@ public class RecyclerImageTextAdapter extends RecyclerView.Adapter<RecyclerImage
                 @Override
                 public void onClick(View v) {
                     setAdapter();
-                    sensorWarningDialog.setTitle("센서종류 변경");
+                    sensorWarningDialog.setTitle("센서 경고범위 변경");
                     sensorWarningDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {

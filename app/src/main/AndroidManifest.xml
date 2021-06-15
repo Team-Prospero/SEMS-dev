@@ -32,6 +32,7 @@
         <activity android:name=".ui.sensor_warning.SensorWarningActivity" android:label="센서 경고범위 설정/조회"/>
         <activity android:name=".ui.sensor_water_warning.SensorWaterWarningActivity" android:label="음수량 경고범위 설정/조회"/>
         <activity android:name=".SendSMS" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".EmergencyActivity" android:theme="@android:style/Theme.Dialog" android:launchMode="singleTask"/>
         <service android:name=".CheckSMS"></service>
     </application>
 
