@@ -92,15 +92,17 @@ public class SettingNumberAdapter extends ArrayAdapter {
                         for(int i = 0 ; i<=4 ; i++){
                             index[i] = sharedPreferences.getBoolean("index" + i, false);
                         }
+
                         count = sharedPreferences.getInt("count", 0);
                         currentIndex = sharedPreferences.getInt("currentIndex", 0);
 
                         // 새로 COUNT 저장하기
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         index[settingNumberClass.getIndex()] = false; // 삭제할 index false
+
                         editor.putBoolean("index" + settingNumberClass.getIndex(), index[settingNumberClass.getIndex()]);
                         count--;
-                        for(int i = 0 ; i<=5 ; i++){
+                        for(int i = 0 ; i<=4 ; i++){
                             if(index[i]==false){ // 0번부터 검사하여 빈 index 검색
                                 currentIndex = i;
                                 break;

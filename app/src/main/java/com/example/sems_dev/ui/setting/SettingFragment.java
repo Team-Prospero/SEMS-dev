@@ -77,7 +77,7 @@ public class SettingFragment extends Fragment{
         String name = sharedPreferences.getString("name","");
         String number = sharedPreferences.getString("number","");
             if(name.length() != 0 || number.length() != 0) {
-            settingNumber.add(new SettingNumberClass(name, number, currentIndex));
+            settingNumber.add(new SettingNumberClass(name, number, i));
             }
         }
     }
